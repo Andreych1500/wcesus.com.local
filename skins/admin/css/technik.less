@@ -1,0 +1,53 @@
+@charset "utf-8";
+@import "/../../../vendor/public/lesshat/build/lesshat.less";
+
+@font-team: "Helvetica-Neue", "Helvetica", Arial, sans-serif;
+
+html{
+  background: url('/skins/default/img/tychku.png') repeat;
+}
+
+.technik{
+  width: 96%;
+  height: 100%;
+  margin: 2%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  font-family: @font-team;
+  font-size: 18px;
+  text-align: center;
+  .display(flex);
+  .align-items(center);
+  .justify-content(center);
+  .flex-direction(column);
+
+  img{
+    max-width: 300px;
+  }
+
+  @media screen and (max-width: 520px) {
+    img{
+      max-width: 190px;
+    }
+  }
+
+  img[src*='cd-static']{
+    vertical-align: super;
+  }
+
+  p{
+    max-width: 900px;
+    padding: 5px;
+  }
+
+  div{
+    margin: 0 auto;
+    background: #fff;
+    padding-top: 20px;
+    .opacity(0.9);
+    color: #482200;
+    .box-shadow(0 15px 50px 0 rgba(0,0,0,0.6));
+  }
+}

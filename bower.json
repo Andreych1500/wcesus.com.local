@@ -1,0 +1,23 @@
+{
+  "name": "my-notebook.com.ua.local",
+  "authors": [
+    "Andreych1500 <Savitskuy@ukr.net>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "jquery.cookie": "^1.4.1",
+    "lesshat": "3.0.2",
+    "translit": "*"
+  }
+}
