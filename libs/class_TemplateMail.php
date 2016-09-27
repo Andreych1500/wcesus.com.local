@@ -62,7 +62,7 @@ class TemplateMail {
         'header'       => $arType['header_list'],
         'text'         => $arType['text'],
         'why'          => $arType['why_list'],
-        'wwwSite'      => 'www'.$arMainParam['url_site'],
+        'wwwSite'      => 'www.'.$arMainParam['url_site'],
         'phone'        => $arSetting['phone'],
         'email_footer' => $arSetting['email_footer'],
         'urlToSite'    => $arMainParam['url_http_site'].'/'.$langUrl,
@@ -91,7 +91,7 @@ class TemplateMail {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?=$arSet['theme']?></title>
       </head>
-      <body style="background: url(<?=$arSet['background']?>) #ffffff; line-height:1.5; color:#482200; padding:30px 20px; font-size:17px;">
+      <body style="background: url(<?=$arSet['background']?>) #fb7d66; line-height:1.5; color:#482200; padding:30px 20px; font-size:17px;">
       <style>
         @media screen and (min-width: 480px) {
 
@@ -99,7 +99,7 @@ class TemplateMail {
       </style>
       <div role="header" style="text-align: center; border: 1px dashed #cccccc; background:#ffffff; padding:10px; margin: auto; max-width: 538px;">
         <a href="<?=$arSet['urlToSite']?>" target="_blank" title="<?=$arSet['wwwSite']?>" style="outline:none; display:inline-block;">
-          <img src="<?=$arSet['logoImage']?>" style="width:auto"> </a>
+          <img src="<?=$arSet['logoImage']?>" style="width:100%"> </a>
         <p style="font-size: 26px; margin:0; font-weight:bold;"><?=$arSet['header']?></p>
         <div style="clear:both;"></div>
       </div>
@@ -110,7 +110,7 @@ class TemplateMail {
       <div role="footer" style="background:#ffffff; padding: 10px; color: #BFBFBF; text-align: center; border: 1px dashed #cccccc; margin: auto; max-width: 538px;">
         <p style="margin:0 0 10px; font-size: 18px;">E-mail:
           <a href="mailto:<?=$arSet['email_footer']?>" style="color:#8B8B8B !important; font-weight:bold; text-decoration:none;"><?=$arSet['email_footer']?></a> | Phone:
-          <a href="callto:<?=calltoPhone($arSet['phone'])?>" style="color:#8B8B8B !important; font-weight:bold; text-decoration:none;">+<?=calltoPhone($arSet['phone'])?></a>
+          <a href="callto:<?=calltoPhone($arSet['phone'])?>" style="color:#8B8B8B !important; font-weight:bold; text-decoration:none;"><?=calltoPhone($arSet['phone'])?></a>
         </p>
         <div style="font-size:0; margin:0 0 10px;">
           <?php foreach(self::$socLink as $k => $v){ ?>

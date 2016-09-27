@@ -17,7 +17,7 @@ if(Core::$CONT != 'modules/admin'){
     );
 
     // Canonical
-    Core::$META['canonical'] = $arMainParam['url_http_site'].$link_lang.(($GM['module'] == 'static')? '' : $GM['module'].'/');
+    Core::$META['canonical'] = $arMainParam['url_http_site'].$link_lang.(($GM['module'] == 'static')? '' : $GM['module'].'/').(isset($_GET['page'])? $_GET['page'].'/' : '');
 
     // Alternate lang
     $module_url = (($GM['module'] == 'static')? '' : $GM['module'].'/');
@@ -62,16 +62,7 @@ if(Core::$CONT != 'modules/admin'){
         } else {
             menuExit();
         }
-    } else {
-        $globalAccess = false;
-
-        if($_GET['module'] != 'static'){
-            header("Location: /admin/");
-            exit();
-        }
-    }
-
-    if(isset($_COOKIE['authhash'], $_COOKIE['id'])){
+    } elseif(isset($_COOKIE['authhash'], $_COOKIE['id'])) {
         $auth = q("
             SELECT *
 			      FROM `admin_users_list`
@@ -79,6 +70,8 @@ if(Core::$CONT != 'modules/admin'){
             AND `id`   = ".(int)$_COOKIE['id']."
             AND `active` != 0
 			      AND `access` = 5
+			      AND `user_ip` = '".mres($_SERVER['REMOTE_ADDR'])."'
+			      AND `agent` = '".mres($_SERVER['HTTP_USER_AGENT'])."'
 			      LIMIT 1
 	      ");
 
@@ -87,6 +80,13 @@ if(Core::$CONT != 'modules/admin'){
             $globalAccess = true;
         } else {
             menuExit();
+        }
+    } else {
+        $globalAccess = false;
+
+        if($_GET['module'] != 'static'){
+            header("Location: /admin/");
+            exit();
         }
     }
 

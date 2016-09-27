@@ -7,7 +7,7 @@ $mess['Веб-сервер'] = 'Web server';
 $mess['Версія ядра'] = 'Kernel version';
 $mess['Адреса сайта'] = 'Site address';
 $mess['Сайт розроблений'] = 'Site is developed';
-$mess['Відповідальне лице'] = 'Responsible person';
+$mess['Сайт розробив'] = 'The site is developed';
 $mess['Підтримка SЕО'] = 'SЕО support';
 $mess['Підтримка сайту'] = 'Site support';
 $mess['Щомісячна плата'] = 'Monthly fee';
@@ -149,17 +149,21 @@ $mess['Жодної таблиці не було знайдено!']= 'No table 
 $mess['Скачати останній файл']= 'Download the latest file';
 
 // Import
-$mess['Невірна операція імпорту, таблиця вже існує!'] = '';
-$mess['Невірна операція імпорту, таблиці не знайдено!'] = '';
-$mess['Імпорт даних'] = '';
-$mess['Тип файлу'] = '';
-$mess['Вид імпорту'] = '';
-$mess['Імпорт'] = '';
-$mess['Новий імпорт'] = '';
-$mess['Замінити повністю'] = '';
-$mess['Імпорт елементів'] = '';
-$mess['Типи інформаційних блоків'] = '';
-$mess['Додати новий тип'] = '';
+$mess['Невірна операція імпорту, таблиця вже існує!'] = 'Incorrect operation import table already exists!';
+$mess['Невірна операція імпорту, таблиці не знайдено!'] = 'Wrong import operation,table not found';
+$mess['Імпорт даних'] = 'Import data';
+$mess['Тип файлу'] = 'File type';
+$mess['Вид імпорту'] = 'Import type';
+$mess['Імпорт'] = 'Import';
+$mess['Новий імпорт'] = 'New import';
+$mess['Замінити повністю'] = 'Replace all';
+$mess['Імпорт елементів'] = 'Element import';
+$mess['Сталася помилка при загрузці файла!'] = 'An error occurred while zahruztsi file!';
+$mess['Жодного типу файла не знайдено!'] = 'No such file!';
+$mess['Помилка, виберіть вид імпорту!'] = 'Error, select the type of import;';
+$mess['Такої операції з імпортом не існує!'] = 'Such transactions imports does not exist!';
+$mess['Імпорт пройшов успішно!'] = 'Import was successful!';
+$mess['Файла з відповідним типом не знайдено!'] = 'Files with the relevant type not found!';
 
 // Modules-pages
 $mess['Модулі сайту'] = 'Site modules ';

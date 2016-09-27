@@ -9,13 +9,13 @@ class UploaderFiles {
         if($file['size'] < 0 || $file['size'] > 52428800){
             return array('error' => 'File Size does not suit us');
         } elseif(isset($file['error']) && $file['error'] > 0) {
-            return array('error' => 'Помилка неможливо завантажити файл!');
+            return array('error' => 'Error Could not load file!');
         } elseif(!in_array($file['type'], self::$tmp) && $checkType == 'file') {
             return array('type' => 'file');
         } elseif(in_array($file['type'], self::$tmp) && $checkType == 'img') {
             return array('type' => 'image');
         } else {
-            return array('error' => 'Помилка неможливо завантажити файл!');
+            return array('error' => 'Error Could not load file!');
         }
     }
 
@@ -25,17 +25,17 @@ class UploaderFiles {
         preg_match("#\.\w+$#uis", $file['name'], $type);
 
         if(count($type) <= 0){
-            return array('error' => 'Недопустимий тип файла!');
+            return array('error' => 'Invalid file type!');
         }
 
         $name = 'file'.date('YmdHis').rand(10000, 99999).$type[0];
 
         if(count($matches) > 0){
-            return array('error' => 'Недопустимі символи у імені файла!');
+            return array('error' => 'Invalid characters in the file name!');
         } elseif(copy($file['tmp_name'], $uploadFile.$name)) {
             return array('file' => '/uploaded/temporarily/'.mb_strtolower($name));
         } else {
-            return array('error' => 'Виникла помилка при копіювані ресурса!');
+            return array('error' => 'An error occurred while copying resources!');
         }
     }
 
@@ -53,7 +53,7 @@ class UploaderFiles {
                 }
 
                 if(in_array($file['type'], self::$tmp)){
-                    $nameFile = date('YmdHis').'img'.rand(10000, 99999).'.'.str_replace('image/', '', $file['type']);
+                    $nameFile = date('HisYmd').'i'.'ph'.time().'m'.rand(100, 999).'g'.'.'.str_replace('image/', '', $file['type']);
                 } else {
                     return array('error' => 'No exist type image');
                 }
@@ -65,17 +65,17 @@ class UploaderFiles {
 
                 if(!in_array($matches[1], self::$tup)){
                     return array('error' => 'No exist type image');
-                    self::$error = 'Не підходить розширення зображення';
+                    self::$error = 'Unsuitable extension image';
                 } elseif(!in_array($temp['mime'], self::$tmp)) {
-                    self::$error = 'Не підходить тип файла, можна загружати лише зображення';
+                    self::$error = 'Not suitable file type, you can only download images';
                 } elseif($temp[1] < 30 || $temp[0] < 40) {
-                    self::$error = 'Не підходить розмір зображення';
+                    self::$error = 'Not suitable size image';
                 } elseif($temp[1] > $temp[0] * 5) {
-                    self::$error = 'Не підходить розмір зображення';
+                    self::$error = 'Not suitable size image';
                 } elseif($temp[1] >= 10000 || $temp[0] >= 10000) {
-                    self::$error = 'Розширення у пікселях занадто велике';
+                    self::$error = 'Expansion in pixels too large';
                 } elseif(!move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT'].self::$info['src'])) {
-                    self::$error = 'Зображення не загружено! Помилка';
+                    self::$error = 'The image is not loaded! Error';
                 } else {
                     return array('image' => self::$info);
                 }
@@ -92,7 +92,7 @@ class UploaderFiles {
     static function resizeImage($file, $width, $height){
 
         if($width > 1100 || $height > 1100){
-            return array('error' => 'Розміри нового зображення занадто великі!');
+            return array('error' => 'The dimensions of the new image is too big!');
         }
 
         $name = $_SERVER['DOCUMENT_ROOT'].'/uploaded/temporarily/'.$file;
@@ -106,6 +106,14 @@ class UploaderFiles {
         switch($temp[2]){
             case 1:
                 $src_image = imagecreatefromgif($name);
+
+                $colorTransparent = imagecolortransparent($src_image);
+                if($colorTransparent >= 0 && $colorTransparent < imagecolorstotal($src_image)){
+                    imagepalettecopy($thumb, $src_image);
+                    imagefill($thumb, 0, 0, $colorTransparent);
+                    imagecolortransparent($thumb, $colorTransparent);
+                    imagetruecolortopalette($thumb, true, 256);
+                }
                 break;
             case 2:
                 $src_image = imagecreatefromjpeg($name);

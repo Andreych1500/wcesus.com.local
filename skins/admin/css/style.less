@@ -114,6 +114,14 @@
   .box-shadow(0 5px 30px 0 rgba(0, 0, 0, 0.35));
 }
 
+.hidden {
+  display: none;
+}
+
+.hiddenIM {
+  display: none !important;
+}
+
 body {
   &:extend(.clearfix all);
   position: relative;
@@ -1259,7 +1267,6 @@ body {
             }
 
             &[type="number"], &[type="text"] {
-              min-width: 80px;
               border-radius: 3px;
               border: 1px solid #ccc;
               padding: 5px;
@@ -1299,6 +1306,11 @@ body {
           border-right: 0;
           border-top: 0;
           border-bottom-color: #F9F9F9;
+          min-width: 75px;
+
+          @media screen and (max-width: 540px) {
+            min-width: 30px;
+          }
 
           &:last-child {
             border-right: 0;
@@ -1612,6 +1624,10 @@ body {
 
   .error {
     border: 1px solid red !important;
+  }
+
+  input[type="checkbox"].error, input[type="radio"].error {
+    outline: 1px solid red !important;
   }
 
   option[data-option="csv"] {
@@ -2475,13 +2491,12 @@ body {
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
-  }
 
-  .close:hover,
-  .close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
+    &:hover, &:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
   }
 
   .autoResize {
@@ -2558,6 +2573,43 @@ body {
     max-width: 157px;
     margin: 10px auto 0;
   }
+}
+
+.spec-block-list {
+  a {
+    display: inline-block;
+    color: #4b6267;
+    text-decoration: underline;
+  }
+}
+
+.items-report {
+  &:extend(.clearfix all);
+
+  & > div {
+    float: left;
+    width: 100%;
+    text-align: center;
+
+    a {
+      color: #4b6267;
+    }
+  }
+}
+
+.checkbox-div label {
+  float: left;
+}
+
+div[data-disabled="applicant_copy"] {
+  label {
+    float: left;
+  }
+}
+
+.spec-block2 {
+  color: #4b6267;
+  margin: 10px 0;
 }
 
 // --- END Modal Resize Image ---

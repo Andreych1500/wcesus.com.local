@@ -357,7 +357,7 @@ function removeImage(el) {
 
     if (del_files !== undefined && del_files.length > 0) {
         $.ajax({
-            url: '/admin/setting/personal-interface/?delPhoto=ok&ajax=ok',
+            url: '/admin/setting/personal-interface/?delFile=ok&ajax=ok',
             type: "POST",
             data: {'file_delete': del_files},
             cache: false

@@ -40,7 +40,7 @@
       </div>
 
       <div class="input-value">
-        <div class="name-section"><?=$mess['Відповідальне лице']?>:</div>
+        <div class="name-section"><?=$mess['Сайт розробив']?>:</div>
         <input type="text" name="responsible_face" value="<?=(isset($error)? hsc($_POST['responsible_face']) : $arResult['responsible_face'])?>">
       </div>
 

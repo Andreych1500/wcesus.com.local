@@ -152,7 +152,7 @@
         </div>
 
         <div class="input-value upload_file" id="og_image" data-priority-type="img">
-          <div class="name-section"><?=$mess['Логотип сайту']?>:</div>
+          <div class="name-section">Og image:</div>
           <?php $file = (isset($error) && !empty($_POST['og_image'])? hsc($_POST['og_image']) : $arResult['og_image']);
           $exist_file = fileExist($file);
           $size = (!empty($exist_file)? getimagesize($_SERVER['DOCUMENT_ROOT'].$file)[0] : 'auto');

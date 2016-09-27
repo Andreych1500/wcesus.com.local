@@ -159,13 +159,23 @@ function emptyArray($ar){
 }
 
 function calltoPhone($el){
-    if(preg_match('#^(\d{3})(\d{3})(\d{2})(\d{2})$#uis', $el, $matches)){
-        $result = '38-'.$matches[1].'-'.$matches[2].'-'.$matches[3].'-'.$matches[4];
+    if(preg_match('#^(\d{3})(\d{3})(\d{4})$#uis', $el, $matches)){
+        $result = '+1-'.$matches[1].'-'.$matches[2].'-'.$matches[3];
     } else {
         $result = 'Error Format';
     }
 
     return $result;
+}
+
+function arrayNotKey($val, $array){
+    foreach($val as $v){
+        if(!array_key_exists($v, $array)){
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function isMobile(){
@@ -180,11 +190,7 @@ function isMobile(){
 
 function FBytes($bytes, $precision = 2){
     $units = array(
-        'B',
-        'KB',
-        'MB',
-        'GB',
-        'TB'
+        'B', 'KB', 'MB', 'GB', 'TB'
     );
     $bytes = max($bytes, 0);
     $pow = floor(($bytes? log($bytes) : 0) / log(1024));
@@ -223,8 +229,8 @@ function menuExit(){
 
     session_unset();
     session_destroy();
-    setcookie('authhash', '', time() - 636000, '/');
-    setcookie('id', '', time() - 636000, '/');
+    setcookie("id", "", time() - 32556926, "/");
+    setcookie("authhash", "", time() - 32556926, "/");
 
     header("Location: /admin/");
     exit();
@@ -243,9 +249,7 @@ function sessionInfo($url = '/admin/', $text = '', $set = 0, $stop = 1){
     }
 
     $_SESSION['info'] = array(
-        'text' => $text,
-        'icon' => $icon,
-        'type' => $type
+        'text' => $text, 'icon' => $icon, 'type' => $type
     );
 
     if($stop){
@@ -293,13 +297,13 @@ if(isset($_GET['route'])){
         // Lang admin
         if(isset($_REQUEST['lang_admin']) && in_array($_REQUEST['lang_admin'], Core::$ADMIN_LANG)){
             setcookie('lang_admin', $_REQUEST['lang_admin'], time() + 36000000, '/');
-            sessionInfo('/'.$_REQUEST['route'],'Lang in admin: '.$_REQUEST['lang_admin'], 1);
-        } else{
+            sessionInfo('/'.$_REQUEST['route'], 'Lang in admin: '.$_REQUEST['lang_admin'], 1);
+        } else {
             if(isset($_REQUEST['lang_admin'])){
-                sessionInfo('/'.$_REQUEST['route'],'');
+                sessionInfo('/'.$_REQUEST['route'], '');
             }
 
-            if(isset($_COOKIE['lang_admin']) && in_array($_COOKIE['lang_admin'], Core::$ADMIN_LANG)) {
+            if(isset($_COOKIE['lang_admin']) && in_array($_COOKIE['lang_admin'], Core::$ADMIN_LANG)){
                 $lang = $_COOKIE['lang_admin'];
             } else {
                 setcookie('lang_admin', Core::$ADMIN_LANG[0], time() + 36000000, '/');

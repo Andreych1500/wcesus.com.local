@@ -147,6 +147,7 @@ class AdminFunction {
             $act = (!empty($filter[$k]) || (isset($_COOKIE['filter']) && in_array($i - 1, (array)json_decode($_COOKIE['filter'])))? 'act-option' : '');
             $disabled = (!empty($filter[$k]) || (isset($_COOKIE['filter']) && in_array($i - 1, (array)json_decode($_COOKIE['filter'])))? '' : 'disabled');
 
+
             // Formation symbol code column and setting
             self::$result['setting_column'][$k] = array(
                 'index'       => $i - 1,
@@ -244,7 +245,7 @@ class AdminFunction {
         $whereQuery = 'WHERE';
 
         foreach($formation as $column => $value){
-            if(isset($value['filter']) && mb_strlen($value['filter']) > 0 && $ar['view_filter']){
+            if(isset($value['filter']) && mb_strlen($value['filter']) > 0 && $value['view_filter']){
                 if(mb_strlen($whereQuery) > 5 && $value['filter'] != '|#|'){
                     $whereQuery .= ' AND';
                 }

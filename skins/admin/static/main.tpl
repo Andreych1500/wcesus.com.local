@@ -30,7 +30,7 @@
           <td><?=$arResult['site_create']?></td>
         </tr>
         <tr>
-          <td><?=$mess['Відповідальне лице']?>:</td>
+          <td><?=$mess['Сайт розробив']?>:</td>
           <td><?=$arResult['responsible_face']?></td>
         </tr>
         <tr>
@@ -71,7 +71,7 @@
           </tr>
           <tr>
             <td><?=$mess['Опис']?>:</td>
-            <td><?=$mess['іnfo_description']?></td>
+            <td>-<? //$mess['іnfo_description']?></td>
           </tr>
         </table>
       </div>

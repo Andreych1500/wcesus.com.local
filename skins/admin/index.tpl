@@ -27,6 +27,7 @@
   <script src="/vendor/public/translit/dist/translit.js" defer></script>
   <script src="/skins/admin/js/script-menu.min.js?v=<?=$vF?>" defer></script>
   <script src="/skins/admin/js/script-click-menu.js?v=<?=$vF?>" defer></script>
+  <?=(count(Core::$JS)? implode("\n", Core::$JS) : '')?>
 </head>
 
 <body>

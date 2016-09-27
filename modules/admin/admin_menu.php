@@ -5,6 +5,17 @@
 $admin_menu = array(
     'ua' => array(
         0 => array(
+            'name'     => 'Контент',
+            'icon'     => 'content',
+            'sections' => array(
+                'Анкети' => array(
+                    'Перегляд анкет'  => '/admin/cab/',
+                    'Історія інститутів' => '/admin/cab/history/',
+                    'Додаткові копії'    => '/admin/cab/copy-agency/'
+                )
+            )
+        ),
+        1 => array(
             'name'     => 'Настройки',
             'icon'     => 'settings',
             'sections' => array(
@@ -45,6 +56,17 @@ $admin_menu = array(
     ),
     'ru' => array(
         0 => array(
+            'name'     => 'Контент',
+            'icon'     => 'content',
+            'sections' => array(
+                'Анкети' => array(
+                    'Перегляд анкет'  => '/admin/cab/',
+                    'Історія інститутів' => '/admin/cab/history/',
+                    'Додаткові копії'    => '/admin/cab/copy-agency/'
+                )
+            )
+        ),
+        1 => array(
             'name'     => 'Настройки',
             'icon'     => 'settings',
             'sections' => array(
@@ -85,6 +107,17 @@ $admin_menu = array(
     ),
     'en' => array(
         0 => array(
+            'name'     => 'Контент',
+            'icon'     => 'content',
+            'sections' => array(
+                'Анкети' => array(
+                    'Перегляд анкети'  => '/admin/cab/',
+                    'Історія інститутів' => '/admin/cab/history/',
+                    'Додаткові копії'    => '/admin/cab/copy-agency/'
+                )
+            )
+        ),
+        1 => array(
             'name'     => 'Settings',
             'icon'     => 'settings',
             'sections' => array(
