@@ -5,16 +5,6 @@
     <?php } ?>
   </div>
 
-  <?php if(isset($info) && $info['type'] != 'good'){ ?>
-    <div class="modalWindow">
-      <div class="modal-content">
-        <span class="icon-error"></span> <i>Important Message</i>
-        <?=$info['text']?>
-        <div class="close">Close</div>
-      </div>
-    </div>
-  <?php } ?>
-
   <div class="header-question">Purpose</div>
 
   <div class="section-question">Application Purpose</div>
@@ -23,7 +13,7 @@
       <div class="name-section">What is the <b>main</b> purpose of your evaluation: <span class="accent">*</span></div>
       <select name="main_purpose" <?=(isset($check['main_purpose'])? $check['main_purpose'] : '')?>>
         <?php foreach($param['main_purpose'] as $k => $v){ ?>
-          <option value="<?=$k?>" <?=($_POST['main_purpose'] == $k || !isset($error) && $k == 0? 'selected' : "")?>>
+          <option value="<?=$k?>" <?=((isset($_POST['main_purpose']) && $_POST['main_purpose'] == $k || $k === 0)? 'selected' : "")?>>
             <?=$v?>
           </option>
         <?php } ?>
@@ -43,15 +33,16 @@
       <div class="checkbox-div">
         <?php foreach($param['admission_to'] as $k => $v){ ?>
           <label>
-            <input <?=(isset($check['admission_to'])? $check['admission_to'] : '')?> type="checkbox" name="admission_to[]" value="<?=$k?>" <?=(in_array($k, $_POST['admission_to']) && strlen($_POST['admission_to'][0]) > 0? 'checked' : "")?>><?=$v?>
+            <input <?=(isset($check['admission_to'])? $check['admission_to'] : '')?> type="checkbox" name="admission_to[]" value="<?=$k?>"
+              <?=(in_array($k, $_POST['admission_to'])? 'checked' : "")?>><?=$v?>
           </label>
         <?php } ?>
       </div>
     </div>
   </div>
 
-  <div class="section-question" <?=($_POST['main_purpose'] != 0? '' : 'hidden')?> data-disabled="main_purpose">Document Requirements</div>
-  <div class="line-input" <?=($_POST['main_purpose'] != 0? '' : 'hidden')?> data-disabled="main_purpose">
+  <div class="section-question" <?=($_POST['main_purpose'] != 0? '' : 'hidden')?> data-hidden="main_purpose">Document Requirements</div>
+  <div class="line-input" <?=($_POST['main_purpose'] != 0? '' : 'hidden')?> data-hidden="main_purpose">
     <div class="input-value">
       <div class="name-section">Please note that there are 2 types of Document Requirements:<span class="accent">*</span>
       </div>
@@ -62,9 +53,9 @@
 
       <div class="name-section">I have reviewed and understood the Document Requirements outlined above:</div>
       <select name="document_requirements" <?=(isset($check['document_requirements'])? $check['document_requirements'] : '')?>>
-        <?php foreach($param['document_requirements'] as $k => $value){ ?>
-          <option value="<?=$k?>" <?=(($_POST['document_requirements'] == $k || !isset($error) && $k == 0)? 'selected' : "")?>>
-            <?=$value?>
+        <?php foreach($param['document_requirements'] as $k => $v){ ?>
+          <option value="<?=$k?>" <?=((isset($_POST['document_requirements']) && $_POST['document_requirements'] == $k || $k === 0)? 'selected' : "")?>>
+            <?=$v?>
           </option>
         <?php } ?>
       </select>
@@ -79,8 +70,8 @@
     </div>
   </div>
 
-  <div class="section-question <?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-disabled="main_purpose">Report Type</div>
-  <div class="line-input <?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-disabled="main_purpose">
+  <div class="section-question <?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-hidden="main_purpose">Report Type</div>
+  <div class="line-input <?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-hidden="main_purpose">
     <div class="input-value">
       <?php foreach($param['report_type_text'] as $k => $v){ ?>
         <i class="<?=($_POST['main_purpose'] == $k? '' : 'hidden')?>" data-section="<?=$k?>"><?=$v?></i>
@@ -91,17 +82,17 @@
         <?php foreach($param['report_type'] as $k => $v){ ?>
           <div>
             <label>
-              <input type="radio" name="report_type[]" value="<?=$k?>" <?=(isset($check['report_type'])? $check['report_type'] : '')?> <?=( (is_array($_POST['report_type']) && in_array($k, $_POST['report_type'])) || $k == 0? 'checked' : "")?>>
-              <b><?=$v['name']?></b>
-            </label> <a href="<?=$v['sample']?>">Sample Report</a> <span>$<?=$v['price']?></span>
+              <input type="radio" name="report_type[]" value="<?=$k?>" <?=(isset($check['report_type'])? $check['report_type'] : '')?> <?=((is_array($_POST['report_type']) && in_array($k, $_POST['report_type'])) || $k == 0? 'checked' : "")?>>
+              <b><?=$v['name']?></b> </label> <a href="<?=$v['sample']?>">Sample Report</a>
+            <span>$<?=$v['price']?></span>
           </div>
         <?php } ?>
       </div>
     </div>
   </div>
 
-  <div class="section-question <?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-disabled="main_purpose">Additional Application Purposes</div>
-  <div class="line-input <?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-disabled="main_purpose">
+  <div class="section-question <?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-hidden="main_purpose">Additional Application Purposes</div>
+  <div class="line-input <?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-hidden="main_purpose">
     <div class="input-value">
       <div class="name-section">Please check any additional uses for your evaluation (if applicable):</div>
       <div class="checkbox-div">
@@ -117,7 +108,7 @@
   <input type="hidden" name="update" value="<?=$_POST['update']?>">
 
   <div class="save-or-continue">
-    <a href="/cab/education-history/" title="application-info" class="back_link">< Back</a>
-    <input type="submit" name="ok" value="Continue >" class="<?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-disabled="main_purpose">
+    <a href="/apply/education-history/" title="application-info" class="back_link">< Back</a>
+    <input type="submit" name="ok" value="Continue >" class="<?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-hidden="main_purpose">
   </div>
 </form>

@@ -7,16 +7,6 @@
 
   <div class="header-question">Mailing Instructions</div>
 
-  <?php if(isset($info) && $info['type'] != 'good'){ ?>
-    <div class="modalWindow">
-      <div class="modal-content">
-        <span class="icon-error"></span> <i>Important Message</i>
-        <?=$info['text']?>
-        <div class="close">Close</div>
-      </div>
-    </div>
-  <?php } ?>
-
   <div class="section-question">Copies and Fees</div>
   <div class="style-text-block">
     <p>The report fee includes one applicant copy and one official agency copy, which may be sent to an institution, organization, or employer.</p>
@@ -39,16 +29,16 @@
         <span class="accent">*</span>
       </div>
       <select name="applicant_copy" <?=(isset($check['applicant_copy'])? $check['applicant_copy'] : '')?>>
-        <?php foreach($param['applicant_copy'] as $k => $value){ ?>
-          <option value="<?=$k?>" <?=(((isset($_POST['applicant_copy']) && $_POST['applicant_copy'] == $k) || !isset($error) && $k == 0)? 'selected' : "")?>>
-            <?=$value?>
+        <?php foreach($param['applicant_copy'] as $k => $v){ ?>
+          <option value="<?=$k?>" <?=((isset($_POST['applicant_copy']) && $_POST['applicant_copy'] == $k || $k === 0)? 'selected' : "")?>>
+            <?=$v?>
           </option>
         <?php } ?>
       </select>
     </div>
   </div>
 
-  <div class="line-input-free <?=($_POST['applicant_copy'] != 0? '' : 'hidden')?>" data-disabled="applicant_copy">
+  <div class="line-input-free <?=($_POST['applicant_copy'] != 0? '' : 'hidden')?>" data-hidden="applicant_copy">
     <div class="input-value">
       <div class="name-section">Institution:<span class="accent">*</span></div>
       <input <?=(isset($check['ap_institution'])? $check['ap_institution'] : '')?> type="text" name="ap_institution" value="<?=hsc($_POST['ap_institution'])?>">
@@ -89,9 +79,9 @@
     <div class="input-value">
       <div class="name-section">State: <span class="accent">*</span></div>
       <select name="ap_state" <?=(isset($check['ap_state'])? $check['ap_state'] : '')?>>
-        <?php foreach($param['ap_state'] as $k => $value){ ?>
-          <option value="<?=$k?>" <?=(($_POST['ap_state'] == $k || !isset($error) && $k == '')? 'selected' : "")?>>
-            <?=$value?>
+        <?php foreach($param['ap_state'] as $k => $v){ ?>
+          <option value="<?=$k?>" <?=((isset($_POST['ap_state']) && $_POST['ap_state'] == $k || $k === 0)? 'selected' : "")?>>
+            <?=$v?>
           </option>
         <?php } ?>
       </select>
@@ -107,12 +97,13 @@
     <div class="input-value">
       <div class="name-section">County:<span class="accent">*</span></div>
       <select name="ap_country" <?=(isset($check['ap_country'])? $check['ap_country'] : '')?>>
-        <?php foreach($param['ap_country'] as $k => $value){ ?>
-          <option value="<?=$k?>" <?=(($_POST['ap_country'] == $k || !isset($error) && $k == '')? 'selected' : "")?>>
-            <?=$value?>
+        <?php foreach($param['ap_country'] as $k => $v){ ?>
+          <option value="<?=$k?>" <?=((isset($_POST['ap_country']) && $_POST['ap_country'] == $k || $k === 0)? 'selected' : "")?>>
+            <?=$v?>
           </option>
         <?php } ?>
       </select>
+
     </div>
 
     <div class="input-value">
@@ -125,19 +116,19 @@
       <input <?=(isset($check['ap_postal_code'])? $check['ap_postal_code'] : '')?> type="text" name="ap_postal_code" value="<?=hsc($_POST['ap_postal_code'])?>">
     </div>
   </div>
-
-  <div class="line-input-two <?=($_POST['applicant_copy'] != 0? '' : 'hidden')?>" data-disabled="applicant_copy">
+  
+  <div class="line-input-two <?=($_POST['applicant_copy'] != 0? '' : 'hidden')?>" data-hidden="applicant_copy">
     <div class="input-value">
       <div class="name-section">Phone:<span class="accent">*</span></div>
       <input <?=(isset($check['ap_phone'])? $check['ap_phone'] : '')?> type="text" name="ap_phone" value="<?=hsc($_POST['ap_phone'])?>" placeholder="example: 000-000-0000">
     </div>
   </div>
 
-  <div class="line-input-two <?=($_POST['applicant_copy'] != 0? '' : 'hidden')?>" data-disabled="applicant_copy">
+  <div class="line-input-two <?=($_POST['applicant_copy'] != 0? '' : 'hidden')?>" data-hidden="applicant_copy">
     <div class="input-value <?=($_POST['applicant_copy'] == 1? '' : 'hidden')?>" data-section="1">
       <div class="name-section">Mailing Options:<span class="accent">*</span></div>
       <?php foreach($param['ap_mailing_us'] as $k => $v){ ?>
-        <label><input type="radio" name="ap_mailing_us" value="<?=$k?>" <?=(isset($check['ap_mailing_us'])? $check['ap_mailing_us'] : '')?> <?=(isset($_POST['ap_mailing_us']) && $_POST['ap_mailing_us'] == $k || $k == 0? 'checked' : "")?>><?=$v['text']?>($<?=$v['price']?>)
+        <label><input type="radio" name="ap_mailing_us" value="<?=$k?>" <?=(isset($check['ap_mailing_us'])? $check['ap_mailing_us'] : '')?> <?=(isset($_POST['ap_mailing_us']) && $_POST['ap_mailing_us'] == $k || $k == 1? 'checked' : "")?>><?=$v['text']?>($<?=$v['price']?>)
         </label><br>
       <?php } ?>
     </div>
@@ -145,7 +136,7 @@
     <div class="input-value <?=($_POST['applicant_copy'] == 2? '' : 'hidden')?>" data-section="2">
       <div class="name-section">Mailing Options:<span class="accent">*</span></div>
       <?php foreach($param['ap_mailing_all'] as $k => $v){ ?>
-        <label><input type="radio" name="ap_mailing_all" value="<?=$k?>" <?=(isset($check['ap_mailing_all'])? $check['ap_mailing_all'] : '')?> <?=(isset($_POST['ap_mailing_all']) && $_POST['ap_mailing_all'] == $k || $k == 0? 'checked' : "")?>><?=$v['text']?>($<?=$v['price']?>)
+        <label><input type="radio" name="ap_mailing_all" value="<?=$k?>" <?=(isset($check['ap_mailing_all'])? $check['ap_mailing_all'] : '')?> <?=(isset($_POST['ap_mailing_all']) && $_POST['ap_mailing_all'] == $k || $k == 1? 'checked' : "")?>><?=$v['text']?>($<?=$v['price']?>)
         </label><br>
       <?php } ?>
     </div>
@@ -163,11 +154,11 @@
       while($res = hsc($oac->fetch_assoc())){ ?>
         <div class="items-history">
           <div><?=(strlen($res['text_copy']) > 30? substr($res['text_copy'], 0, 30).'...' : $res['text_copy'])?></div>
-          <?php $el = ApplyCard::param(4, 'mailing_copy')[$res['mailing_copy']]; ?>
+          <?php $el = $param['mailing_copy'][$res['mailing_copy']]; ?>
           <div><?=$el['text'].' ($'.$el['price'].') '?></div>
           <div>
-            <a href="/cab/mailing/?edit=<?=$res['id']?>">Edit</a> /
-            <a href="/cab/mailing/?remove=<?=$res['id']?>">Remove</a>
+            <a href="/apply/mailing/?edit=<?=$res['id']?>">Edit</a> /
+            <a href="/apply/mailing/?remove=<?=$res['id']?>">Remove</a>
           </div>
         </div>
       <?php }
@@ -176,7 +167,6 @@
     <?php } ?>
   </div>
 
-
   <div class="section-question">Additional Official Agency Copy (+$20)</div>
   <div class="style-text-block">
     <p>If you would like to request an additional copy at this time, please fill in the section below.(LIMIT 4)</p>
@@ -184,13 +174,13 @@
 
   <div class="input-value">
     <div class="name-section">Text copy:<span class="accent">*</span></div>
-    <textarea class="big-height <?=(isset($check['text_copy'])? $check['text_copy'] : '')?>" name="text_copy"><?=(isset($error) || isset($_POST['text_copy'])? hsc($_POST['text_copy']) : "")?></textarea>
+    <textarea class="big-height <?=(isset($check['text_copy'])? $check['text_copy'] : '')?>" name="text_copy"><?=(isset($_POST['text_copy'])? hsc($_POST['text_copy']) : "")?></textarea>
   </div>
 
   <div class="input-value">
     <div class="name-section">Mailing Options:<span class="accent">*</span></div>
     <?php foreach($param['mailing_copy'] as $k => $v){ ?>
-      <label><input type="radio" name="mailing_copy" value="<?=$k?>" <?=(isset($check['mailing_copy'])? $check['mailing_copy'] : '')?> <?=(isset($_POST['mailing_copy']) && $_POST['mailing_copy'] == $k || $k == 0? 'checked' : "")?>><?=$v['text']?>($<?=$v['price']?>)
+      <label><input type="radio" name="mailing_copy" value="<?=$k?>" <?=(isset($check['mailing_copy'])? $check['mailing_copy'] : '')?> <?=(isset($_POST['mailing_copy']) && $_POST['mailing_copy'] == $k || $k == 1? 'checked' : "")?>><?=$v['text']?>($<?=$v['price']?>)
       </label><br>
     <?php } ?>
   </div>
@@ -202,7 +192,7 @@
   <input type="hidden" name="update" value="<?=$_POST['update']?>">
 
   <div class="save-or-continue">
-    <a href="/cab/purpose/" title="application-info" class="back_link">< Back</a>
+    <a href="/apply/purpose/" title="application-info" class="back_link">< Back</a>
     <input type="submit" name="ok" value="Continue >">
   </div>
 </form>

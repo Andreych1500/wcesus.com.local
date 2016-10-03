@@ -5,16 +5,6 @@
     <?php } ?>
   </div>
 
-  <?php if(isset($info) && $info['type'] != 'good'){ ?>
-    <div class="modalWindow">
-      <div class="modal-content">
-        <span class="icon-error"></span> <i>Important Message</i>
-        <?=$info['text']?>
-        <div class="close">Close</div>
-      </div>
-    </div>
-  <?php } ?>
-
   <div class="header-question">Services & Fees</div>
 
   <div class="section-question">Rush Service</div>
@@ -35,7 +25,7 @@
   <?php } ?>
 
   <div class="save-or-continue">
-    <a href="/cab/mailing/" title="application-info" class="back_link">< Back</a>
+    <a href="/apply/mailing/" title="application-info" class="back_link">< Back</a>
     <input type="submit" name="ok" value="Continue >">
   </div>
 </form>

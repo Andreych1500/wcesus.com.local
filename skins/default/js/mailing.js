@@ -3,7 +3,7 @@ $(document).ready(function () {
         var val = $(this).val();
 
         if (val == 0) {
-            $('[data-disabled="applicant_copy"]').hide().addClass('hidden');
+            $('[data-hidden="applicant_copy"]').hide().addClass('hidden');
             $('[data-section]').hide();
         } else {
             $('[data-section]').each(function () {
@@ -14,7 +14,7 @@ $(document).ready(function () {
                 }
             });
 
-            $('[data-disabled="applicant_copy"]').show().removeClass('hidden');
+            $('[data-hidden="applicant_copy"]').show().removeClass('hidden');
         }
     });
 });

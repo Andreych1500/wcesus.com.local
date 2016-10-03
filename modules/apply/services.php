@@ -1,15 +1,16 @@
 <?php
-if(isset($_POST['ok'], $_POST['turnaround_time'], $_POST['update'])){
+$keyPost = ApplyCard::param(5, array('keyPost'));
+$param = ApplyCard::param(5);
+
+if(isset($_POST['ok'], $_POST['update'])){
     $error = array();
     $_POST = trimAll($_POST);
 
     if(!$data = ApplyCard::checkData()){
-        sessionInfo('/cab/apply-user/', '<p>час зберігання даних вийшов, увійдіть знов у свій кабінет і заповніть дані!</p>');
-    } else {
-        $globPost = ApplyCard::param(5, 'globPost');
+        sessionInfo('/apply/', '<p>Time is out. Please log in to your account to continue your application.</p>');
     }
 
-    $check['turnaround_time'] = (strlen($_POST['turnaround_time']) <= 0 || !isset(ApplyCard::param(5, 'turnaround_time')[$_POST['turnaround_time']])? 'class="error"' : '');
+    $check['turnaround_time'] = (!isset($_POST['turnaround_time']) || empty($_POST['turnaround_time']) || !isset($param['turnaround_time'][$_POST['turnaround_time']])? 'class="error"' : '');
 
     if(in_array('class="error"', $check)){
         $error['stop'] = 1;
@@ -30,6 +31,12 @@ if(isset($_POST['ok'], $_POST['turnaround_time'], $_POST['update'])){
             $el = hsc($id->fetch_assoc());
 
             q("
+                UPDATE `steps_ok_cards` SET
+                `step5`   = 1
+                WHERE `idCard` = '".mres($data['idCard'])."'
+            ");
+
+            q("
                 UPDATE `admin_application_info` SET
                 `turnaround_time`  = '".$_POST['turnaround_time']."',
                 `agent`            = '".mres($_SERVER['HTTP_USER_AGENT'])."',
@@ -39,25 +46,22 @@ if(isset($_POST['ok'], $_POST['turnaround_time'], $_POST['update'])){
             ");
 
             setcookie('idCardHash', $el['idCardHash'], time() + 3600, '/');
-            header('Location: '.(isset($_REQUEST['review'])? '/cab/review/' : '/cab/review/').'');
+            header('Location: '.(isset($_REQUEST['review'])? '/apply/review/' : '/apply/review/').'');
             exit();
         } else {
-            sessionInfo('/cab/review/', '<p>Такого ід не існує!</p>', 0, 0);
+            sessionInfo('/apply/review/', '<p>Wrong WCES ID, access denied!</p>', 0, 0);
         }
     }
 }
 
 if($data = ApplyCard::checkData()){
-    $globPost = ApplyCard::param(5, 'globPost');
-    $param = ApplyCard::param(5);
-
     foreach($data as $k => $v){
-        if(in_array($k, $globPost) && !isset($_POST[$k])){
+        if(in_array($k, $keyPost['keyPost']) && !isset($_POST[$k])){
             $_POST[$k] = $v;
         }
     }
 
     $_POST['update'] = $data['id'];
 } else {
-    sessionInfo('/cab/apply-user/', '<p>Щоб перейти у цей розділ розпочніть нову анкету або продовжіть існуючу, або час очікування закінчився.</p>');
+    sessionInfo('/apply/', '<p>Time is out. Please log in to your account to continue your application.</p>');
 }

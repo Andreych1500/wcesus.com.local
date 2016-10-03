@@ -20,3 +20,8 @@ $mess['floor'] = array(
     1  => 'Man',
     2  => 'Woman'
 );
+
+$inpMess['access'] = array(
+    0 => 'No',
+    1 => 'Yes'
+);

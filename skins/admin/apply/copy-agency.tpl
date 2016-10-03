@@ -1,13 +1,13 @@
-<?php if(isset($_REQUEST['edit'])){ ?>
+<?php if(isset($_GET['edit'])){ ?>
   <div class="section-interface-k2">
     <div class="line-custom-edit">
       <p class="header-name-edit"><?=$messG['Редагування елемента']?></p>
-      <a class="back-url" href="/admin/cab/copy-agency/"><?=$messG['Назад']?></a>
+      <a class="back-url" href="/admin/apply/copy-agency/"><?=$messG['Назад']?></a>
     </div>
 
     <!-- Menu tabs --->
     <ul class="tabs-panel">
-      <li class="active-tab">Card</li>
+      <li class="active-tab">Copy</li>
     </ul>
 
     <form class="content-form" action="" method="post">
@@ -17,14 +17,14 @@
 
         <div class="input-value">
           <div class="name-section">Text copy:<span class="accent">*</span></div>
-          <textarea class="big-height <?=(isset($check['text_copy'])? $check['text_copy'] : '')?>" name="text_copy"><?=(isset($error) || isset($_POST['text_copy'])? hsc($_POST['text_copy']) : "")?></textarea>
+          <textarea class="big-height <?=(isset($check['text_copy'])? $check['text_copy'] : '')?>" name="text_copy"><?=(isset($_POST['text_copy'])? hsc($_POST['text_copy']) : "")?></textarea>
         </div>
 
         <div class="input-value">
           <div class="name-section">Mailing Options:<span class="accent">*</span></div>
           <br>
           <?php foreach($param['mailing_copy'] as $k => $v){ ?>
-            <label><input type="radio" name="mailing_copy" value="<?=$k?>" <?=(isset($check['mailing_copy'])? $check['mailing_copy'] : '')?> <?=(isset($_POST['mailing_copy']) && $_POST['mailing_copy'] == $k || $k == 0? 'checked' : "")?>><?=$v['text']?>($<?=$v['price']?>)
+            <label><input type="radio" name="mailing_copy" value="<?=$k?>" <?=(isset($check['mailing_copy'])? $check['mailing_copy'] : '')?> <?=(isset($_POST['mailing_copy']) && $_POST['mailing_copy'] == $k || $k == 1? 'checked' : "")?>><?=$v['text']?>($<?=$v['price']?>)
             </label>
           <?php } ?>
         </div>
@@ -50,20 +50,17 @@
       </div>
       <?=$copyAgency['html_filter']?>
       <input type="submit" name="filter" value="<?=$messG['Пошук']?>">
-      <a href="/admin/cab/copy-agency/?filterReset=ok"><?=$messG['Відмінити']?></a>
+      <a href="/admin/apply/copy-agency/?filterReset=ok"><?=$messG['Відмінити']?></a>
     </form>
   </div>
 
   <div class="section-interface-k1">
     <div class="line-custom">
-      <p class="header-name">Додаткові копії</p>
+      <p class="header-name">Additional copies</p>
     </div>
 
     <form action="" method="post" onsubmit="return okFrom();">
       <div class="line-custom-next">
-        <a href="/admin/cab/copy-agency/?add=ok" class="add-el icon-plus"><?=$messG['Створити елемент']?></a>
-        <input type="submit" value="<?=$messG['Активувати']?>" name="activate" class="option-el">
-        <input type="submit" value="<?=$messG['Деактивувати']?>" name="deactivate" class="option-el">
         <input type="submit" value="<?=$messG['Видалити']?>" name="delete" class="option-el">
         <div class="dynamicEdit" data-submit-lang="<?=$messG['Зберегти'].'|'.$messG['Відмінити']?>"></div>
       </div>
@@ -86,8 +83,8 @@
               <td class="relative">
                 <span class="icon-mob-menu" onclick="openMenuUpdate(this);"></span>
                 <div class="menu-update">
-                  <a href="/admin/cab/copy-agency/?edit=<?=$arResult['id']?>"><?=$messG['Редагувати']?></a>
-                  <a href="/admin/cab/copy-agency/?delete=<?=$arResult['id']?>"><?=$messG['Видалити']?></a>
+                  <a href="/admin/apply/copy-agency/?edit=<?=$arResult['id']?>"><?=$messG['Редагувати']?></a>
+                  <a href="/admin/apply/copy-agency/?delete=<?=$arResult['id']?>"><?=$messG['Видалити']?></a>
                 </div>
               </td>
               <?php foreach($arResult as $k => $value){

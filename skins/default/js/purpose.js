@@ -3,7 +3,7 @@ $(document).ready(function () {
         var val = $(this).val();
 
         if (val == 0) {
-            $('[data-disabled="main_purpose"]').hide().addClass('hidden');
+            $('[data-hidden="main_purpose"]').hide().addClass('hidden');
             $('[data-section]').hide();
         } else {
             $('[data-section]').each(function () {
@@ -14,15 +14,15 @@ $(document).ready(function () {
                 }
             });
 
-            $('label[data-check]').each(function(){
-                if($(this).attr('data-check') != val){
+            $('label[data-check]').each(function () {
+                if ($(this).attr('data-check') != val) {
                     $(this).removeAttr('class');
                 } else {
-                    $(this).addClass('hiddenIM').find('input').prop('checked',false);
+                    $(this).addClass('hiddenIM').find('input').prop('checked', false);
                 }
             });
 
-            $('[data-disabled="main_purpose"]').show().removeClass('hidden');
+            $('[data-hidden="main_purpose"]').show().removeClass('hidden');
         }
     });
 });

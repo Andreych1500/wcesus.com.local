@@ -13,6 +13,6 @@
       <a href="#" title="Forgot password?">Forgot password?</a>
     </div>
     <input type="submit" name="log_in" value="LOG IN" class="submit-style">
-    <a href="/cab/apply-user/" title="Apply Now" class="submit-style">Apply Now</a>
+    <a href="/apply/" title="Apply Now" class="submit-style">Apply Now</a>
   </form>
 </div>

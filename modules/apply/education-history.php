@@ -1,32 +1,39 @@
 <?php
+$keyPost = ApplyCard::param(2, array('keyPost'));
+$param = array_merge(ApplyCard::param(2), ApplyCard::param('glob', array(
+    'country_study',
+    'date_yyyy_from',
+    'date_yyyy_to',
+    'date_mm_from',
+    'date_mm_to'
+)));
+
 if(isset($_POST['add_history'], $_POST['update'])){
     $error = array();
     $file = array();
     $_POST = trimAll($_POST);
 
     if(!$data = ApplyCard::checkData()){
-        sessionInfo('/cab/apply-user/', '<p>час зберігання даних вийшов, увійдіть знов у свій кабінет і заповніть дані!</p>');
-    } else {
-        $globPost = ApplyCard::param(2, 'globPost');
+        sessionInfo('/apply/', '<p>Time is out. Please log in to your account to continue your application.</p>');
     }
 
-    foreach($globPost as $v){
+    foreach($keyPost['keyPost'] as $v){
         if(!array_key_exists($v, $_POST)){
-            $check['POST'] = 'class="error"';
+            $check[$v] = 'class="error"';
             break;
         }
     }
 
-    if(isset($check['POST'])){
+    if(isset($check)){
         $error['stop'] = 1;
     } else {
-        $check['country_study'] = (strlen($_POST['country_study']) == 0 || !isset(ApplyCard::param(2, 'country_study')[$_POST['country_study']])? 'class="error"' : '');
+        $check['country_study'] = (empty($_POST['country_study']) || !isset($param['country_study'][$_POST['country_study']])? 'class="error"' : '');
         $check['city'] = (empty($_POST['city'])? 'class="error"' : '');
         $check['name_institution'] = (empty($_POST['name_institution'])? 'class="error"' : '');
-        $check['date_mm_from'] = (strlen($_POST['date_mm_from']) == 0 || !in_array($_POST['date_mm_from'], ApplyCard::param(2, 'date_mm_from'))? 'class="error"' : '');
-        $check['date_yyyy_from'] = (strlen($_POST['date_yyyy_from']) == 0 || !in_array($_POST['date_yyyy_from'], ApplyCard::param(2, 'date_yyyy_from'))? 'class="error"' : '');
-        $check['date_mm_to'] = (strlen($_POST['date_mm_to']) == 0 || !in_array($_POST['date_mm_to'], ApplyCard::param(2, 'date_mm_to'))? 'class="error"' : '');
-        $check['date_yyyy_to'] = (strlen($_POST['date_yyyy_to']) == 0 || !in_array($_POST['date_yyyy_to'], ApplyCard::param(2, 'date_yyyy_to'))? 'class="error"' : '');
+        $check['date_mm_from'] = (empty($_POST['date_mm_from']) || !isset($param['date_mm_from'][$_POST['date_mm_from']])? 'class="error"' : '');
+        $check['date_yyyy_from'] = (empty($_POST['date_yyyy_from']) || !isset($param['date_yyyy_from'][$_POST['date_yyyy_from']])? 'class="error"' : '');
+        $check['date_mm_to'] = (empty($_POST['date_mm_to']) || !isset($param['date_mm_to'][$_POST['date_mm_to']])? 'class="error"' : '');
+        $check['date_yyyy_to'] = (empty($_POST['date_yyyy_to']) || !isset($param['date_yyyy_to'][$_POST['date_yyyy_to']])? 'class="error"' : '');
         $check['reason_text'] = (strlen($_POST['reason_text']) > 1000? 'class="error"' : '');
 
         if(($_POST['date_yyyy_from'] == $_POST['date_yyyy_to']) && $_POST['date_mm_from'] > $_POST['date_mm_to']){
@@ -55,7 +62,7 @@ if(isset($_POST['add_history'], $_POST['update'])){
             LIMIT 1
         ");
 
-        if(isset($_REQUEST['edit']) && $card->num_rows > 0){
+        if(isset($_GET['edit']) && $card->num_rows > 0){
             $arResult = hsc($card->fetch_assoc());
 
             foreach($_POST['fileScan'] as $k => $v){
@@ -79,19 +86,19 @@ if(isset($_POST['add_history'], $_POST['update'])){
                 `fileScan`         = '".mres($scan)."',
                 `diploma_name`     = '".$_POST['diploma_name']."',
                 `reason_text`      = '".$_POST['reason_text']."'
-                WHERE `id`   = '".mres($_REQUEST['edit'])."'
+                WHERE `id`   = '".mres($_GET['edit'])."'
                 AND `idCard` = '".mres($arResult['idCard'])."' 
             ");
 
             setcookie('idCardHash', $arResult['idCardHash'], time() + 3600, '/');
-            header('Location: '.(isset($_REQUEST['review'])? '/cab/education-history/?review=back' : '/cab/education-history/').'');
+            header('Location: '.(isset($_GET['review'])? '/apply/education-history/?review=back' : '/apply/education-history/').'');
             exit();
-        } elseif(isset($_REQUEST['edit']) && $card->num_rows <= 0) {
-            sessionInfo('/cab/education-history/', '<p>Редагування неможливо, неіснує ID історії!</p>');
+        } elseif(isset($_GET['edit']) && $card->num_rows <= 0) {
+            sessionInfo('/apply/education-history/', '<p>Wrong WCES ID, access denied!</p>');
         }
 
         if($card->num_rows <= 0){
-            sessionInfo('/cab/education-history/', '<p>Привязка неможлива, неіснує ID карточки!</p>', 0, 0);
+            sessionInfo('/apply/education-history/', '<p>Wrong WCES ID, linking is forbidden!</p>', 0, 0);
         } else {
             $arResult = hsc($card->fetch_assoc());
 
@@ -121,20 +128,20 @@ if(isset($_POST['add_history'], $_POST['update'])){
             ");
 
             setcookie('idCardHash', $arResult['idCardHash'], time() + 3600, '/');
-            header('Location: '.(isset($_REQUEST['review'])? '/cab/education-history/?review=back' : '/cab/education-history/').'');
+            header('Location: '.(isset($_GET['review'])? '/apply/education-history/?review=back' : '/apply/education-history/').'');
             exit();
         }
     }
 }
 
 // Ajax
-if(isset($_REQUEST['getType']) && isset($_REQUEST['ajax']) && isset($_POST['data-priority-type'])){
+if(isset($_GET['getType']) && isset($_GET['ajax']) && isset($_POST['data-priority-type'])){
     echo(isset($_FILES['file'])? json_encode(UploaderFiles::getType($_FILES['file'], $_POST['data-priority-type'])) : json_encode(array('error' => 'Limit file memory!')));
     exit();
-} elseif(isset($_REQUEST['ajax']) && isset($_REQUEST['addImage']) && isset($_FILES['file'])) {
+} elseif(isset($_GET['ajax']) && isset($_GET['addImage']) && isset($_FILES['file'])) {
     echo json_encode(UploaderFiles::photo($_FILES['file']));
     exit();
-} elseif(isset($_REQUEST['delFile']) && !empty($_POST['file_delete'])) {
+} elseif(isset($_GET['delFile']) && !empty($_POST['file_delete'])) {
     if(file_exists($_SERVER['DOCUMENT_ROOT'].$_POST['file_delete'])){
         unlink($_SERVER['DOCUMENT_ROOT'].$_POST['file_delete']);
         echo json_encode(array('file' => 'delete'));
@@ -145,10 +152,14 @@ if(isset($_REQUEST['getType']) && isset($_REQUEST['ajax']) && isset($_POST['data
 }
 
 if($data = ApplyCard::checkData()){
-    $globPost = ApplyCard::param(2, 'globPost');
-    $param = ApplyCard::param(2);
 
-    foreach($globPost as $v){
+    if(isset($_POST['ok'])){
+        setcookie('idCardHash', $data['idCardHash'], time() + 3600, '/');
+        header('Location: '.(isset($_GET['review'])? '/apply/review/' : '/apply/purpose/').'');
+        exit();
+    }
+
+    foreach($keyPost['keyPost'] as $v){
         if(!isset($_POST[$v])){
             if($v == 'fileScan'){
                 $_POST[$v] = explode('#|#', '');
@@ -162,51 +173,26 @@ if($data = ApplyCard::checkData()){
     $_POST['update'] = $data['id'];
 
     $getHistory = q("
-        SELECT * 
-        FROM `admin_educational_history`
-        WHERE `idCard` = '".mres($data['idCard'])."'
-    ");
-} else {
-    sessionInfo('/cab/apply-user/', '<p>Щоб перейти у цей розділ розпочніть нову анкету або продовжіть існуючу, або час очікування закінчився.</p>');
-}
-
-if(isset($_POST['ok'])){
-    setcookie('idCardHash', $data['idCardHash'], time() + 3600, '/');
-    header('Location: '.(isset($_REQUEST['review'])? '/cab/review/' : '/cab/purpose/').'');
-    exit();
-}
-
-if(isset($_REQUEST['edit'])){
-    $editHistory = q("
         SELECT *
         FROM `admin_educational_history`
         WHERE `idCard` = '".mres($data['idCard'])."'
-        AND `id` = '".mres($_REQUEST['edit'])."'
-        LIMIT 1
     ");
 
-    if($editHistory->num_rows > 0){
-        foreach(hsc($editHistory->fetch_assoc()) as $k => $v){
-            if($k == 'fileScan'){
-                foreach(explode("#|#", $v) as $k2 => $file){
-                    $_POST[$k][$k2] = $file;
-                }
-                continue;
-            }
-
-            $_POST[$k] = $v;
-        }
-    } else {
-        sessionInfo('/cab/education-history/', '<p>Неіснує такої історії у вашої карточки</p>');
-    }
+    q("
+        UPDATE `steps_ok_cards` SET
+        `step2`   = ".($getHistory->num_rows > 0? 1 : 0)."
+        WHERE `idCard` = '".mres($data['idCard'])."'
+    ");
+} else {
+    sessionInfo('/apply/', '<p>Time is out. Please log in to your account to continue your application.</p>');
 }
 
-if(isset($_REQUEST['remove'])){
+if(isset($_GET['remove'])){
     $editHistory = q("
         SELECT `fileScan`
         FROM `admin_educational_history`
         WHERE `idCard` = '".mres($data['idCard'])."'
-        AND `id` = '".mres($_REQUEST['remove'])."'
+        AND `id` = '".mres($_GET['remove'])."'
         LIMIT 1
     ")->fetch_assoc();
 
@@ -218,12 +204,37 @@ if(isset($_REQUEST['remove'])){
 
     q("
         DELETE FROM `admin_educational_history`
-        WHERE `id` = ".(int)$_REQUEST['remove']."
+        WHERE `id` = ".(int)$_GET['remove']."
         AND `idCard` = '".mres($data['idCard'])."'
     ");
 
-    header('Location: '.(isset($_REQUEST['review'])? '/cab/education-history/?review=back' : '/cab/education-history/').'');
+    header('Location: '.(isset($_GET['review'])? '/apply/education-history/?review=back' : '/apply/education-history/').'');
     exit();
+}
+
+if(isset($_GET['edit'])){
+    $editHistory = q("
+        SELECT *
+        FROM `admin_educational_history`
+        WHERE `idCard` = '".mres($data['idCard'])."'
+        AND `id` = '".mres($_GET['edit'])."'
+        LIMIT 1
+    ");
+
+    if($editHistory->num_rows > 0){
+        foreach($editHistory->fetch_assoc() as $k => $v){
+            if($k == 'fileScan'){
+                foreach(explode("#|#", $v) as $k2 => $file){
+                    $_POST[$k][$k2] = $file;
+                }
+                continue;
+            }
+
+            $_POST[$k] = $v;
+        }
+    } else {
+        sessionInfo('/apply/education-history/', '<p>Wrong WCES ID, access denied!</p>');
+    }
 }
 
 Core::$JS[] = "<script src=\"/skins/default/js/education-history.min.js\" defer></script>";

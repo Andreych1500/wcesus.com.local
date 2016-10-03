@@ -1,27 +1,28 @@
 $(document).ready(function () {
     $('select[name="is_records_name"]').change(function () {
-        if($(this).val() == 1){
-            $('div[data-disabled="is_records_name"]').fadeIn('fast').removeClass('hidden');
+        if ($(this).val() == 2) {
+            $('div[data-hidden="is_records_name"]').show().removeClass('hidden');
         } else {
-            $('div[data-disabled="is_records_name"]').fadeOut('fast').addClass('hidden');
+            $('div[data-hidden="is_records_name"]').hide().addClass('hidden');
         }
     });
 
-    $('select[name="about_us"]').change(function(){
-        if($(this).val() == 7){
-            $('div[data-disabled="about_us"]').fadeIn('fast').removeClass('hidden');
+
+    $('select[name="country"]').change(function () {
+        if ($(this).val() != 'USA') {
+            $('[data-section="All"]').show();
+            $('[data-section="USA"]').hide();
         } else {
-            $('div[data-disabled="about_us"]').fadeOut('fast').addClass('hidden');
+            $('[data-section="All"]').hide();
+            $('[data-section="USA"]').show();
         }
     });
 
-    $('select[name="country"]').change(function(){
-        if($(this).val() == 'USA'){
-            $('div[data-disabled="country-USA"]').fadeIn('fast').removeClass('hidden');
-            $('div[data-disabled="country-All"]').hide().addClass('hidden');
+    $('select[name="about_us"]').change(function () {
+        if ($(this).val() == 7) {
+            $('div[data-hidden="about_us"]').show().removeClass('hidden');
         } else {
-            $('div[data-disabled="country-USA"]').hide().addClass('hidden');
-            $('div[data-disabled="country-All"]').fadeIn('fast').removeClass('hidden');
+            $('div[data-hidden="about_us"]').hide().addClass('hidden');
         }
     });
 });

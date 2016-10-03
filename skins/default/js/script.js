@@ -1,4 +1,11 @@
 $(document).ready(function () {
+    // Plese wait 5 sec
+    if (window.location.pathname == '/apply/payment/' && $('#payment').length > 0) {
+        $('#payment').fadeOut('fast', function () {
+            $('.save-or-continue').append('<div class="wait">Please wait 5 seconds... </div>');
+        });
+    }
+
     // Open mobile menu
     $('#wsnavtoggle').click(function () {
         if ($(this).is('.active')) {
@@ -31,36 +38,36 @@ $(document).ready(function () {
     });
 
     // Close modal window
-    $('.modalWindow .close').click(function(){
-       $('.modalWindow').fadeOut('slow', function(){
-           $(this).remove();
-       })
+    $('.modalWindow .close').click(function () {
+        $('.modalWindow').fadeOut('slow', function () {
+            $(this).remove();
+        })
     });
 
     // Forgot data
-    $('.forgot-data').click(function(){
-        window.location.href = '/cab/forgot-data/';
+    $('.forgot-data').click(function () {
+        window.location.href = '/apply/forgot-data/';
     });
 
     // Click new Card
-    $('a[href="/cab/application-info/?newCard"]').click(function(e){
+    $('a[href="/apply/application-info/?newCard"]').click(function (e) {
         e.preventDefault();
 
+        var text = $('.confirm_agreement').html();
         var link = $(this).attr('href');
-        var windowHtml = '<div class="modalWindow"><div class="modal-content"><span class="icon-error"></span> <i>Important Message</i><p>Усі ваші дані які будуть надані нам, ненестимусь відповідальності якщо ми їх загубемо! Ви погоджуєтесья з цим?</p><span data-click="Yes">Yes</span><span data-click="No">No</span></div></div>';
+        var windowHtml = '<div class="modalWindow"><div class="modal-content"><span class="icon-error"></span> <i>Important Message</i><div class="text">' + text + '</div><span data-click="Yes">Yes</span><span data-click="No">No</span></div></div>';
 
         $('body').prepend(windowHtml);
 
-        $('span[data-click]').click(function(){
-            if($(this).attr('data-click') == 'Yes'){
+        $('span[data-click]').click(function () {
+            if ($(this).attr('data-click') == 'Yes') {
                 window.location.href = link;
             } else {
-                $('.modalWindow').fadeOut('fast', function(){
+                $('.modalWindow').fadeOut('fast', function () {
                     $(this).remove();
                 });
             }
         });
-
     });
 
     // Scroll menu

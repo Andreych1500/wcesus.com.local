@@ -1,24 +1,5 @@
 <?php
 class TemplateMail {
-  static $socLink = array(
-    'fb' => array(
-      'url' => '#',
-      'img' => '/skins/default/img/mails/facebook.png'
-    ),
-    'vk' => array(
-      'url' => '#',
-      'img' => '/skins/default/img/mails/vk.png'
-    ),
-    'g+' => array(
-      'url' => '#',
-      'img' => '/skins/default/img/mails/google_plus.png'
-    ),
-    'in' => array(
-      'url' => '#',
-      'img' => '/skins/default/img/mails/instagram.png'
-    )
-  );
-
   static function HtmlMail($param_content, $symbol_code, $arMainParam, $no_act = 1){
 
     $arSetting = hsc(q("
@@ -112,12 +93,7 @@ class TemplateMail {
           <a href="mailto:<?=$arSet['email_footer']?>" style="color:#8B8B8B !important; font-weight:bold; text-decoration:none;"><?=$arSet['email_footer']?></a> | Phone:
           <a href="callto:<?=calltoPhone($arSet['phone'])?>" style="color:#8B8B8B !important; font-weight:bold; text-decoration:none;"><?=calltoPhone($arSet['phone'])?></a>
         </p>
-        <div style="font-size:0; margin:0 0 10px;">
-          <?php foreach(self::$socLink as $k => $v){ ?>
-            <a href="<?=$v['url']?>" target="_blank" style="display:inline-block; margin: 0 5px;"><img src="<?=$arMainParam['url_http_site'].$v['img']?>"></a>
-          <?php } ?>
-          <div style="clear:both;"></div>
-        </div>
+        <div style="font-size:0; margin:0 0 10px;"></div>
         <p style="font-size:14px;"><?=$arSet['why']?>
           <a href="<?=$arSet['urlToSite']?>" target="_blank" style="color: #cccccc; display: inherit;"><?=$arSet['wwwSite']?></a>
         </p>

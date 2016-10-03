@@ -21,6 +21,18 @@ $(document).ready(function () {
         }
     });
 
+
+    // More photo add button
+    $('.add_more').click(function () {
+        var input = $('.upload_file[id^="fileScan_"]');
+        var last_index = input.length - 1;
+        ++last_index; // new id
+
+        var html = '<div class="input-value upload_file" id="fileScan_' + last_index + '" data-priority-type="img"><button type="button" onclick="getIdElement(this)"><span class="icon-link"></span>Select file</button><input name="fileScan[]" type="hidden" value=""><input name="del[fileScan][]" type="hidden" value=""><div class="photos hidden"><span class="icon-cross removeFile" onclick="removeImage(this)"></span><img src=""></div></div>';
+
+        input.last().after(html);
+    });
+
     // Active menu
     $('.navigation li').click(function () {
         var widthScrollY = widthScroll_Y();

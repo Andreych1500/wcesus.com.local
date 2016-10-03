@@ -5,21 +5,11 @@
     <?php } ?>
   </div>
 
-  <?php if(isset($info) && $info['type'] != 'good'){ ?>
-    <div class="modalWindow">
-      <div class="modal-content">
-        <span class="icon-error"></span> <i>Important Message</i>
-        <?=$info['text']?>
-        <div class="close">Close</div>
-      </div>
-    </div>
-  <?php } ?>
-
   <div class="header-question">Review</div>
   <div class="input-value">Please review your application and verify that all the information is accurate and complete. If you need to make any corrections to your application, please click on the tab(s) above or click on the edit button for any section below.</div>
 
   <div class="section-question">Applicant Information
-    <a href="/cab/application-info/?review=back" title="Edit applicant Information">Edit</a>
+    <a href="/apply/application-info/?review=back" title="Edit applicant Information">Edit</a>
   </div>
   <table class="table-view-data">
     <tr>
@@ -45,7 +35,7 @@
   </table>
 
   <div class="section-question">Educational History
-    <a href="/cab/education-history/?review=back" title="Edit education history">Edit</a>
+    <a href="/apply/education-history/?review=back" title="Edit education history">Edit</a>
   </div>
   <?php if($arHistory->num_rows > 0){ ?>
     <table class="table-view-data style-table">
@@ -58,7 +48,7 @@
       <?php while($history = hsc($arHistory->fetch_assoc())){ ?>
         <tr>
           <td><?=$history['name_institution']?></td>
-          <td><?=$history['city'].' ('.ApplyCard::param(2, 'country_study')[$history['country_study']].')'?></td>
+          <td><?=$history['city'].' ('.$param['country_study'][$history['country_study']].')'?></td>
           <td><?=$history['diploma_name']?></td>
           <td><?=$history['date_mm_from'].'/'.$history['date_yyyy_from'].' - '.$history['date_mm_to'].'/'.$history['date_yyyy_to']?></td>
         </tr>
@@ -70,7 +60,7 @@
   <?php } ?>
 
   <div class="section-question">
-    Purpose of Evaluation <a href="/cab/purpose/?review=back" title="Edit purpose">Edit</a>
+    Purpose of Evaluation <a href="/apply/purpose/?review=back" title="Edit purpose">Edit</a>
   </div>
 
   <table class="table-view-data">
@@ -96,49 +86,9 @@
     </tr>
   </table>
 
-  <div class="section-question">
-    Sum Services & Fees <a href="/cab/services/?review=back" title="Edit services & fees">Edit</a>
-  </div>
-  <table class="table-view-data style-table">
-    <tr class="first-line">
-      <td>Description</td>
-      <td>Quantity</td>
-      <td>Fee</td>
-    </tr>
-    <?php if(is_array($arResult['report_type'])){ ?>
-      <tr>
-        <td><?=$arResult['report_type']['name']?></td>
-        <td>1</td>
-        <td>$<?=$arResult['report_type']['price']?></td>
-      </tr>
-    <?php } ?>
-    <?php if($quantity = $arAgencyCopy->num_rows > 0){ ?>
-      <tr>
-        <td>Copy agency</td>
-        <td><?=$quantity?></td>
-        <td>$<?=$price?></td>
-      </tr>
-    <?php } ?>
-    <?php if(is_array($arResult['ap_mailing'])){ ?>
-      <tr>
-        <td><?=$arResult['ap_mailing']['text']?></td>
-        <td>1</td>
-        <td>$<?=$arResult['ap_mailing']['price']?></td>
-      </tr>
-    <?php } ?>
-    <?php if(is_array($arResult['turnaround_time'])){ ?>
-      <tr>
-        <td>Turnaround time: <?=$arResult['turnaround_time']['text']?></td>
-        <td>1</td>
-        <td>$<?=$arResult['turnaround_time']['price']?></td>
-      </tr>
-    <?php } ?>
-  </table>
-
   <div class="section-question">Mailing Instructions
-    <a href="/cab/mailing/?review=back" title="Edit mailing instructions">Edit</a>
+    <a href="/apply/mailing/?review=back" title="Edit mailing instructions">Edit</a>
   </div>
-
   <table class="table-view-data">
     <tr>
       <td>Mail my applicant copy to:</td>
@@ -179,14 +129,48 @@
       </tr>
       <?php while($AgencyCopy = hsc($arAgencyCopy->fetch_assoc())){ ?>
         <tr>
-          <td><?=ApplyCard::param(4, 'mailing_copy')[$AgencyCopy['mailing_copy']]['text']?></td>
+          <td><?=$param['mailing_copy'][$AgencyCopy['mailing_copy']]['text']?></td>
           <td><?=$AgencyCopy['text_copy']?></td>
         </tr>
       <?php } ?>
     </table>
   <?php } ?>
 
-  <div class="section-question">Special Instructions or Comments (if applicable)</div>
+  <div class="section-question">
+    Sum Services & Fees <a href="/apply/services/?review=back" title="Edit services & fees">Edit</a>
+  </div>
+  <table class="table-view-data style-table">
+    <tr class="first-line">
+      <td>Description</td>
+      <td>Fee</td>
+    </tr>
+    <?php if(is_array($arResult['report_type'])){ ?>
+      <tr>
+        <td><?=$arResult['report_type']['name']?></td>
+        <td>$<?=$arResult['report_type']['price']?></td>
+      </tr>
+    <?php } ?>
+    <?php if($arAgencyCopy->num_rows > 0){ ?>
+      <tr>
+        <td>Copy agency</td>
+        <td>$<?=$price?></td>
+      </tr>
+    <?php } ?>
+    <?php if(is_array($arResult['ap_mailing'])){ ?>
+      <tr>
+        <td><?=$arResult['ap_mailing']['text']?></td>
+        <td>$<?=$arResult['ap_mailing']['price']?></td>
+      </tr>
+    <?php } ?>
+    <?php if(is_array($arResult['turnaround_time'])){ ?>
+      <tr>
+        <td>Turnaround time: <?=$arResult['turnaround_time']['text']?></td>
+        <td>$<?=$arResult['turnaround_time']['price']?></td>
+      </tr>
+    <?php } ?>
+  </table>
+
+  <div class="section-question">Special Instructions or Comments (if applile)</div>
   <div class="line-input">
     <div class="input-value">
       <div class="name-section">If there was a significantly large gap in time between the date of completion of the program and the date of the award of the qualification, please explain why below (limit 1000 characters):</div>
@@ -197,7 +181,7 @@
   <input type="hidden" name="update" value="<?=$_POST['update']?>">
 
   <div class="save-or-continue">
-    <a href="/cab/services/" title="application-info" class="back_link">< Back</a>
+    <a href="/apply/services/" title="application-info" class="back_link">< Back</a>
     <input type="submit" name="ok" value="Continue >">
   </div>
 </form>

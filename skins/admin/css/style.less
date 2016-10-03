@@ -412,6 +412,11 @@ body {
   .border-radius(5px);
   .box-shadow(0 -1px 0 0 rgba(185, 185, 185, 0.2));
 
+  .header-inputs {
+    text-shadow: 0 1px 0 #fff;
+    color: #6A7C8A;
+  }
+
   .input-value {
     min-height: 27px;
     position: relative;
@@ -450,6 +455,7 @@ body {
       display: block;
       cursor: pointer;
       color: #6A7C8A;
+      margin: 5px 0;
 
       span {
         float: left;
@@ -460,6 +466,7 @@ body {
       input[type="radio"] {
         display: inline-block;
         min-width: inherit;
+        margin-left: 0;
       }
     }
 
@@ -1123,6 +1130,10 @@ body {
 
   .bi-table {
 
+    img {
+      width: 100%;
+    }
+
     tr {
       display: inline-table;
       width: 100%;
@@ -1727,7 +1738,7 @@ body {
         font-size: 0;
         text-align: center;
         padding: 3px;
-        max-width: 400px;
+        max-width: 330px;
         .border-radius(4px);
 
         @media screen and (max-width: 540px) {
@@ -2576,24 +2587,33 @@ body {
 }
 
 .spec-block-list {
+  .name-section {
+    min-width: 170px;
+    max-width: 179px;
+  }
+
   a {
     display: inline-block;
     color: #4b6267;
     text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 
 .items-report {
   &:extend(.clearfix all);
 
-  & > div {
+  label {
     float: left;
     width: 100%;
-    text-align: center;
+    text-align: left;
+  }
 
-    a {
-      color: #4b6267;
-    }
+  a {
+    color: #4b6267;
   }
 }
 
@@ -2609,7 +2629,12 @@ div[data-disabled="applicant_copy"] {
 
 .spec-block2 {
   color: #4b6267;
+  border-bottom:  1px dashed #4b6267;
   margin: 10px 0;
+
+  &:last-child {
+    border: none;
+  }
 }
 
 // --- END Modal Resize Image ---

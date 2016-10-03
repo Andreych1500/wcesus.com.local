@@ -514,7 +514,7 @@ class AdminFunction {
                     }
 
                     foreach($arPrimary_column as $k2 => $v2){
-                        if(current($when[$k]) == $v2[$k]){
+                        if(current($when[$k]) == $v2[$k] && key($when[$k]) != $v2['id']){
                             sessionInfo($url, $k.' primary key!');
                         }
                     }

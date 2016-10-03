@@ -209,6 +209,17 @@ div, p, a, span, ul, li, table, tr, td, h1, h2, h3 {
   }
 }
 
+.i_Error {
+  font: 140pt @font-Merriweather;
+  color: @color3;
+  text-align: center;
+  .transition(top 0.3s ease);
+
+  @media screen and (max-width: 512px) {
+    font-size: 110pt
+  }
+}
+
 #to_file {
   display: none;
 }
@@ -224,15 +235,14 @@ body {
 }
 
 main {
-  margin-top: 1px;
-  padding-bottom: 400px;
+  padding-bottom: 373px;
 
   @media screen and (max-width: 900px) {
     padding-bottom: 447px;
   }
 
   @media screen and (max-width: 600px) {
-    padding-bottom: 797px;
+    padding-bottom: 742px;
     text-align: justify;
   }
 }
@@ -244,7 +254,7 @@ main {
   color: @color1;
 }
 
-address {
+.top-panel address {
   line-height: 40px;
   max-width: 1280px;
   margin: 0 auto;
@@ -326,6 +336,13 @@ address {
   img {
     height: 100%;
   }
+}
+
+.wait {
+  float: right;
+  color: #f27c66;
+  font-size: 24px;
+  font-family: @font-Raleway;
 }
 
 .header-mega-menu {
@@ -688,7 +705,7 @@ footer {
   address {
     margin-top: 10px;
 
-    a {
+    a, p {
       width: 100%;
       color: #b0b0b0;
       font-family: @font-Raleway;
@@ -1326,13 +1343,14 @@ div.error {
 .modalWindow {
   position: fixed;
   z-index: 999999;
-  padding-top: 133px;
+  padding-top: 200px;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
   font-family: @font-Raleway;
+  color: #272b31;
 
   @media screen and (max-width: 600px) {
     text-align: center;
@@ -1346,7 +1364,7 @@ div.error {
   .icon-error {
     color: #ff2d2d;
     font-size: 70px;
-    margin: 15px 20px;
+    margin: 15px 10px 0 20px;
     display: inline-block;
   }
 
@@ -1390,6 +1408,28 @@ div.error {
     overflow: auto;
     max-height: 500px;
     .box-shadow(0px 4px 9px 0px rgba(0, 0, 0, 0.24));
+  }
+
+  .text {
+    padding: 10px;
+    font-family: @font-Merriweather;
+    color: @color4;
+    text-align: justify;
+  }
+
+  .header-section {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .iH3 {
+    margin: 10px 20px;
+    display: inline-block;
+  }
+
+  .agr-status {
+    margin: 15px 0 0 10px;
+    display: inline-block;
   }
 }
 
@@ -1483,14 +1523,18 @@ div.error {
   width: 98% !important;
 }
 
+textarea[name="reason_text"] {
+  min-height: 80px;
+}
+
 .add_more {
   float: left;
   margin: 0 1%;
   cursor: pointer;
   padding: 6px 8px;
   word-break: break-all;
-  font-size: 16px;
-  background-color: #0e90d2;
+  font-size: 13px;
+  background-color: #f27c66;
   font-family: @font-Raleway;
   color: #fff;
   border: 0;
@@ -1499,7 +1543,7 @@ div.error {
   .transition(all 0.3s ease);
 
   &:hover {
-    background-color: #1177ab;
+    background-color: #ec482a;
     .transition(all 0.3s ease);
   }
 }
@@ -1600,28 +1644,9 @@ div.error {
 }
 
 .like {
-  display: inline-block;
-  width: 130px;
-  height: 0;
-  position: relative;
-  background: transparent;
-  .transform(rotate(225deg));
-
-  &::before, &::after {
-    content: '';
-    position: absolute;
-    background-color: green;
-  }
-
-  &:before {
-    width: 8px;
-    height: 40px;
-  }
-
-  &::after {
-    width: 25px;
-    height: 8px;
-  }
+  color: green;
+  font-size: 44px;
+  margin: 0 20px;
 }
 
 .list-info {
@@ -1673,13 +1698,14 @@ div.error {
   }
 }
 
-span[data-click]{
+span[data-click] {
   padding: 8px 15px;
   background-color: #0e90d2;
   color: white;
   cursor: pointer;
   margin: 15px;
   display: inline-block;
+  .border-radius(3px);
 
   &:hover {
     background-color: #1177ab;
@@ -1700,19 +1726,25 @@ span[data-click]{
   display: none !important;
 }
 
+.confirm_agreement {
+  display: none !important;
+  visibility: hidden;
+}
+
 /* font-icons */
 @font-face {
   font-family: 'icomoon';
-  src: url('@{urlToDirCss}fonts/icon/icomoon.eot?uuzga3');
-  src: url('@{urlToDirCss}fonts/icon/icomoon.eot?uuzga3#iefix') format('embedded-opentype'),
-  url('@{urlToDirCss}fonts/icon/icomoon.ttf?uuzga3') format('truetype'),
-  url('@{urlToDirCss}fonts/icon/icomoon.woff?uuzga3') format('woff'),
-  url('@{urlToDirCss}fonts/icon/icomoon.svg?uuzga3#icomoon') format('svg');
+  src: url('@{urlToDirCss}fonts/icon/icomoon.eot?b3sx72');
+  src: url('@{urlToDirCss}fonts/icon/icomoon.eot?b3sx72#iefix') format('embedded-opentype'),
+  url('@{urlToDirCss}fonts/icon/icomoon.ttf?b3sx72') format('truetype'),
+  url('@{urlToDirCss}fonts/icon/icomoon.woff?b3sx72') format('woff'),
+  url('@{urlToDirCss}fonts/icon/icomoon.svg?b3sx72#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
   font-family: @font-ico-moon !important;
   speak: none;
   font-style: normal;
@@ -1726,44 +1758,24 @@ span[data-click]{
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-error:before {
-  content: "\e90a";
-}
-
-.icon-mortar-board:before {
-  content: "\e903";
-}
-
-.icon-youtube:before {
-  content: "\1f3cf";
-}
-
 .icon-user:before {
   content: "\e900";
-}
-
-.icon-lock:before {
-  content: "\e909";
 }
 
 .icon-phone:before {
   content: "\e901";
 }
 
-.icon-home:before {
-  content: "\e908";
+.icon-mail:before {
+  content: "\e902";
 }
 
-.icon-pencil:before {
-  content: "\e911";
+.icon-mortar-board:before {
+  content: "\e903";
 }
 
 .icon-clock:before {
   content: "\e904";
-}
-
-.icon-mail:before {
-  content: "\e902";
 }
 
 .icon-google-plus:before {
@@ -1776,4 +1788,28 @@ span[data-click]{
 
 .icon-skype:before {
   content: "\e907";
+}
+
+.icon-home:before {
+  content: "\e908";
+}
+
+.icon-lock:before {
+  content: "\e909";
+}
+
+.icon-error:before {
+  content: "\e90a";
+}
+
+.icon-pencil:before {
+  content: "\e911";
+}
+
+.icon-youtube:before {
+  content: "\1f3cf";
+}
+
+.icon-like:before {
+  content: "\ea10";
 }

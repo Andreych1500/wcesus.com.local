@@ -1,39 +1,43 @@
 <?php
+$keyPost = ApplyCard::param(4, array('keyPost'));
+$param = array_merge(ApplyCard::param(4), ApplyCard::param('glob', array(
+    'ap_country',
+    'ap_state'
+)));
+unset($param['ap_country']['USA']);
+
 if(isset($_POST['ok'], $_POST['ap_mailing_us'], $_POST['ap_mailing_all'], $_POST['update'])){
     $error = array();
     $_POST = trimAll($_POST);
 
     if(!$data = ApplyCard::checkData()){
-        sessionInfo('/cab/apply-user/', '<p>час зберігання даних вийшов, увійдіть знов у свій кабінет і заповніть дані!</p>');
-    } else {
-        $globPost = ApplyCard::param(4, 'globPost');
+        sessionInfo('/apply/', '<p>Time is out. Please log in to your account to continue your application.</p>');
     }
 
-    foreach($globPost as $v){
+    foreach($keyPost['keyPost'] as $v){
         if($v == 'ap_mailing' || $v == 'ap_liability'){
             continue;
         }
 
         if(!array_key_exists($v, $_POST)){
-            $check['POST'] = 'class="error"';
+            $check[$v] = 'class="error"';
             break;
         }
     }
 
-    if(isset($check['POST'])){
+    if(isset($check)){
         $error['stop'] = 1;
     } else {
-        $check['applicant_copy'] = (empty($_POST['applicant_copy']) || !isset(ApplyCard::param(4, 'applicant_copy')[$_POST['applicant_copy']])? 'class="error"' : '');
-
+        $check['applicant_copy'] = (empty($_POST['applicant_copy']) || !isset($param['applicant_copy'][$_POST['applicant_copy']])? 'class="error"' : '');
         $check['ap_institution'] = (empty($_POST['ap_institution'])? 'class="error"' : '');
         $check['ap_attention_to'] = (empty($_POST['ap_attention_to'])? 'class="error"' : '');
         $check['ap_department'] = (empty($_POST['ap_department'])? 'class="error"' : '');
         $check['ap_address1'] = (empty($_POST['ap_address1'])? 'class="error"' : '');
         $check['ap_address2'] = (empty($_POST['ap_address2'])? 'class="error"' : '');
         $check['ap_city'] = (empty($_POST['ap_city'])? 'class="error"' : '');
-        $check['ap_liability'] = (!isset($_POST['ap_liability']) || empty($_POST['ap_liability'])? 'class="error"' : '');
-        $check['ap_mailing_us'] = (strlen($_POST['ap_mailing_us']) == 0 || !isset(ApplyCard::param(4, 'ap_mailing_us')[$_POST['ap_mailing_us']])? 'class="error"' : '');
-        $check['ap_mailing_all'] = (strlen($_POST['ap_mailing_all']) == 0 || !isset(ApplyCard::param(4, 'ap_mailing_all')[$_POST['ap_mailing_all']])? 'class="error"' : '');
+        $check['ap_liability'] = (!isset($_POST['ap_liability']) || $_POST['ap_liability'] != 1? 'class="error"' : '');
+        $check['ap_mailing_us'] = (empty($_POST['ap_mailing_us']) || !isset($param['ap_mailing_us'][$_POST['ap_mailing_us']])? 'class="error"' : '');
+        $check['ap_mailing_all'] = (empty($_POST['ap_mailing_all']) || !isset($param['ap_mailing_all'][$_POST['ap_mailing_all']])? 'class="error"' : '');
 
         if(!preg_match('#^(\d{3})-(\d{3})-(\d{4})$#uis', $_POST['ap_phone'], $matches)){
             $check['ap_phone'] = 'class="error"';
@@ -42,12 +46,12 @@ if(isset($_POST['ok'], $_POST['ap_mailing_us'], $_POST['ap_mailing_all'], $_POST
         if($_POST['applicant_copy'] == 2){
             $check['ap_region'] = (empty($_POST['ap_region'])? 'class="error"' : '');
             $check['ap_postal_code'] = (empty($_POST['ap_postal_code'])? 'class="error"' : '');
-            $check['ap_country'] = (empty($_POST['ap_country']) || !isset(ApplyCard::param(4, 'ap_country')[$_POST['ap_country']])? 'class="error"' : '');
+            $check['ap_country'] = (empty($_POST['ap_country']) || !isset($param['ap_country'][$_POST['ap_country']])? 'class="error"' : '');
 
             $_POST['ap_state'] = '';
             $_POST['ap_zip_code'] = '';
         } elseif($_POST['applicant_copy'] == 1) {
-            $check['ap_state'] = (strlen($_POST['ap_state']) == 0 || !isset(ApplyCard::param(4, 'ap_state')[$_POST['ap_state']])? 'class="error"' : '');
+            $check['ap_state'] = (empty($_POST['ap_state']) || !isset($param['ap_state'][$_POST['ap_state']])? 'class="error"' : '');
             $check['ap_zip_code'] = (empty($_POST['ap_zip_code'])? 'class="error"' : '');
 
             $_POST['ap_region'] = '';
@@ -77,6 +81,12 @@ if(isset($_POST['ok'], $_POST['ap_mailing_us'], $_POST['ap_mailing_all'], $_POST
             $ap_mailing = ($_POST['applicant_copy'] == 1? $_POST['ap_mailing_us'] : $_POST['ap_mailing_all']);
 
             q("
+                UPDATE `steps_ok_cards` SET
+                `step4`   = 1
+                WHERE `idCard` = '".mres($data['idCard'])."'
+            ");
+
+            q("
                 UPDATE `admin_application_info` SET
                 `applicant_copy`    = '".$_POST['applicant_copy']."',
                 `ap_institution`    = '".$_POST['ap_institution']."',
@@ -91,7 +101,7 @@ if(isset($_POST['ok'], $_POST['ap_mailing_us'], $_POST['ap_mailing_all'], $_POST
                 `ap_state`          = '".$_POST['ap_state']."',
                 `ap_zip_code`       = '".$_POST['ap_zip_code']."',
                 `ap_postal_code`      = '".$_POST['ap_postal_code']."',
-                `ap_mailing`          = '".$ap_mailing."', 
+                `ap_mailing`          = ".(int)$ap_mailing.",
                 `ap_liability`        = 1,
                 `agent`               = '".mres($_SERVER['HTTP_USER_AGENT'])."',
                 `user_ip`             = '".mres($_SERVER['REMOTE_ADDR'])."',
@@ -100,10 +110,10 @@ if(isset($_POST['ok'], $_POST['ap_mailing_us'], $_POST['ap_mailing_all'], $_POST
             ");
 
             setcookie('idCardHash', $el['idCardHash'], time() + 3600, '/');
-            header('Location: '.(isset($_REQUEST['review'])? '/cab/review/' : '/cab/services/').'');
+            header('Location: '.(isset($_REQUEST['review'])? '/apply/review/' : '/apply/services/').'');
             exit();
         } else {
-            sessionInfo('/cab/mailing/', '<p>Такого ід не існує!</p>', 0, 0);
+            sessionInfo('/apply/mailing/', '<p>WCES ID does not exist!</p>', 0, 0);
         }
     }
 }
@@ -113,11 +123,11 @@ if(isset($_POST['add_copy'], $_POST['text_copy'], $_POST['mailing_copy'])){
     $_POST = trimAll($_POST);
 
     if(!$data = ApplyCard::checkData()){
-        sessionInfo('/cab/apply-user/', '<p>час зберігання даних вийшов, увійдіть знов у свій кабінет і заповніть дані!</p>');
+        sessionInfo('/apply/', '<p>Time is out. Please log in to your account to continue your application.</p>');
     }
 
     $check['text_copy'] = (empty($_POST['text_copy'])? 'error' : '');
-    $check['mailing_copy'] = (strlen($_POST['mailing_copy']) == 0 || !isset(ApplyCard::param(4, 'mailing_copy')[$_POST['mailing_copy']])? 'class="error"' : '');
+    $check['mailing_copy'] = (empty($_POST['mailing_copy']) || !isset($param['mailing_copy'][$_POST['mailing_copy']])? 'class="error"' : '');
 
     if(in_array('class="error"', $check) || in_array('error', $check)){
         $error['stop'] = 1;
@@ -146,14 +156,14 @@ if(isset($_POST['add_copy'], $_POST['text_copy'], $_POST['mailing_copy'])){
             ");
 
             setcookie('idCardHash', $arResult['idCardHash'], time() + 3600, '/');
-            header('Location: /cab/mailing/');
+            header('Location: /apply/mailing/');
             exit();
         } elseif(isset($_REQUEST['edit']) && $card->num_rows <= 0) {
-            sessionInfo('/cab/mailing/', '<p>Редагування неможливо, неіснує ID історії!</p>');
+            sessionInfo('/apply/mailing/', '<p>Wrong WCES ID, access denied!</p>');
         }
 
         if($card->num_rows <= 0){
-            sessionInfo('/cab/mailing/', '<p>Привязка неможлива, неіснує ID карточки!</p>', 0, 0);
+            sessionInfo('/apply/mailing/', '<p>Wrong WCES ID, linking is forbidden!</p>', 0, 0);
         } else {
             $arResult = hsc($card->fetch_assoc());
 
@@ -164,7 +174,7 @@ if(isset($_POST['add_copy'], $_POST['text_copy'], $_POST['mailing_copy'])){
             ");
 
             if($count->num_rows >= 4){
-                sessionInfo('/cab/mailing/', '<p>Вибачте існує ліміт копій!</p>');
+                sessionInfo('/apply/mailing/', '<p>You have reached 4 copies limit!</p>');
             }
 
             q("
@@ -176,18 +186,15 @@ if(isset($_POST['add_copy'], $_POST['text_copy'], $_POST['mailing_copy'])){
             ");
 
             setcookie('idCardHash', $arResult['idCardHash'], time() + 3600, '/');
-            header('Location: /cab/mailing/');
+            header('Location: /apply/mailing/');
             exit();
         }
     }
 }
 
 if($data = ApplyCard::checkData()){
-    $globPost = ApplyCard::param(4, 'globPost');
-    $param = ApplyCard::param(4);
-
     foreach($data as $k => $v){
-        if(in_array($k, $globPost) && !isset($_POST[$k])){
+        if(in_array($k, $keyPost['keyPost']) && !isset($_POST[$k])){
             $_POST[$k] = $v;
         }
     }
@@ -206,15 +213,15 @@ if($data = ApplyCard::checkData()){
         WHERE `idCard` = '".mres($data['idCard'])."'
     ");
 } else {
-    sessionInfo('/cab/apply-user/', '<p>Щоб перейти у цей розділ розпочніть нову анкету або продовжіть існуючу, або час очікування закінчився.</p>');
+    sessionInfo('/apply/', '<p>Time is out. Please log in to your account to continue your application.</p>');
 }
 
-if(isset($_REQUEST['edit'])){
+if(isset($_GET['edit'])){
     $oacEd = q("
         SELECT *
         FROM `admin_official_agency_copy`
         WHERE `idCard` = '".mres($data['idCard'])."'
-        AND `id` = '".mres($_REQUEST['edit'])."'
+        AND `id` = '".mres($_GET['edit'])."'
         LIMIT 1
     ");
 
@@ -223,18 +230,18 @@ if(isset($_REQUEST['edit'])){
             $_POST[$k] = $v;
         }
     } else {
-        sessionInfo('/cab/mailing/', '<p>Неіснує такої копії документу у вашої карточки</p>');
+        sessionInfo('/apply/mailing/', '<p>There is no such paper copies of your application!</p>');
     }
 }
 
-if(isset($_REQUEST['remove'])){
+if(isset($_GET['remove'])){
     q("
         DELETE FROM `admin_official_agency_copy`
-        WHERE `id` = ".(int)$_REQUEST['remove']."
+        WHERE `id` = ".(int)$_GET['remove']."
         AND `idCard` = '".mres($data['idCard'])."'
     ");
 
-    header('Location: /cab/mailing/');
+    header('Location: /apply/mailing/');
     exit();
 }
 

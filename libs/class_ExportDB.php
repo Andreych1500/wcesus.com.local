@@ -70,10 +70,10 @@ class ExportDB{
 
             // Create Logo
             $img = q("
-            SELECT `brandPhoto`
-            FROM `admin_personal_interface`
-            LIMIT 1
-        ")->fetch_assoc();
+                SELECT `brandPhoto`
+                FROM `admin_personal_interface`
+                LIMIT 1
+            ")->fetch_assoc();
 
             $sheet->mergeCells('A1:'.$last_letter.'1');
             $imagePath = $_SERVER['DOCUMENT_ROOT'].$img['brandPhoto'];

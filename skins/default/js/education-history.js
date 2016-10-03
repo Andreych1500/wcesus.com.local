@@ -33,7 +33,7 @@ function removeImage(el) {
 
     if (del_files !== undefined && del_files.length > 0) {
         $.ajax({
-            url: '/cab/education-history/?delFile=ok&ajax=ok',
+            url: '/apply/education-history/?delFile=ok&ajax=ok',
             type: "POST",
             data: {'file_delete': del_files},
             cache: false
@@ -58,7 +58,7 @@ function addFile(el) {
         formObj.append('data-priority-type', element.attr('data-priority-type'));
 
         $.ajax({
-            url: "/cab/education-history/?getType=ok&ajax=ok",
+            url: "/apply/education-history/?getType=ok&ajax=ok",
             type: "POST",
             data: formObj,
             cache: false,
@@ -74,7 +74,7 @@ function addFile(el) {
 
                 if (del_files !== undefined && del_files.length > 0) {
                     $.ajax({
-                        url: '/cab/education-history/?delFile=ok&ajax=ok',
+                        url: '/apply/education-history/?delFile=ok&ajax=ok',
                         type: "POST",
                         data: {'file_delete': del_files},
                         cache: false
@@ -88,7 +88,7 @@ function addFile(el) {
                     alert('Error: ' + res['error']);
                 } else {
                     $.ajax({
-                        url: "/cab/education-history/?addImage=ok&ajax=ok",
+                        url: "/apply/education-history/?addImage=ok&ajax=ok",
                         type: "POST",
                         data: formObj,
                         cache: false,

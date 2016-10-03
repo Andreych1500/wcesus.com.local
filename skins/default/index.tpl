@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?=(($lang == Core::$SITE_LANG[0])? Core::$SITE_LANG[0] : $lang)?>" <?=(isset($contentOG)? 'prefix="og: http://ogp.me/ns#"' : "")?>>
+<html lang="<?=(($lang == Core::$SITE_LANG[0])? Core::$SITE_LANG[0] : $lang)?>" <?=(isset($contentOG)? 'prefix="og: http://ogp.me/ns#"' : "")?> xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <title><?=Core::$META['title']?></title>
@@ -41,12 +41,13 @@
 
 <body itemscope itemtype="http://schema.org/WebPage">
 <meta itemprop="description" content="<?=Core::$META['description']?>">
+
 <header itemscope itemtype="http://schema.org/WPHeader">
   <div class="top-panel">
     <address>
       <a class="icon-user" href="/cab/" title="Profile" rel="nofollow"></a>
       <a href="<?=(isMobile()? 'tel:' : 'callto:').calltoPhone('2102152724')?>" title="text"><i class="icon-phone"></i>+1-210-215-2724</a>
-      <a href="mailto:test@test.com" title="text"><i class="icon-mail"></i>test@test.com</a>
+      <a href="mailto:info@wcesus.com" title="text"><i class="icon-mail"></i>info@wcesus.com</a>
     </address>
   </div>
   <div class="top-menu">
@@ -145,15 +146,9 @@
       </div>
       <address>
         <a href="<?=(isMobile()? 'tel:' : 'callto:').calltoPhone('2102152724')?>" title="#"><span class="icon-phone"></span>123-123456789</a>
-        <a href="mailto:test@test.com" title="#"><span class="icon-mail"></span>test@test.com</a>
-        <a href="#" title="#"><span class="icon-home"></span>250 Biscayne Blvd. (North) 11st Floor New World Tower Miami, 33148</a>
+        <a href="mailto:test@test.com" title="#"><span class="icon-mail"></span>test@test.com</a> <p><span class="icon-home"></span>250 Biscayne Blvd. (North) 11st Floor New World Tower Miami, 33148</p>
       </address>
-      <div class="soc-link">
-        <a href="#" title="#" class="icon-twitter"></a>
-        <a href="#" title="#" class="icon-skype"></a>
-        <a href="#" title="#" class="icon-google-plus"></a>
-        <a href="#" title="#" class="icon-youtube"></a>
-      </div>
+      <div class="soc-link"></div>
     </div>
     <div class="section-second-block">
       <div class="fs-big-link">LATEST COURSES<span class="icon-clock"></span></div>
@@ -173,12 +168,22 @@
       </div>
     </div>
     <div class="section-last-block">
-      <a class="fs-big-link" href="#" title="title">APPLY<span class="icon-pencil"></span></a>
+      <a class="fs-big-link" href="/apply/" title="Apply card to user">APPLY<span class="icon-pencil"></span></a>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="content">wcesus &copy;<?=Core::$DATA?>. All Rights Reserved</div>
   </div>
 </footer>
+
+<?php if(isset($info)){ ?>
+  <div class="modalWindow">
+    <div class="modal-content">
+      <span class="<?=(($info['type'] == 'good'? 'icon-like like' : 'icon-error'))?>"></span> <i>Important Message</i>
+      <?=$info['text']?>
+      <div class="close">Close</div>
+    </div>
+  </div>
+<?php } ?>
 </body>
 </html>

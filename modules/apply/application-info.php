@@ -1,35 +1,43 @@
 <?php
+$keyPost = ApplyCard::param(1, array('keyPost'));
+$param = array_merge(ApplyCard::param(1), ApplyCard::param('glob', array(
+    'country',
+    'date_yyyy',
+    'date_mm',
+    'date_dd',
+    'state'
+)));
+
 if(isset($_POST['ok'])){
     $error = array();
     $_POST = trimAll($_POST);
-    $globPost = ApplyCard::param(1, 'globPost');
 
-    foreach($globPost as $v){
+    foreach($keyPost['keyPost'] as $v){
         if(!array_key_exists($v, $_POST)){
-            $check['POST'] = 'class="error"';
+            $check[$v] = 'class="error"';
             break;
         }
     }
 
-    if(isset($check['POST'])){
+    if(isset($check)){
         $error['stop'] = 1;
     } else {
         $check['last_name'] = (empty($_POST['last_name'])? 'class="error"' : '');
         $check['first_name'] = (empty($_POST['first_name'])? 'class="error"' : '');
-        $check['is_records_name'] = (strlen($_POST['is_records_name']) == 0 || !isset(ApplyCard::param(1, 'is_records_name')[$_POST['is_records_name']])? 'class="error"' : '');
-        $check['gender'] = (strlen($_POST['gender']) == 0 || !isset(ApplyCard::param(1, 'gender')[$_POST['gender']])? 'class="error"' : '');
-        $check['date_mm'] = (empty($_POST['date_mm']) || !in_array($_POST['date_mm'], ApplyCard::param(1, 'date_mm'))? 'class="error"' : '');
-        $check['date_dd'] = (empty($_POST['date_dd']) || !in_array($_POST['date_dd'], ApplyCard::param(1, 'date_dd'))? 'class="error"' : '');
-        $check['date_yyyy'] = (empty($_POST['date_yyyy']) || !in_array($_POST['date_yyyy'], ApplyCard::param(1, 'date_yyyy'))? 'class="error"' : '');
+        $check['is_records_name'] = (empty($_POST['is_records_name']) || !isset($param['is_records_name'][$_POST['is_records_name']])? 'class="error"' : '');
+        $check['gender'] = (empty($_POST['gender']) || !isset($param['gender'][$_POST['gender']])? 'class="error"' : '');
+        $check['date_mm'] = (empty($_POST['date_mm']) || !isset($param['date_mm'][$_POST['date_mm']])? 'class="error"' : '');
+        $check['date_dd'] = (empty($_POST['date_dd']) || !isset($param['date_dd'][$_POST['date_dd']])? 'class="error"' : '');
+        $check['date_yyyy'] = (empty($_POST['date_yyyy']) || !isset($param['date_yyyy'][$_POST['date_yyyy']])? 'class="error"' : '');
         $check['email'] = (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)? 'class="error"' : '');
-        $check['about_us'] = (empty($_POST['about_us']) || !isset(ApplyCard::param(1, 'about_us')[$_POST['about_us']])? 'class="error"' : '');
-        $check['country'] = (empty($_POST['country']) || !isset(ApplyCard::param(1, 'country')[$_POST['country']])? 'class="error"' : '');
-        $check['services_IERF'] = (strlen($_POST['services_IERF']) == 0 || !isset(ApplyCard::param(1, 'services_IERF')[$_POST['services_IERF']])? 'class="error"' : '');
+        $check['about_us'] = (empty($_POST['about_us']) || !isset($param['about_us'][$_POST['about_us']])? 'class="error"' : '');
+        $check['country'] = (empty($_POST['country']) || !isset($param['country'][$_POST['country']])? 'class="error"' : '');
+        $check['services_IERF'] = (empty($_POST['services_IERF']) || !isset($param['services_IERF'][$_POST['services_IERF']])? 'class="error"' : '');
         $check['addressOneLine'] = (empty($_POST['addressOneLine'])? 'class="error"' : '');
         $check['addressTwoLine'] = (empty($_POST['addressTwoLine'])? 'class="error"' : '');
         $check['city'] = (empty($_POST['city'])? 'class="error"' : '');
 
-        if($_POST['is_records_name'] == 1){
+        if($_POST['is_records_name'] == 2){
             $check['last_name_records'] = (empty($_POST['last_name_records'])? 'class="error"' : '');
             $check['first_name_records'] = (empty($_POST['first_name_records'])? 'class="error"' : '');
         } else {
@@ -57,7 +65,7 @@ if(isset($_POST['ok'])){
             $_POST['state'] = '';
             $_POST['zip_code'] = '';
         } else {
-            $check['state'] = (strlen($_POST['state']) == 0 || !isset(ApplyCard::param(1, 'state')[$_POST['state']])? 'class="error"' : '');
+            $check['state'] = (empty($_POST['state']) || !isset($param['state'][$_POST['state']])? 'class="error"' : '');
             $check['zip_code'] = (empty($_POST['zip_code'])? 'class="error"' : '');
 
             $_POST['region'] = '';
@@ -74,79 +82,87 @@ if(isset($_POST['ok'])){
 
         if(isset($_POST['update'])){
             $email = q("
-                SELECT `id`
-                FROM `admin_application_info`
-                WHERE `email` = '".$_POST['email']."'
-                AND `id` != '".$_POST['update']."'
-                LIMIT 1
+                 SELECT `id`
+                 FROM `admin_application_info`
+                 WHERE `email` = '".$_POST['email']."'
+                 AND `id` != '".$_POST['update']."'
+                 LIMIT 1
             ");
 
             if($email->num_rows > 0){
-                sessionInfo('/cab/application-info/', '<p>Емейл вже занятий!</p>', 0, 0);
+                $check['email'] = 'class="error"';
+                sessionInfo('/apply/application-info/', '<p>The selected Email address is already existing!</p>', 0, 0);
             } else {
-                $id = q(" 
-                    SELECT `id`, `idCardHash` 
-                    FROM `admin_application_info` 
-                    WHERE `id` = '".$_POST['update']."' 
-                    AND `idCardHash` = '".mres($_COOKIE['idCardHash'])."'
-                    LIMIT 1
+                $id = q("
+                     SELECT `id`, `idCardHash`
+                     FROM `admin_application_info`
+                     WHERE `id` = '".$_POST['update']."'
+                     AND `idCardHash` = '".mres($_COOKIE['idCardHash'])."'
+                     LIMIT 1
                 ");
 
                 if($id->num_rows > 0){
                     $el = hsc($id->fetch_assoc());
 
                     q("
-                       UPDATE `admin_application_info` SET
-                        `last_name`           = '".$_POST['last_name']."',
-                        `first_name`          = '".$_POST['first_name']."',
-                        `middle_name`         = '".$_POST['middle_name']."',
-                        `is_records_name`     = '".$_POST['is_records_name']."',
-                        `last_name_records`   = '".$_POST['last_name_records']."',
-                        `first_name_records`  = '".$_POST['first_name_records']."',
-                        `middle_name_records` = '".$_POST['middle_name_records']."',
-                        `gender`              = '".$_POST['gender']."',
-                        `date_mm`             = '".$_POST['date_mm']."',
-                        `date_dd`             = '".$_POST['date_dd']."',
-                        `date_yyyy`           = '".$_POST['date_yyyy']."',
-                        `phone`               = '".$_POST['phone']."',
-                        `email`               = '".$_POST['email']."',
-                        `cell_phone`          = '".$_POST['cell_phone']."',
-                        `about_us`            = '".$_POST['about_us']."',
-                        `about_us_answer`     = '".$_POST['about_us_answer']."',
-                        `country`             = '".$_POST['country']."',
-                        `services_IERF`       = '".$_POST['services_IERF']."',
-                        `addressOneLine`      = '".$_POST['addressOneLine']."',
-                        `addressTwoLine`      = '".$_POST['addressTwoLine']."',
-                        `city`                = '".$_POST['city']."',
-                        `region`              = '".$_POST['region']."',
-                        `postal_code`         = '".$_POST['postal_code']."',
-                        `zip_code`            = '".$_POST['zip_code']."',
-                        `state`               = '".$_POST['state']."',
-                        `agent`               = '".mres($_SERVER['HTTP_USER_AGENT'])."',
-                        `user_ip`             = '".mres($_SERVER['REMOTE_ADDR'])."',
-                        `date_custom`         = NOW()
-                        WHERE `id` = '".(int)$el['id']."'
+                        UPDATE `admin_application_info` SET
+                         `last_name`           = '".$_POST['last_name']."',
+                         `first_name`          = '".$_POST['first_name']."',
+                         `middle_name`         = '".$_POST['middle_name']."',
+                         `is_records_name`     = '".$_POST['is_records_name']."',
+                         `last_name_records`   = '".$_POST['last_name_records']."',
+                         `first_name_records`  = '".$_POST['first_name_records']."',
+                         `middle_name_records` = '".$_POST['middle_name_records']."',
+                         `gender`              = '".$_POST['gender']."',
+                         `date_mm`             = '".$_POST['date_mm']."',
+                         `date_dd`             = '".$_POST['date_dd']."',
+                         `date_yyyy`           = '".$_POST['date_yyyy']."',
+                         `phone`               = '".$_POST['phone']."',
+                         `email`               = '".$_POST['email']."',
+                         `cell_phone`          = '".$_POST['cell_phone']."',
+                         `about_us`            = '".$_POST['about_us']."',
+                         `about_us_answer`     = '".$_POST['about_us_answer']."',
+                         `country`             = '".$_POST['country']."',
+                         `services_IERF`       = '".$_POST['services_IERF']."',
+                         `addressOneLine`      = '".$_POST['addressOneLine']."',
+                         `addressTwoLine`      = '".$_POST['addressTwoLine']."',
+                         `city`                = '".$_POST['city']."',
+                         `region`              = '".$_POST['region']."',
+                         `postal_code`         = '".$_POST['postal_code']."',
+                         `zip_code`            = '".$_POST['zip_code']."',
+                         `state`               = '".$_POST['state']."',
+                         `agent`               = '".mres($_SERVER['HTTP_USER_AGENT'])."',
+                         `user_ip`             = '".mres($_SERVER['REMOTE_ADDR'])."',
+                         `date_custom`         = NOW()
+                         WHERE `id` = '".(int)$el['id']."'
                     ");
 
                     setcookie('idCardHash', $el['idCardHash'], time() + 3600, '/');
-                    header('Location: '.(isset($_REQUEST['review'])? '/cab/review/' : '/cab/education-history/').'');
+                    header('Location: '.(isset($_GET['review'])? '/apply/review/' : '/apply/education-history/').'');
                     exit();
                 } else {
-                    sessionInfo('/cab/application-info/', '<p>Такого ід не існує!</p>', 0, 0);
+                    sessionInfo('/apply/application-info/', '<p>WCES ID does not exist!</p>', 0, 0);
                 }
             }
         } else {
             $email = q("
-                SELECT `id`
-                FROM `admin_application_info`
-                WHERE `email` = '".$_POST['email']."'
-                LIMIT 1
-            ");
+                 SELECT `id`
+                 FROM `admin_application_info`
+                 WHERE `email` = '".$_POST['email']."'
+                 LIMIT 1
+             ");
 
             if($email->num_rows > 0){
-                sessionInfo('/cab/application-info/', '<p>Емейл вже занятий!</p>', 0, 0);
+                $check['email'] = 'class="error"';
+                sessionInfo('/apply/application-info/', '<p>The selected Email address is already existing!</p>', 0, 0);
             } else {
                 $newNumCard = ApplyCard::createCard();
+
+                q("
+                    INSERT INTO `steps_ok_cards` SET
+                    `idCard`  = '".mres($newNumCard)."',
+                    `step1`   = 1
+                ");
 
                 q("
                     INSERT INTO `admin_application_info` SET
@@ -184,7 +200,9 @@ if(isset($_POST['ok'])){
                 ");
 
                 $set = array(
-                    'number'    => $newNumCard
+                    'number' => $newNumCard,
+                    'email'  => $_POST['email'],
+                    'date_birth_day' => $_POST['date_mm'].'-'.$_POST['date_dd'].'-'.$_POST['date_yyyy']
                 );
 
                 Mail::$text = TemplateMail::HtmlMail($set, 'create_new_card', $arMainParam);
@@ -195,29 +213,25 @@ if(isset($_POST['ok'])){
                 }
 
                 setcookie('idCardHash', ApplyCard::hash($newNumCard.$_POST['email']), time() + 3600, '/');
-                header('Location: /cab/education-history/');
+                header('Location: /apply/education-history/');
                 exit();
             }
         }
     }
 }
 
-if(isset($_REQUEST['newCard'])){
+if(isset($_GET['newCard'])){
     if(isset($_COOKIE['idCardHash'])){
         setcookie('idCardHash', '', time() - 3600, '/');
     }
 
-    header('Location: /cab/application-info/');
+    header('Location: /apply/application-info/');
     exit();
 }
 
-$param = ApplyCard::param(1);
-
 if($data = ApplyCard::checkData()){
-    $globPost = ApplyCard::param(1, 'globPost');
-
     foreach($data as $k => $v){
-        if(in_array($k, $globPost) && !isset($_POST[$k])){
+        if(in_array($k, $keyPost['keyPost']) && !isset($_POST[$k])){
             $_POST[$k] = $v;
         }
     }

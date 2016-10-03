@@ -5,20 +5,10 @@
 
   <div class="input-value">
     <div class="name-section">Email:</div>
-    <input <?=(isset($check['email'])? $check['email'] : '')?> type="text" name="email" value="<?=(isset($error) || isset($_POST['email'])? hsc($_POST['email']) : "")?>">
+    <input <?=(isset($check['email'])? $check['email'] : '')?> type="text" name="email" value="<?=(isset($_POST['email'])? hsc($_POST['email']) : "")?>">
   </div>
 
   <div class="save-or-continue">
     <input type="submit" name="ok" value="Submit">
   </div>
 </form>
-
-<?php if(isset($info)){ ?>
-  <div class="modalWindow">
-    <div class="modal-content">
-      <span class="like"></span> <i>Important Message</i>
-      <?=$info['text']?>
-      <div class="close">Close</div>
-    </div>
-  </div>
-<?php } ?>

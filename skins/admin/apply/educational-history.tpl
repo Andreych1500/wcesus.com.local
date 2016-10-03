@@ -1,48 +1,45 @@
-<?php if(isset($_REQUEST['edit'])){ ?>
+<?php if(isset($_GET['edit'])){ ?>
   <div class="section-interface-k2">
     <div class="line-custom-edit">
       <p class="header-name-edit"><?=$messG['Редагування елемента']?></p>
-      <a class="back-url" href="/admin/cab/history/"><?=$messG['Назад']?></a>
+      <a class="back-url" href="/admin/apply/educational-history/"><?=$messG['Назад']?></a>
     </div>
 
     <!-- Menu tabs --->
     <ul class="tabs-panel">
-      <li class="active-tab">Card</li>
+      <li class="active-tab">History</li>
     </ul>
 
     <form class="content-form" action="" method="post">
 
       <!-- Element tabs -->
       <div class="tabs active-block-tabs">
+        <div class="input-value">
+          <div class="name-section">County:<span class="accent">*</span></div>
+          <select name="country_study" <?=(isset($check['country_study'])? $check['country_study'] : '')?>>
+            <?php foreach($param['country_study'] as $k => $v){ ?>
+              <option value="<?=$k?>" <?=((isset($_POST['country_study']) && $_POST['country_study'] == $k || $k === 0)? 'selected' : "")?>>
+                <?=$v?>
+              </option>
+            <?php } ?>
+          </select>
+        </div>
 
-        <div class="line-input-free">
-          <div class="input-value">
-            <div class="name-section">County:<span class="accent">*</span></div>
-            <select name="country_study" <?=(isset($check['country_study'])? $check['country_study'] : '')?>>
-              <?php foreach($param['country_study'] as $k => $value){ ?>
-                <option value="<?=$k?>" <?=(((isset($_POST['country_study']) && $_POST['country_study'] == $k) || !isset($error) && $k == '')? 'selected' : "")?>>
-                  <?=$value?>
-                </option>
-              <?php } ?>
-            </select>
-          </div>
+        <div class="input-value">
+          <div class="name-section">City:<span class="accent">*</span></div>
+          <input <?=(isset($check['city'])? $check['city'] : '')?> type="text" name="city" value="<?=(isset($_POST['city'])? hsc($_POST['city']) : "")?>">
+        </div>
 
-          <div class="input-value">
-            <div class="name-section">City:<span class="accent">*</span></div>
-            <input <?=(isset($check['city'])? $check['city'] : '')?> type="text" name="city" value="<?=(isset($error) || isset($_POST['city'])? hsc($_POST['city']) : "")?>">
-          </div>
-
-          <div class="input-value">
-            <div class="name-section">Name of Institution:<span class="accent">*</span></div>
-            <input <?=(isset($check['name_institution'])? $check['name_institution'] : '')?> type="text" name="name_institution" value="<?=(isset($error) || isset($_POST['name_institution'])? hsc($_POST['name_institution']) : "")?>">
-          </div>
+        <div class="input-value">
+          <div class="name-section">Name of Institution:<span class="accent">*</span></div>
+          <input <?=(isset($check['name_institution'])? $check['name_institution'] : '')?> type="text" name="name_institution" value="<?=(isset($_POST['name_institution'])? hsc($_POST['name_institution']) : "")?>">
         </div>
 
         <div class="input-value">
           <div class="name-section">Dates Attended <b>From</b> (mm): <span class="accent">*</span></div>
           <select name="date_mm_from" <?=(isset($check['date_mm_from'])? $check['date_mm_from'] : '')?>>
             <?php foreach($param['date_mm_from'] as $k => $v){ ?>
-              <option value="<?=$v?>" <?=(((isset($_POST['date_mm_from']) && $_POST['date_mm_from'] == $v) || !isset($error) && $k == 0)? 'selected' : "")?>>
+              <option value="<?=$k?>" <?=((isset($_POST['date_mm_from']) && $_POST['date_mm_from'] == $k || $k === 0)? 'selected' : "")?>>
                 <?=$v?>
               </option>
             <?php } ?>
@@ -53,7 +50,7 @@
           <div class="name-section">Dates Attended <b>From</b> (yyyy): <span class="accent">*</span></div>
           <select name="date_yyyy_from" <?=(isset($check['date_yyyy_from'])? $check['date_yyyy_from'] : '')?>>
             <?php foreach($param['date_yyyy_from'] as $k => $v){ ?>
-              <option value="<?=$v?>" <?=(((isset($_POST['date_yyyy_from']) && $_POST['date_yyyy_from'] == $v) || !isset($error) && $k == 0)? 'selected' : "")?>>
+              <option value="<?=$k?>" <?=((isset($_POST['date_yyyy_from']) && $_POST['date_yyyy_from'] == $k || $k === 0)? 'selected' : "")?>>
                 <?=$v?>
               </option>
             <?php } ?>
@@ -64,7 +61,7 @@
           <div class="name-section">Dates Attended <b>To</b> (mm): <span class="accent">*</span></div>
           <select name="date_mm_to" <?=(isset($check['date_mm_to'])? $check['date_mm_to'] : '')?>>
             <?php foreach($param['date_mm_to'] as $k => $v){ ?>
-              <option value="<?=$v?>" <?=(((isset($_POST['date_mm_to']) && $_POST['date_mm_to'] == $v) || !isset($error) && $k == 0)? 'selected' : "")?>>
+              <option value="<?=$k?>" <?=((isset($_POST['date_mm_to']) && $_POST['date_mm_to'] == $k || $k === 0)? 'selected' : "")?>>
                 <?=$v?>
               </option>
             <?php } ?>
@@ -75,48 +72,45 @@
           <div class="name-section">Dates Attended <b>To</b> (yyyy): <span class="accent">*</span></div>
           <select name="date_yyyy_to" <?=(isset($check['date_yyyy_to'])? $check['date_yyyy_to'] : '')?>>
             <?php foreach($param['date_yyyy_to'] as $k => $v){ ?>
-              <option value="<?=$v?>" <?=(((isset($_POST['date_yyyy_to']) && $_POST['date_yyyy_to'] == $v) || !isset($error) && $k == 0)? 'selected' : "")?>>
+              <option value="<?=$k?>" <?=((isset($_POST['date_yyyy_to']) && $_POST['date_yyyy_to'] == $k || $k === 0)? 'selected' : "")?>>
                 <?=$v?>
               </option>
             <?php } ?>
           </select>
         </div>
 
+        <div class="input-value">
+          <div class="name-section">Name of Diploma or Certificate, if Awarded:</div>
+          <input type="text" name="diploma_name" value="<?=(isset($_POST['diploma_name'])? hsc($_POST['diploma_name']) : '')?>">
+        </div>
+
+        <div class="input-value">
+          <div class="name-section">If there was a significantly large gap in time between the date of completion of the program and the date of the award of the qualification, please explain why below (limit 1000 characters):</div>
+          <textarea <?=(isset($check['reason_text'])? $check['reason_text'] : '')?> name="reason_text"><?=(isset($_POST['reason_text'])? hsc($_POST['reason_text']) : "")?></textarea>
+        </div>
+
         <div class="line-input-two">
-          <div class="header-inputs <?=(isset($check['fileScan'])? $check['fileScan'] : '')?>"></div>
+          <div class="header-inputs <?=(isset($check['fileScan'])? $check['fileScan'] : '')?>">File scan (only: JPG, PNG, GIF):
+            <span class="accent">*</span></div>
 
           <?php foreach($_POST['fileScan'] as $key => $file){ ?>
             <div class="input-value upload_file" id="fileScan_<?=$key?>" data-priority-type="img">
               <?php $exist_file = fileExist($file); ?>
               <button type="button" onclick="getIdElement(this)">
-                <span class="icon-link"></span><?=(!empty($exist_file)? $file : 'Select file')?>
+                <span class="icon-link"></span><?=(!empty($exist_file)? basename($file) : 'Select file')?>
               </button>
               <input name="fileScan[]" type="hidden" value="<?=(!empty($exist_file)? $file : '')?>">
               <input name="del[fileScan][]" type="hidden" value="<?=(isset($_POST['del']['fileScan'][$key])? hsc($_POST['del']['fileScan'][$key]) : $file)?>">
               <div class="photos <?=(!empty($exist_file)? '' : 'hidden')?>">
-                <span class="removeFile" onclick="removeImage(this)">x</span>
-                <img src="<?=$exist_file?>">
+                <span class="icon-cross removeFile" onclick="removeImage(this)"></span> <img src="<?=$exist_file?>">
               </div>
             </div>
           <?php } ?>
 
           <div class="add_more">Add more</div>
         </div>
-
-        <div class="line-input-two">
-          <div class="input-value">
-            <div class="name-section">Name of Diploma or Certificate, if Awarded:</div>
-            <input type="text" name="diploma_name" value="<?=(isset($error) || isset($_POST['diploma_name'])? hsc($_POST['diploma_name']) : '')?>">
-          </div>
-        </div>
-
-        <div class="line-input">
-          <div class="input-value">
-            <div class="name-section">If there was a significantly large gap in time between the date of completion of the program and the date of the award of the qualification, please explain why below (limit 1000 characters):</div>
-            <textarea <?=(isset($check['reason_text'])? $check['reason_text'] : '')?> name="reason_text"><?=(isset($error) || isset($_POST['reason_text'])? hsc($_POST['reason_text']) : "")?></textarea>
-          </div>
-        </div>
       </div>
+
       <input type="submit" value="<?=$messG['Зберегти']?>" name="ok">
     </form>
 
@@ -138,20 +132,17 @@
       </div>
       <?=$history['html_filter']?>
       <input type="submit" name="filter" value="<?=$messG['Пошук']?>">
-      <a href="/admin/cab/history/?filterReset=ok"><?=$messG['Відмінити']?></a>
+      <a href="/admin/apply/educational-history/?filterReset=ok"><?=$messG['Відмінити']?></a>
     </form>
   </div>
 
   <div class="section-interface-k1">
     <div class="line-custom">
-      <p class="header-name">Список карточок</p>
+      <p class="header-name">Educational History</p>
     </div>
 
     <form action="" method="post" onsubmit="return okFrom();">
       <div class="line-custom-next">
-        <a href="/admin/cab/history/?add=ok" class="add-el icon-plus"><?=$messG['Створити елемент']?></a>
-        <input type="submit" value="<?=$messG['Активувати']?>" name="activate" class="option-el">
-        <input type="submit" value="<?=$messG['Деактивувати']?>" name="deactivate" class="option-el">
         <input type="submit" value="<?=$messG['Видалити']?>" name="delete" class="option-el">
         <div class="dynamicEdit" data-submit-lang="<?=$messG['Зберегти'].'|'.$messG['Відмінити']?>"></div>
       </div>
@@ -174,8 +165,8 @@
               <td class="relative">
                 <span class="icon-mob-menu" onclick="openMenuUpdate(this);"></span>
                 <div class="menu-update">
-                  <a href="/admin/cab/history/?edit=<?=$arResult['id']?>"><?=$messG['Редагувати']?></a>
-                  <a href="/admin/cab/history/?delete=<?=$arResult['id']?>"><?=$messG['Видалити']?></a>
+                  <a href="/admin/apply/educational-history/?edit=<?=$arResult['id']?>"><?=$messG['Редагувати']?></a>
+                  <a href="/admin/apply/educational-history/?delete=<?=$arResult['id']?>"><?=$messG['Видалити']?></a>
                 </div>
               </td>
               <?php foreach($arResult as $k => $value){

@@ -5,13 +5,13 @@
 $admin_menu = array(
     'ua' => array(
         0 => array(
-            'name'     => 'Контент',
+            'name'     => 'WCES',
             'icon'     => 'content',
             'sections' => array(
-                'Анкети' => array(
-                    'Перегляд анкет'  => '/admin/cab/',
-                    'Історія інститутів' => '/admin/cab/history/',
-                    'Додаткові копії'    => '/admin/cab/copy-agency/'
+                'Profiles' => array(
+                    'Inventory'           => '/admin/apply/',
+                    'Educational History' => '/admin/apply/educational-history/',
+                    'Applicant copy'      => '/admin/apply/copy-agency/'
                 )
             )
         ),
@@ -56,13 +56,13 @@ $admin_menu = array(
     ),
     'ru' => array(
         0 => array(
-            'name'     => 'Контент',
+            'name'     => 'WCES',
             'icon'     => 'content',
             'sections' => array(
-                'Анкети' => array(
-                    'Перегляд анкет'  => '/admin/cab/',
-                    'Історія інститутів' => '/admin/cab/history/',
-                    'Додаткові копії'    => '/admin/cab/copy-agency/'
+                'Profiles' => array(
+                    'Inventory'           => '/admin/apply/',
+                    'Educational History' => '/admin/apply/educational-history/',
+                    'Applicant copy'      => '/admin/apply/copy-agency/'
                 )
             )
         ),
@@ -107,13 +107,13 @@ $admin_menu = array(
     ),
     'en' => array(
         0 => array(
-            'name'     => 'Контент',
+            'name'     => 'WCES',
             'icon'     => 'content',
             'sections' => array(
-                'Анкети' => array(
-                    'Перегляд анкети'  => '/admin/cab/',
-                    'Історія інститутів' => '/admin/cab/history/',
-                    'Додаткові копії'    => '/admin/cab/copy-agency/'
+                'Profiles' => array(
+                    'Inventory'           => '/admin/apply/',
+                    'Educational History' => '/admin/apply/educational-history/',
+                    'Applicant copy'      => '/admin/apply/copy-agency/'
                 )
             )
         ),

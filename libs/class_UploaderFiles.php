@@ -53,7 +53,7 @@ class UploaderFiles {
                 }
 
                 if(in_array($file['type'], self::$tmp)){
-                    $nameFile = date('HisYmd').'i'.'ph'.time().'m'.rand(100, 999).'g'.'.'.str_replace('image/', '', $file['type']);
+                    $nameFile = date('HisYmd').'i'.'ph'.time().'m'.rand(1000, 9999).'g'.'.'.str_replace('image/', '', $file['type']);
                 } else {
                     return array('error' => 'No exist type image');
                 }

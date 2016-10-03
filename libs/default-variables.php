@@ -168,6 +168,20 @@ function calltoPhone($el){
     return $result;
 }
 
+function generationPass(){
+    $chars = "qazxswedcvfrtgbnhyujmkiolp1234567890QAZXSWEDCVFRTGBNHYUJMKIOLP";
+    $max = 10;  // Кількість симповіль у паролі
+    $size = strlen($chars) - 1; // Кількість символів в $char
+
+    $password = '';
+
+    while($max--){
+        $password .= $chars[rand(0, $size)];
+    }
+
+    return $password;
+}
+
 function arrayNotKey($val, $array){
     foreach($val as $v){
         if(!array_key_exists($v, $array)){
@@ -190,7 +204,11 @@ function isMobile(){
 
 function FBytes($bytes, $precision = 2){
     $units = array(
-        'B', 'KB', 'MB', 'GB', 'TB'
+        'B',
+        'KB',
+        'MB',
+        'GB',
+        'TB'
     );
     $bytes = max($bytes, 0);
     $pow = floor(($bytes? log($bytes) : 0) / log(1024));
@@ -249,7 +267,9 @@ function sessionInfo($url = '/admin/', $text = '', $set = 0, $stop = 1){
     }
 
     $_SESSION['info'] = array(
-        'text' => $text, 'icon' => $icon, 'type' => $type
+        'text' => $text,
+        'icon' => $icon,
+        'type' => $type
     );
 
     if($stop){

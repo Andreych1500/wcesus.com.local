@@ -1,5 +1,4 @@
 <?php
-
 if(isset($_POST['ok'], $_POST['email'])){
     $error = array();
     $_POST = trimAll($_POST);
@@ -37,7 +36,7 @@ if(isset($_POST['ok'], $_POST['email'])){
                 Mail::send();
             }
 
-            sessionInfo('/cab/forgot-data/', '<p>The action was successful! In your letter of email data for a run in his office.</p>', 1);
+            sessionInfo('/apply/', '<p>The operation was successful! You sent a letter of access to your private profiles, please check the it.</p>', 1);
         } else {
             $check['email'] = 'class="error"';
         }
