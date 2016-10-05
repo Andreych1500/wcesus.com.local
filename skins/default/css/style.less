@@ -42,13 +42,13 @@
 @bg-c1: #F2B987;
 @bg-c2: #03BF7A;
 @bg-c3: #F2F2F2;
-@bg-c4: #F26F63;
+@bg-c4: #ef4429;
 @bg-c5: #F20404;
 @bg-c6: #272b31;
 
 @color1: #ffffff;
 @color2: #333333;
-@color3: #f27c66;
+@color3: #ef4429;
 @color4: #595959;
 
 @font-Awesome: Awesome;
@@ -235,15 +235,26 @@ body {
 }
 
 main {
-  padding-bottom: 373px;
+  padding-bottom: 355px;
+
+  @media screen and (max-width: 1280px) {
+    padding-bottom: 380px;
+  }
 
   @media screen and (max-width: 900px) {
+    padding-bottom: 429px;
+  }
+
+  @media screen and (max-width: 740px) {
     padding-bottom: 447px;
   }
 
   @media screen and (max-width: 600px) {
-    padding-bottom: 742px;
-    text-align: justify;
+    padding-bottom: 707px;
+  }
+
+  @media screen and (max-width: 360px) {
+    padding-bottom: 739px;
   }
 }
 
@@ -278,7 +289,7 @@ main {
     }
 
     @media screen and (max-width: 360px) {
-      width: 200px;
+      width: 150px;
     }
   }
 
@@ -366,7 +377,7 @@ main {
   @media screen and (max-width: 800px) {
     float: right;
     display: block;
-    background-color: @bg-c4;
+    background-color: @color3;
     cursor: pointer;
     text-align: center;
     width: 45px;
@@ -690,7 +701,7 @@ footer {
 
   div[class^="section-"] {
     float: left;
-    width: 31%;
+    width: 32%;
     margin: 0 1%;
 
     @media screen and (max-width: 900px) {
@@ -726,10 +737,15 @@ footer {
 }
 
 .section-first-block {
+  @media screen and (min-width: 901px) {
+    margin-left: 0 !important;
+  }
+
   b {
     min-height: 37px;
     line-height: 18px;
   }
+
   .fs-big-link {
     background-color: @color3;
   }
@@ -737,28 +753,36 @@ footer {
 
 .section-second-block {
   .fs-big-link {
-    background-color: #f9cb8f;
+    background-color: #e3983f;
   }
 
   .fs-text {
     border-bottom: 1px solid #555a5f;
     margin-bottom: 10px;
     padding-bottom: 10px;
+    text-align: justify;
 
-    &:last-child {
-      border: none;
+    &:nth-child(3) {
+      border-bottom: none;
       padding-bottom: 0;
+      margin-bottom: 2px;
     }
   }
 }
 
-.section-last-block .fs-big-link {
-  background-color: #0c6333;
-  .transition(all 0.3s ease);
+.section-last-block {
+  @media screen and (min-width: 901px) {
+    margin-right: 0 !important;
+  }
 
-  &:hover {
-    background-color: #0f8644;
+  .fs-big-link {
+    background-color: #0c6333;
     .transition(all 0.3s ease);
+
+    &:hover {
+      background-color: #0f8644;
+      .transition(all 0.3s ease);
+    }
   }
 }
 
@@ -788,28 +812,14 @@ footer {
 }
 
 .course-date {
-  color: #f9cb8f;
+  color: #e3983f;
   font-weight: 500;
-  margin: 5px 0;
   font-size: 16px;
+  .transition(all 0.3s ease);
 
-  span {
-    display: inline-block;
-
-    &:first-child:after {
-      margin: 0 5px;
-      content: "|";
-      color: #8f96a2;
-    }
-  }
-
-  sup {
-    font-size: 12px;
-    vertical-align: super;
-  }
-
-  & ~ p {
-    min-height: 42px;
+  &:hover {
+    color: #ff8a00;
+    .transition(all 0.3s ease);
   }
 }
 
@@ -880,7 +890,7 @@ footer {
     .box-shadow(0px 0px 3px 0px rgba(0, 0, 0, 0.5));
 
     @media screen and (max-width: 480px) {
-      max-width: 260px;
+      max-width: 290px;
     }
   }
 }
@@ -960,13 +970,21 @@ footer {
   max-width: 300px;
   text-align: left;
   margin: 5px auto;
+  &:extend(.clearfix all);
 
   @media screen and (max-width: 480px) {
     max-width: 290px;
     text-align: center;
   }
 
-  a {
+  label {
+    min-height: 24px;
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+  }
+
+  a, label {
     color: #ccc;
     .transition(all 0.3s ease);
 
@@ -1076,6 +1094,55 @@ footer {
   }
 }
 
+.free-cab-block {
+  &:extend(.clearfix all);
+  padding-bottom: 20px;
+  margin-top: 30px;
+
+  div {
+    width: 29%;
+    margin: 0 1%;
+    text-align: center;
+    float: left;
+    font-family: @font-Raleway;
+    padding: 10px 40px;
+    background: #fff;
+    color: #595959;
+    border: 2px solid @color3;
+    line-height: 16px;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+    .border-radius(10px 0);
+    .box-sizing(border-box);
+    .transition(all 0.3s ease);
+
+    &:hover, &.active {
+      color: #ffffff;
+      background-color: @color3;
+      .transition(all 0.3s ease);
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 98%;
+      margin: 10px 1%;
+    }
+  }
+}
+
+div[data-view-section] {
+  display: none;
+
+  .save-or-continue {
+    float: left;
+    margin: 0;
+  }
+}
+
 .steps {
   &:extend(.clearfix all);
   margin-top: 10px;
@@ -1145,7 +1212,7 @@ footer {
     .transition(all 0.3s ease);
 
     &:hover {
-      background: #f9cb8f;
+      background: #e3983f;
       .transition(all 0.3s ease);
     }
   }
@@ -1180,14 +1247,34 @@ footer {
     }
   }
 
-  input[name="ok"] {
+  input[name="ok"], input[name="replace_password"] {
     float: right;
     background-color: @color3;
 
     &:hover {
-      background-color: #ec482a;
+      background-color: #ff4b29;
       .transition(all 0.3s ease);
     }
+  }
+}
+
+input[name="replace_password"] {
+  margin-right: 2%;
+  border-radius: 10px 0;
+  padding: 10px;
+  cursor: pointer;
+  font-family: @font-Merriweather;
+  border: none;
+  font-size: 18px;
+  color: #f7f7f7;
+  text-transform: uppercase;
+  background-color: @color3;
+  .box-shadow(0 1px 0 rgba(0, 0, 0, .24));
+  .transition(all 0.3s ease);
+
+  &:hover {
+    background-color: #ff4b29;
+    .transition(all 0.3s ease);
   }
 }
 
@@ -1624,6 +1711,10 @@ textarea[name="reason_text"] {
     }
   }
 
+  .icon-like {
+    color: green;
+  }
+
   &:nth-child(2n) {
     background-color: #ffeded;
   }
@@ -1698,6 +1789,19 @@ textarea[name="reason_text"] {
   }
 }
 
+.cab-link {
+  float: right !important;
+  width: auto !important;
+  margin: 0 15px;
+}
+
+.save-me {
+  @media screen and (max-width: 480px) {
+    width: 98%;
+    margin-top: 5px;
+  }
+}
+
 span[data-click] {
   padding: 8px 15px;
   background-color: #0e90d2;
@@ -1729,6 +1833,25 @@ span[data-click] {
 .confirm_agreement {
   display: none !important;
   visibility: hidden;
+}
+
+.bottom-info-link {
+  margin-top: 25px;
+
+  a {
+    font-family: @font-Raleway;
+    display: inline-block;
+    width: 100%;
+    line-height: 17px;
+    margin: 4px 0;
+    color: #e0e0e0;
+    text-decoration: underline;
+
+    &:hover {
+      color: #b0b0b0;
+      text-decoration: none;
+    }
+  }
 }
 
 /* font-icons */

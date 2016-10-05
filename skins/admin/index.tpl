@@ -118,7 +118,7 @@
         <div class="adm-informer-header"><?=$messG['Вибір мови']?></div>
         <?php foreach(Core::$ADMIN_LANG as $value){ ?>
           <div class="informer-item">
-            <?php if($value != $_COOKIE['lang_admin']){
+            <?php if($value != (!isset($_COOKIE['lang_admin'])? $lang : $_COOKIE['lang_admin'])){
               echo '<a href="/'.$_REQUEST['route'].'?lang_admin='.$value.'">'.$value.'</a>';
             } ?>
           </div>

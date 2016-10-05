@@ -45,6 +45,9 @@
 <header itemscope itemtype="http://schema.org/WPHeader">
   <div class="top-panel">
     <address>
+      <?php if(isset($_SESSION['dataCard'])){ ?>
+        <a class="cab-link" href="/cab/?exit=ok" title="Exit profile" rel="nofollow">Sign out</a>
+      <?php }?>
       <a class="icon-user" href="/cab/" title="Profile" rel="nofollow"></a>
       <a href="<?=(isMobile()? 'tel:' : 'callto:').calltoPhone('2102152724')?>" title="text"><i class="icon-phone"></i>+1-210-215-2724</a>
       <a href="mailto:info@wcesus.com" title="text"><i class="icon-mail"></i>info@wcesus.com</a>
@@ -140,32 +143,26 @@
 <footer itemscope itemtype="http://schema.org/WPFooter">
   <div class="footer-top">
     <div class="section-first-block">
-      <div class="fs-big-link">ABOUT US<span class="icon-mortar-board"></span></div>
-      <div class="fs-text">
-        <b>Sed aliquet dui auctor blandit ipsum tincidunt</b> Quis rhoncus lorem dolor eu sem. Aenean enim risus, convallis id ultrices eget.
-      </div>
+      <div class="fs-big-link">Contact Us<span class="icon-mortar-board"></span></div>
       <address>
-        <a href="<?=(isMobile()? 'tel:' : 'callto:').calltoPhone('2102152724')?>" title="#"><span class="icon-phone"></span>123-123456789</a>
-        <a href="mailto:test@test.com" title="#"><span class="icon-mail"></span>test@test.com</a> <p><span class="icon-home"></span>250 Biscayne Blvd. (North) 11st Floor New World Tower Miami, 33148</p>
+        <a href="<?=(isMobile()? 'tel:' : 'callto:').calltoPhone('2102152724')?>" title="#"><span class="icon-phone"></span>+1(210)215-2724</a>
+        <a href="mailto:info@wcesus.com" title="info@wcesus.com"><span class="icon-mail"></span>info@wcesus.com</a> <p><span class="icon-home"></span>4535 Schertz Rd, Suite 406,  San Antonio, TX, 78233, USA</p>
       </address>
-      <div class="soc-link"></div>
+      <div class="bottom-info-link">
+        <a href="/static/terms-conditions/" title="Terms & Conditions">Terms & Conditions</a>
+        <a href="/static/privacy-policy/" title="Privacy Policy">Privacy Policy</a>
+        <a href="/static/sitemap/" title="Sitemap">Sitemap</a>
+      </div>
     </div>
     <div class="section-second-block">
-      <div class="fs-big-link">LATEST COURSES<span class="icon-clock"></span></div>
+      <div class="fs-big-link">About Us<span class="icon-clock"></span></div>
       <div class="fs-text">
-        <b>Sed aliquet dui at auctor blandit</b>
-        <div class="course-date">
-          <span>10 <sup>00</sup></span> <span>23.02.15</span>
-        </div>
-        <p>Sed pharetra lorem ut dolor dignissim, sit amet pretium tortor mattis.</p>
+        <p>World Class Evaluation Services, LLC is the significant service provider dedicated to providing evaluation services for people across the globe to achieve personal educational and professional goals.</p>
       </div>
       <div class="fs-text">
-        <b>Sed aliquet dui at auctor blandit</b>
-        <div class="course-date">
-          <span>10 <sup>00</sup></span> <span>23.02.15</span>
-        </div>
-        <p>Sed pharetra lorem ut dolor dignissim, sit amet pretium tortor mattis.</p>
+        <p>In association with global partners, WCES establish and pursue goals to convey skills and knowledge by evaluating for the recognition of international education.</p>
       </div>
+      <a class="course-date" href="/static/about-us/" title="About Us">More...</a>
     </div>
     <div class="section-last-block">
       <a class="fs-big-link" href="/apply/" title="Apply card to user">APPLY<span class="icon-pencil"></span></a>

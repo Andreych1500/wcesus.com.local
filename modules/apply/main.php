@@ -47,7 +47,7 @@ if(isset($_POST['ok'], $_POST['number'], $_POST['date'], $_POST['email'])){
 
 if(isset($_GET['cron']) && $_GET['cron'] == 'ok' && $_SERVER['REMOTE_ADDR'] == Core::$SERVER_IP){
     $getID = q("
-        SELECT `id`, `idCard`, `email`
+        SELECT `idCard`, `email`
         FROM `admin_application_info`
         WHERE 
         (`active` = 0 AND `date_create` <= NOW() - INTERVAL 7 DAY) or (`payment_ok` = 1 AND `active` = 0 AND `date_create` <= NOW() - INTERVAL 9 DAY)
@@ -55,12 +55,10 @@ if(isset($_GET['cron']) && $_GET['cron'] == 'ok' && $_SERVER['REMOTE_ADDR'] == C
 
     if($getID->num_rows > 0){
         while($ar = hsc($getID->fetch_assoc())){
-            $id[] = $ar['id'];
             $email[] = $ar['email'];
             $idCard[] = $ar['idCard'];
         }
 
-        $id = implode($id, ',');
         $email = implode($email, ',');
         $idCard = implode($idCard, ',');
 
@@ -79,6 +77,11 @@ if(isset($_GET['cron']) && $_GET['cron'] == 'ok' && $_SERVER['REMOTE_ADDR'] == C
                 }
             }
         }
+
+        q("
+            DELETE FROM `admin_application_info`
+            WHERE `idCard` IN (".$idCard.")
+        ");
 
         q("
             DELETE FROM `admin_educational_history`

@@ -43,6 +43,70 @@ if(Core::$CONT != 'modules/admin'){
             $contentOG .= '<meta property="og:image" content="'.$arMainParam['url_http_site'].$GM['og_image'].'">';
         }
     }
+
+    // Access Cab
+    if(isset($_SESSION['dataCard'])){
+        $select = q("
+            SELECT `id`, `idCard`, `email`, `first_name`, `last_name`
+            FROM `admin_application_info`
+            WHERE `email`   = '".mres($_SESSION['dataCard']['email'])."'
+            AND `idCardHash` = '".mres(ApplyCard::hash($_SESSION['dataCard']['idCard'].$_SESSION['dataCard']['email']))."'
+            AND `active` = 1
+            AND `access` = 1
+            LIMIT 1
+        ");
+
+        if($select->num_rows){
+            $_SESSION['dataCard'] = hsc($select->fetch_assoc());
+            $accessCab = true;
+        } else {
+            session_unset();
+            session_destroy();
+            setcookie("id-idCard", "", time() - 3600, "/");
+            setcookie("dataCard", "", time() - 3600, "/");
+
+            header("Location: /cab/");
+            exit();
+        }
+    } elseif(isset($_COOKIE['dataCard'], $_COOKIE['id-idCard'])) {
+        $auth = q("
+            SELECT `id`, `idCard`, `email`, `first_name`, `last_name`
+            FROM `admin_application_info`
+            WHERE `idCardHash` = '".mres($_COOKIE['dataCard'])."'
+            AND `id` = '".mres($_COOKIE['id-idCard'])."'
+            AND `active` = 1
+            AND `access` = 1
+            AND `user_ip` = '".mres($_SERVER['REMOTE_ADDR'])."'
+            AND `agent` = '".mres($_SERVER['HTTP_USER_AGENT'])."'
+            LIMIT 1
+        ");
+
+        if($auth->num_rows){
+            $_SESSION['dataCard'] = $auth->fetch_assoc();
+            $accessCab = true;
+        } else {
+            session_unset();
+            session_destroy();
+            setcookie("id-idCard", "", time() - 3600, "/");
+            setcookie("dataCard", "", time() - 3600, "/");
+
+            header("Location: /cab/");
+            exit();
+        }
+    } else {
+        $accessCab = false;
+    }
+
+    // Exit
+    if(isset($_GET['exit'])){
+        session_unset();
+        session_destroy();
+        setcookie("id-idCard", "", time() - 3600, "/");
+        setcookie("dataCard", "", time() - 3600, "/");
+
+        header("Location: /cab/");
+        exit();
+    }
 } else {
 
     // Access
@@ -91,7 +155,7 @@ if(Core::$CONT != 'modules/admin'){
     }
 
     // Exit
-    if(isset($_REQUEST['exit'])){
+    if(isset($_GET['exit'])){
         menuExit();
     }
 

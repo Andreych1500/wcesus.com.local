@@ -54,7 +54,7 @@ if(isset($_POST['ok'])){ // Процес оплати...
 
 if(isset($_GET['key1']) && $_GET['key1'] == 'payment-success'){
     setcookie('idCardHash', '', time() - 3600, '/');
-
+    mail('Savitskuy@ukr.net', 'text', '2'.$_SERVER['REMOTE_ADDR']);
     q("
         UPDATE `admin_application_info` SET
         `payment_ok` = 1
@@ -81,7 +81,7 @@ if(isset($_GET['key1']) == 'ipn-access'){
         //'173.0.81.1'
     );
 
-    mail('Savitskuy@ukr.net', 'text', $_SERVER['REMOTE_ADDR']);
+    mail('Savitskuy@ukr.net', 'text', '1'.$_SERVER['REMOTE_ADDR']);
 
     if(in_array($_SERVER['REMOTE_ADDR'], $ipPayPal)){
 
@@ -106,7 +106,7 @@ if(isset($_GET['key1']) == 'ipn-access'){
 
             if($getCardActive->num_rows > 0){
                 $password = generationPass();
-                $query = "`active` = 1, `access` = 1, `password` = ".myHash($password)."";
+                $query = "`active` = 1, `access` = 1, `payment_ok` = 0, `password` = ".myHash($password)."";
 
                 $set = array(
                     'password' => $password
