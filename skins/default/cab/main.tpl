@@ -205,8 +205,6 @@
                     &#8212;
                   <?php } elseif(isset($_GET['payment']) && $res['id'] == $_GET['payment']) { ?>
                     Please wait 5 seconds...
-                  <?php } elseif($res['payment_status'] == 2) { ?>
-                    Іде провірка оплати!
                   <?php } else { ?>
                     <i><span class="icon-like"></span> Оплачено</i>
                   <?php } ?>

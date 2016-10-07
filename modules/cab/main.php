@@ -98,14 +98,6 @@ if($accessCab){
     }
 
     if(isset($_GET['key1']) && $_GET['key1'] == 'payment-success'){
-//        q("
-//            UPDATE `admin_cab_copy_info` SET
-//            `payment_status` = 2
-//            WHERE `id` = '".mres(explode(' - ', $_POST['item_number'])[0])."'
-//            AND `idCard` = '".mres($_SESSION['dataCard']['idCard'])."'
-//            LIMIT 1
-//        ");
-
         sessionInfo('/cab/', '<p>The payment is successful. We will check your payment data, and after verifying it, ваш статус ціїє анкети буде опчаний і ми відішлемо вам копії.</p>', 1);
     }
 
