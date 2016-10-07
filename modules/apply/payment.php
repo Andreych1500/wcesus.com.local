@@ -53,19 +53,24 @@ if(isset($_POST['ok'])){ // Процес оплати...
 }
 
 if(isset($_GET['key1']) && $_GET['key1'] == 'payment-success'){
-    setcookie('idCardHash', '', time() - 3600, '/');
-    mail('Savitskuy@ukr.net', 'text', '2'.$_SERVER['REMOTE_ADDR']);
-    q("
-        UPDATE `admin_application_info` SET
-        `payment_ok` = 1
-        WHERE `idCardHash` = '".mres($_POST['item_number'])."'
-        AND `all_price` = '".mres($_POST['payment_gross'])."'
-        AND `agent`   = '".mres($_SERVER['HTTP_USER_AGENT'])."'
-        AND `user_ip` = '".mres($_SERVER['REMOTE_ADDR'])."'
-        LIMIT 1 
-    ");
+    if(isset($_POST) && count($_POST) > 0){
+        setcookie('idCardHash', '', time() - 3600, '/');
 
-    sessionInfo('/apply/', '<p>The payment is successful. We will check your payment data, and after verifying it, you will receive the password to your personal WCES account. At WCES account you will have access to your application, request additional copies, and track your application status.</p>', 1);
+        q("
+            UPDATE `admin_application_info` SET
+            `payment_ok` = 1
+            WHERE `idCardHash` = '".mres($_POST['item_number'])."'
+            AND `all_price` = '".mres($_POST['payment_gross'])."'
+            AND `agent`   = '".mres($_SERVER['HTTP_USER_AGENT'])."'
+            AND `user_ip` = '".mres($_SERVER['REMOTE_ADDR'])."'
+            LIMIT 1 
+        ");
+
+        sessionInfo('/apply/', '<p>The payment is successful. We will check your payment data, and after verifying it, you will receive the password to your personal WCES account. At WCES account you will have access to your application, request additional copies, and track your application status.</p>', 1);
+    } else {
+        header('Location: /apply/payment/');
+        exit();
+    }
 }
 
 if(isset($_GET['key1']) && $_GET['key1'] == 'payment-cancel'){
@@ -75,19 +80,15 @@ if(isset($_GET['key1']) && $_GET['key1'] == 'payment-cancel'){
 if(isset($_GET['key1']) == 'ipn-access'){
 
     // IP PayPal '173.0.82.126 -> test' '173.0.81.1 and 173.0.81.33' -> machine){
+    //mail('Savitskuy@ukr.net', 'text', $_SERVER['REMOTE_ADDR']);
+    //exit();
     $ipPayPal = array(
         '173.0.82.126'
         //'173.0.81.33',
         //'173.0.81.1'
     );
 
-    mail('Savitskuy@ukr.net', 'text', '1'.$_SERVER['REMOTE_ADDR']);
-
     if(in_array($_SERVER['REMOTE_ADDR'], $ipPayPal)){
-
-        mail('Savitskuy@ukr.net', 'text', $_SERVER['REMOTE_ADDR']);
-        exit();
-
         require_once($_SERVER['DOCUMENT_ROOT'].'/libs/PayPal/class_PayPal.php'); // Підключаємо класс PayPal
 
         $p = new class_PayPal;                                                   // Створюєм екземпляр класа
@@ -106,7 +107,7 @@ if(isset($_GET['key1']) == 'ipn-access'){
 
             if($getCardActive->num_rows > 0){
                 $password = generationPass();
-                $query = "`active` = 1, `access` = 1, `payment_ok` = 0, `password` = ".myHash($password)."";
+                $query = "`active` = 1, `access` = 1, `payment_ok` = 0, `password` = '".myHash($password)."'";
 
                 $set = array(
                     'password' => $password
