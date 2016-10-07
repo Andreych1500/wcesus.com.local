@@ -59,7 +59,6 @@ if(isset($_GET['cron']) && $_GET['cron'] == 'ok' && $_SERVER['REMOTE_ADDR'] == C
             $idCard[] = $ar['idCard'];
         }
 
-        $email = implode($email, ',');
         $idCard = implode($idCard, ',');
 
         $history = q("
@@ -74,6 +73,15 @@ if(isset($_GET['cron']) && $_GET['cron'] == 'ok' && $_SERVER['REMOTE_ADDR'] == C
                     if(!empty($v) && file_exists($_SERVER['DOCUMENT_ROOT'].$v)){
                         unlink($_SERVER['DOCUMENT_ROOT'].$v);
                     }
+                }
+            }
+
+            Mail::$text = TemplateMail::HtmlMail('', 'delete_anket', $arMainParam);
+
+            if(Mail::$text){
+                foreach($email as $v){
+                    Mail::$to = mres($v);
+                    Mail::send();
                 }
             }
         }
