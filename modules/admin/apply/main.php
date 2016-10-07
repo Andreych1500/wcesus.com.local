@@ -325,6 +325,15 @@ if(isset($_GET['edit'])){
             ");
 
             q("
+                DELETE FROM `admin_cab_copy_info`
+                WHERE `idCard` IN
+                (SELECT `idCard`
+                        FROM `admin_application_info`
+                        WHERE `id` IN (".$ids.")
+                )
+            ");
+
+            q("
                 DELETE FROM `steps_ok_cards`
                 WHERE `idCard` IN
                 (SELECT `idCard`

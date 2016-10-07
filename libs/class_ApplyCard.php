@@ -852,7 +852,7 @@ class ApplyCard {
                     sessionInfo('/cab/', '<p>You have completed the application form and successfully submit payment. Information regarding access to your WCES account was sent to your Email.</p>', 1);
                 } elseif($option['payment_ok'] && !$option['active']) {
                     setcookie('idCardHash', '', time() - 3600, '/');
-                    sessionInfo('/apply/', '<p>Наразі оплата ще обробляється, найблищим часом ми надамо вам відповідь. Щоб дізнатись додаткову інформацію, або задати питання можете зв’язатися з нами по телефону або емайл адресу, які розташовані нище.</p>', 1);
+                    sessionInfo('/apply/', '<p>Currently, the payment is processed, shortly you will receive the confirmation. Please contact us for additional questions and concerns.</p>', 1);
                 }
 
                 $getInfo->data_seek(0);

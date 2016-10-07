@@ -47,6 +47,68 @@ if($accessCab){
         $param = array_merge($param, ApplyCard::param($i));
     }
 
+    if(isset($_GET['payment']) && !empty($_GET['payment'])){
+        $getEl = q("
+            SELECT *
+            FROM `admin_cab_copy_info`
+            WHERE `id` = '".mres($_GET['payment'])."'
+            AND `idCard` = '".mres($_SESSION['dataCard']['idCard'])."'
+            AND `payment_status` = 0
+            LIMIT 1
+        ");
+
+        if($getEl->num_rows > 0){
+            require_once($_SERVER['DOCUMENT_ROOT'].'/libs/PayPal/class_PayPal.php'); // Підключаємо класс PayPal
+
+            $p = new class_PayPal;                                                   // Створюєм екземпляр класа
+            $p->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';        // Тестовий url PayPal
+            //$p->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';              // Робочий url PayPal для оплат
+
+            $this_script = $arMainParam['url_http_site'].'/cab/main/';                 // Сторінка cancel, success, ipn!!!
+
+            $arPayment = hsc($getEl->fetch_assoc());
+            $priNum = $arPayment['id'].' - '.$arPayment['idCard'];
+
+            $price = ($arPayment['price'] == '0.00'? '0.01' : $arPayment['price']);
+
+            // Якщо потрібно додаткові параметри додаємо тут!
+            $p->add_field('item_name', 'Service in cab copy');  // Короткий опис для покупця
+            $p->add_field('amount', $price);       // Повна ціна оплати
+            $p->add_field('item_number', $priNum);              // Номер замовлення ( Унікальний!!! )
+            $p->add_field('no_shipping', '1');                  // Запрос на адрес доставки (виключили)
+            $p->add_field('currency_code', 'USD');              // Валюта
+            $p->add_field('charset', 'utf-8');                  // Юнікод
+
+            $p->add_field('business', 'Savitskuy-facilitator@ukr.net'); // Email PayPal продавця
+
+            $p->add_field('return', $this_script.'payment-success/');
+            $p->add_field('cancel_return', $this_script.'payment-cancel/');
+            $p->add_field('notify_url', $this_script.'ipn-access/');
+
+            $p->submit_paypal_post(); // Формумання скритої форми з параметрами які ми вказали
+            //$p->dump_fields();      // Вивід на екран даних для перевірки полів
+        } else {
+            header('Location: /cab/');
+            exit();
+        }
+    }
+
+    if(isset($_GET['key1']) && $_GET['key1'] == 'payment-cancel'){
+        sessionInfo('/cab/', '<p>The payment was not complete. You canceled your payment!</p>');
+    }
+
+    if(isset($_GET['key1']) && $_GET['key1'] == 'payment-success'){
+        q("
+            UPDATE `admin_cab_copy_info` SET
+            `payment_status` = 2
+            WHERE `id` = '".mres(explode(' - ', $_POST['item_number'])[0])."'
+            AND `idCard` = '".mres($_SESSION['dataCard']['idCard'])."'
+            LIMIT 1
+        ");
+
+        sessionInfo('/cab/', '<p>The payment is successful. We will check your payment data, and after verifying it, ваш статус ціїє анкети буде опчаний і ми відішлемо вам копії.</p>', 1);
+    }
+
     if(isset($_POST['add_copy'], $_POST['text_copy'], $_POST['mailing_copy'])){
         $error = array();
         $_POST = trimAll($_POST);
@@ -275,6 +337,51 @@ if($accessCab){
             } else {
                 $check['email'] = "class=\"error\"";
                 $check['password'] = "error";
+            }
+        }
+    }
+
+    if(isset($_GET['key1']) == 'ipn-access'){
+        // IP PayPal '173.0.82.126 -> test' '173.0.81.1 and 173.0.81.33' -> machine){
+        $ipPayPal = array(
+            '173.0.81.33',
+            '173.0.81.1'
+        );
+
+        if(in_array($_SERVER['REMOTE_ADDR'], $ipPayPal)){
+            require_once($_SERVER['DOCUMENT_ROOT'].'/libs/PayPal/class_PayPal.php'); // Підключаємо класс PayPal
+
+            $p = new class_PayPal;                                                   // Створюєм екземпляр класа
+            $p->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';        // Тестовий url PayPal
+            //$p->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';              // Робочий url PayPal для оплат
+
+            $p->ipn_log_file = $_SERVER['DOCUMENT_ROOT'].'/libs/PatPal/ipn_cab_result.log';
+
+            if($p->validate_ipn()){
+                // Тут перевіряємо дані які зберігаються у ipn_data() array.
+                $inpResult = explode(' - ', $p->ipn_data['item_number']);
+
+                $getCardActive = q("
+                    SELECT *
+                    FROM `admin_cab_copy_info`
+                    WHERE `id` = '".mres($inpResult[0])."'
+                    AND `idCard` = '".mres($inpResult[1])."'
+                    LIMIT 1
+                ");
+
+                if($getCardActive->num_rows > 0){
+                    $query = "`payment_status` = 1";
+                } else {
+                    $query = "`payment_status` = 0";
+                }
+
+                q("
+                    UPDATE `admin_cab_copy_info` SET
+                    ".$query."
+                    WHERE `id` = '".mres($inpResult[0])."'
+                    AND `idCard` = '".mres($inpResult[1])."'
+                    LIMIT 1
+               ");
             }
         }
     }

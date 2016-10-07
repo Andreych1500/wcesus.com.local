@@ -26,7 +26,7 @@ if(isset($_POST['ok'])){ // Процес оплати...
     $p->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';        // Тестовий url PayPal
     //$p->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';              // Робочий url PayPal для оплат
 
-    $this_script = 'http://wcesus.com.local/apply/payment/';                 // Сторінка cancel, success, ipn!!!
+    $this_script = $arMainParam['url_http_site'].'/apply/payment/';                 // Сторінка cancel, success, ipn!!!
 
     if(!isset($_POST['price']) || !preg_match('#^\d+\.00$#uis', $_POST['price'])){
         sessionInfo('/apply/payment/', '<p>Please do not change the amount of the code to pay!</p>');

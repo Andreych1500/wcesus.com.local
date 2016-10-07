@@ -37,6 +37,12 @@ $messG['floor'] = array(
     2  => 'Woman'
 );
 
+$messG['payment_status'] = array(
+    0 => 'Неоплачено',
+    1 => 'Оплачено',
+    2 => 'Перевіряється'
+);
+
 // All page
 $messG['Адміністративна панель title'] = 'Administrative panel title';
 $messG['Вихід'] = 'Output';

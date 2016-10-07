@@ -1,6 +1,6 @@
 <div class="clear-fix apply-user">
-  <h2>Welcome to the IERF Online Application</h2>
-  <p>Заповнення усієї анкети займе близько 15 хвилин. Ви зможете вернутись до ваших заповнених даних у будь який для вас час протягом 7 днів, після 7 днін дані будуть видалятись в разі не пройдення усіх кроків з оплатою на сайті, якщо ви усе вірно зробили вам буде надано доступ до вашаго приватного кабінету, там ви зможите додатково виконувати іші дії та відслідковувати стасус .....</p>
+  <h2>Welcome to the WCES Online Application</h2>
+  <p>Filling the entire application will take you about 15 minutes. You can return to your application at any time within 7 days. After 7 days if no payment is received your application will be deleted. If you complete all the registration requirements, you will receive the access to your personal WCES account where you will have access to additional features.</p>
   <p>Note: You MUST have one of the following to apply online:</p>
   <ul>
     <li>Microsoft Internet Explorer version 6.0 or later
@@ -17,7 +17,7 @@
     </li>
   </ul>
 
-  <p>Не використовуйте браузерні стрілки вперед та назад, це призведе до втрати даних при заповнені, якщо бажаєте зберегти дані, спочатку заповніть у відповідному кроці усі поля і після цього нажміть на кнопку <b>Complite</b>, після чого ваші дані будуть зберігатись у базі дані відповідно з правилами зберігання дахин описахий вище.</p>
+  <p>Do not use the browser back and forth buttons. To save your data, please fill the appropriate step and then click the Complete button.</p>
 
   <div class="go-toForm">
     <p class="header-goForm">Start a New Online Application</p>
@@ -30,21 +30,21 @@
   <div class="go-toForm">
     <p class="header-goForm">Continue an Online Application</p>
     <form action="" method="post" class="go-toForm">
-      <p>Are you returning to continue the online application?<br><br>If you are returning to continue your application, please enter your temporary IERF reference number below:
+      <p>Are you returning to continue the online application?<br><br>If you are returning to continue your application, please enter your WCES credentials:
       </p>
 
       <div class="input-value">
-        <div class="name-section">Email Address:</div>
+        <div class="name-section">Email address:</div>
         <input <?=(isset($check['email'])? $check['email'] : '')?> type="email" name="email" value="<?=(isset($error)? hsc($_POST['email']) : '')?>">
       </div>
 
       <div class="input-value">
-        <div class="name-section">IERF Reference #:</div>
+        <div class="name-section">WCES ID Number:</div>
         <input <?=(isset($check['number'])? $check['number'] : '')?> type="text" name="number" value="<?=(isset($error)? hsc($_POST['number']) : '')?>">
       </div>
 
       <div class="input-value">
-        <div class="name-section">Date of Birth:</div>
+        <div class="name-section">Date of birth:</div>
         <input <?=(isset($check['date'])? $check['date'] : '')?> type="text" name="date" value="<?=(isset($error)? hsc($_POST['date']) : '')?>" placeholder="example: mm-dd-yyyy" pattern="\d{2}-\d{2}-\d{4}">
       </div>
 

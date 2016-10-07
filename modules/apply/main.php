@@ -89,6 +89,11 @@ if(isset($_GET['cron']) && $_GET['cron'] == 'ok' && $_SERVER['REMOTE_ADDR'] == C
         ");
 
         q("
+            DELETE FROM `admin_cab_copy_info`
+            WHERE `idCard` IN (".$idCard.")
+        ");
+
+        q("
             DELETE FROM `admin_official_agency_copy`
             WHERE `idCard` IN (".$idCard.")
         ");

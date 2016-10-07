@@ -11,7 +11,8 @@ $admin_menu = array(
                 'Profiles' => array(
                     'Inventory'           => '/admin/apply/',
                     'Educational History' => '/admin/apply/educational-history/',
-                    'Applicant copy'      => '/admin/apply/copy-agency/'
+                    'Applicant copy'      => '/admin/apply/copy-agency/',
+                    'Cab applicant copy'  => '/admin/apply/cab-copy/'
                 )
             )
         ),
@@ -62,7 +63,8 @@ $admin_menu = array(
                 'Profiles' => array(
                     'Inventory'           => '/admin/apply/',
                     'Educational History' => '/admin/apply/educational-history/',
-                    'Applicant copy'      => '/admin/apply/copy-agency/'
+                    'Applicant copy'      => '/admin/apply/copy-agency/',
+                    'Cab applicant copy'  => '/admin/apply/cab-copy/'
                 )
             )
         ),
@@ -113,7 +115,8 @@ $admin_menu = array(
                 'Profiles' => array(
                     'Inventory'           => '/admin/apply/',
                     'Educational History' => '/admin/apply/educational-history/',
-                    'Applicant copy'      => '/admin/apply/copy-agency/'
+                    'Applicant copy'      => '/admin/apply/copy-agency/',
+                    'Cab applicant copy'  => '/admin/apply/cab-copy/'
                 )
             )
         ),

@@ -21,7 +21,13 @@ $mess['floor'] = array(
     2  => 'Woman'
 );
 
-$inpMess['access'] = array(
+$mess['access'] = array(
     0 => 'No',
     1 => 'Yes'
+);
+
+$mess['payment_status'] = array(
+    0 => 'Неоплачено',
+    1 => 'Оплачено',
+    2 => 'Перевіряється'
 );

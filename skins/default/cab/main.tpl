@@ -1,6 +1,6 @@
 <?php if($accessCab){ ?>
   <div class="clear-fix apply-user">
-    <div class="header-question">Персональний кабінет.</div>
+    <div class="header-question">Персональний кабінет</div>
     <div class="input-value"> Hello, ця сторінка є персональним кабінетом, для вашого профілю на цьому сайті. Тут ви можите змінити пароль, переглянути ваші заповнені дані анкети, та запросити додаткову копію з оплатою.</div>
     <div class="free-cab-block">
       <div data-section="1" <?=(isset($_COOKIE['open_tabs']) && $_COOKIE['open_tabs'] == 1? 'class="active"' : '')?>>Новий пароль</div>
@@ -198,12 +198,17 @@
                 <?php $el = $param['mailing_copy'][$res['mailing_copy']]; ?>
                 <div><?=$el['text'].' ($'.$el['price'].') '?></div>
                 <div>
-                  <?php if(!$res['payment_status']){ ?>
-                  <a href="/cab/?payment=<?=$res['id']?>">Оплатити</a> /
-                  <a href="/cab/?edit=<?=$res['id']?>">Edit</a> /
-                  <a href="/cab/?remove=<?=$res['id']?>">Remove</a>
+                  <?php if($res['payment_status'] == 0 && !isset($_GET['payment'])){ ?>
+                    <a href="/cab/?payment=<?=$res['id']?>">Оплатити</a> /
+                    <a href="/cab/?edit=<?=$res['id']?>">Edit</a> / <a href="/cab/?remove=<?=$res['id']?>">Remove</a>
+                  <?php } elseif(isset($_GET['payment']) && $res['id'] != $_GET['payment']) { ?>
+                    &#8212;
+                  <?php } elseif(isset($_GET['payment']) && $res['id'] == $_GET['payment']) { ?>
+                    Please wait 5 seconds...
+                  <?php } elseif($res['payment_status'] == 2) { ?>
+                    Іде провірка оплати!
                   <?php } else { ?>
-                  <i><span class="icon-like"></span> Оплачено</i>
+                    <i><span class="icon-like"></span> Оплачено</i>
                   <?php } ?>
                 </div>
               </div>
