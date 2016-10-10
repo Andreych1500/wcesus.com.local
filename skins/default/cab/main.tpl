@@ -195,8 +195,7 @@
             while($res = hsc($new_copy->fetch_assoc())){ ?>
               <div class="items-history">
                 <div><?=(strlen($res['text_copy']) > 30? substr($res['text_copy'], 0, 30).'...' : $res['text_copy'])?></div>
-                <?php $el = $param['mailing_copy'][$res['mailing_copy']]; ?>
-                <div><?=$el['text'].' ($'.$el['price'].') '?></div>
+                <div><?=$param['mailing_copy'][$res['mailing_copy']]['text'].' ($'.$res['price'].') '?></div>
                 <div>
                   <?php if($res['payment_status'] == 0 && !isset($_GET['payment'])){ ?>
                     <a href="/cab/?payment=<?=$res['id']?>">Оплатити</a> /

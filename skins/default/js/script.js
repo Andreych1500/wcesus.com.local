@@ -55,7 +55,7 @@ $(document).ready(function () {
 
         var text = $('.confirm_agreement').html();
         var link = $(this).attr('href');
-        var windowHtml = '<div class="modalWindow"><div class="modal-content"><span class="icon-error"></span> <i>Important Message</i><div class="text">' + text + '</div><span data-click="Y">Accept</span><span data-click="N">Don’t accept</span></div></div>';
+        var windowHtml = '<div class="modalWindow"><div class="modal-content"><span class="icon-error"></span> <i>Terms and Conditions</i><div class="text">' + text + '</div><span data-click="Y">Accept</span><span data-click="N">Don’t accept</span></div></div>';
 
         $('body').prepend(windowHtml);
 

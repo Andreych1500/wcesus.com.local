@@ -69,8 +69,6 @@ if($accessCab){
             $arPayment = hsc($getEl->fetch_assoc());
             $priNum = $arPayment['id'].' - '.$arPayment['idCard'];
 
-            $price = ($arPayment['price'] == '0.00'? '0.01' : $arPayment['price']);
-
             // Якщо потрібно додаткові параметри додаємо тут!
             $p->add_field('item_name', 'Service in cab copy');  // Короткий опис для покупця
             $p->add_field('amount', $price);       // Повна ціна оплати
@@ -136,7 +134,7 @@ if($accessCab){
                 ");
 
                 if($card->num_rows > 0){
-                    $price = $param['mailing_copy'][$_POST['mailing_copy']]['price'].'.00';
+                    $price = ((int)$param['mailing_copy'][$_POST['mailing_copy']]['price'] + 20).'.00'; // +20$ to copy
 
                     q("
                         UPDATE `admin_cab_copy_info` SET
@@ -152,7 +150,7 @@ if($accessCab){
                     sessionInfo('/cab/', '<p>Цей ідентифікатор скопії не є дійсний для твого кабінету!</p>');
                 }
             } else {
-                $price = $param['mailing_copy'][$_POST['mailing_copy']]['price'].'.00';
+                $price = ((int)$param['mailing_copy'][$_POST['mailing_copy']]['price'] + 20).'.00'; // +20$ to copy
 
                 q("
                     INSERT INTO `admin_cab_copy_info` SET
