@@ -13,6 +13,9 @@ $admin_menu = array(
                     'Educational History' => '/admin/apply/educational-history/',
                     'Applicant copy'      => '/admin/apply/copy-agency/',
                     'Cab applicant copy'  => '/admin/apply/cab-copy/'
+                ),
+                'For-students' => array(
+                    'Country' => '/admin/for-students/'
                 )
             )
         ),
@@ -65,6 +68,9 @@ $admin_menu = array(
                     'Educational History' => '/admin/apply/educational-history/',
                     'Applicant copy'      => '/admin/apply/copy-agency/',
                     'Cab applicant copy'  => '/admin/apply/cab-copy/'
+                ),
+                'For-students' => array(
+                    'Country' => '/admin/for-students/'
                 )
             )
         ),
@@ -117,6 +123,9 @@ $admin_menu = array(
                     'Educational History' => '/admin/apply/educational-history/',
                     'Applicant copy'      => '/admin/apply/copy-agency/',
                     'Cab applicant copy'  => '/admin/apply/cab-copy/'
+                ),
+                'For-students' => array(
+                    'Country' => '/admin/for-students/'
                 )
             )
         ),

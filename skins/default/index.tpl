@@ -162,7 +162,7 @@
       <div class="fs-text">
         <p>In association with global partners, WCES establish and pursue goals to convey skills and knowledge by evaluating for the recognition of international education.</p>
       </div>
-      <a class="course-date" href="/static/about-us/" title="About Us">More...</a>
+      <a class="more-about" href="/static/about-us/" title="About Us">More...</a>
     </div>
     <div class="section-last-block">
       <a class="fs-big-link" href="/apply/" title="Apply card to user">APPLY<span class="icon-pencil"></span></a>

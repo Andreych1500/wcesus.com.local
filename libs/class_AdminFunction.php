@@ -38,7 +38,7 @@ class AdminFunction {
             // Delete file
             while($arResult = $arSel->fetch_assoc()){
                 foreach($arResult as $k => $v){
-                    if(preg_match_all('#\/uploaded\/[\w\/]+\.(jpeg|jpg|png|gif)#uis', $v, $matches) > 0){
+                    if(preg_match_all('#\/uploaded\/[\w\/]+\.([a-z]{1,5})#uis', $v, $matches) > 0){
                         foreach($matches[0] as $file){
                             if(file_exists($_SERVER['DOCUMENT_ROOT'].$file)){
                                 unlink($_SERVER['DOCUMENT_ROOT'].$file);

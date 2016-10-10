@@ -315,12 +315,12 @@ if(isset($_GET['route'])){
         $link_lang = ''; // Reload page
 
         // Lang admin
-        if(isset($_REQUEST['lang_admin']) && in_array($_REQUEST['lang_admin'], Core::$ADMIN_LANG)){
-            setcookie('lang_admin', $_REQUEST['lang_admin'], time() + 36000000, '/');
-            sessionInfo('/'.$_REQUEST['route'], 'Lang in admin: '.$_REQUEST['lang_admin'], 1);
+        if(isset($_GET['lang_admin']) && in_array($_GET['lang_admin'], Core::$ADMIN_LANG)){
+            setcookie('lang_admin', $_GET['lang_admin'], time() + 36000000, '/');
+            sessionInfo('/'.$_GET['route'], 'Lang in admin: '.$_GET['lang_admin'], 1);
         } else {
-            if(isset($_REQUEST['lang_admin'])){
-                sessionInfo('/'.$_REQUEST['route'], '');
+            if(isset($_GET['lang_admin'])){
+                sessionInfo('/'.$_GET['route'], '');
             }
 
             if(isset($_COOKIE['lang_admin']) && in_array($_COOKIE['lang_admin'], Core::$ADMIN_LANG)){

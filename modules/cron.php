@@ -1,6 +1,6 @@
 <?php
 // Очищення тимчасових файлів
-if($_SERVER['REMOTE_ADDR'] == '127.0.0.1'){
+if($_SERVER['REMOTE_ADDR'] == '192.186.205.227'){
     function removeDirectory($dir){
         if(!file_exists($dir)){
             return false;

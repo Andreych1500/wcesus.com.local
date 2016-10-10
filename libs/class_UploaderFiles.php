@@ -30,6 +30,10 @@ class UploaderFiles {
 
         $name = 'file'.date('YmdHis').rand(10000, 99999).$type[0];
 
+        if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/uploaded/temporarily')){
+            mkdir($_SERVER['DOCUMENT_ROOT'].'/uploaded/temporarily');
+        }
+
         if(count($matches) > 0){
             return array('error' => 'Invalid characters in the file name!');
         } elseif(copy($file['tmp_name'], $uploadFile.$name)) {
