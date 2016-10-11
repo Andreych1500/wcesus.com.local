@@ -47,7 +47,7 @@
     <address>
       <?php if(isset($_SESSION['dataCard'])){ ?>
         <a class="cab-link" href="/cab/?exit=ok" title="Exit profile" rel="nofollow">Sign out</a>
-      <?php }?>
+      <?php } ?>
       <a class="icon-user" href="/cab/" title="Profile" rel="nofollow"></a>
       <a href="<?=(isMobile()? 'tel:' : 'callto:').calltoPhone('2102152724')?>" title="text"><i class="icon-phone"></i>+1-210-215-2724</a>
       <a href="mailto:info@wcesus.com" title="text"><i class="icon-mail"></i>info@wcesus.com</a>
@@ -55,87 +55,91 @@
   </div>
   <div class="top-menu">
     <div class="scrolling">
-      <a class="logo" href="/"> <img src="/skins/default/img/logo.png" alt="logo" title="logo"> </a>
+      <a class="logo" href="/"> <img src="/skins/default/img/logo.png" alt="logo" title="logo"></a>
       <nav itemscope="" itemtype="http://www.schema.org/SiteNavigationElement">
         <ul>
+          <li class="item-top no-sub">
+            <a href="/" itemprop="url"><span itemprop="name">Home</span></a>
+          </li>
+
           <li class="item-top">
-            <a <?=(($link_lang == '/')? 'class="active"' : '')?> href="#">Home</a>
+            <a href="/for-students/" itemprop="url"><span itemprop="name">Students</span></a>
+
             <ul class="sub-menu">
-              <li><a href="#">Full-Screen Slider</a></li>
-              <li><a href="#">Video Slider</a></li>
+              <li><a href="/apply/" rel="nofollow">Apply</a></li>
+              <li>
+                <a href="/for-students/required-documents/" itemprop="url"> Required Documents
+                  <meta itemprop="name" content="Students Required Documents">
+                </a>
+              </li>
+              <li>
+                <a href="/for-students/fees/" itemprop="url"> Fees
+                  <meta itemprop="name" content="Students Fees">
+                </a>
+              </li>
+              <li>
+                <a href="/for-students/faq/" itemprop="url"> FAQ
+                  <meta itemprop="name" content="Students FAQ">
+                </a>
+              </li>
             </ul>
           </li>
 
           <li class="item-top">
-            <a href="#">Features</a>
+            <a href="/job-seekers/" itemprop="url"><span itemprop="name">Job Seekers</span></a>
+
             <ul class="sub-menu">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Our Staff</a></li>
+              <li><a href="/apply/" rel="nofollow">Apply</a></li>
+              <li>
+                <a href="/job-seekers/required-documents/" itemprop="url"> Required Documents
+                  <meta itemprop="name" content="Job Seekers Required Documents">
+                </a>
+              </li>
+              <li>
+                <a href="/job-seekers/fees/" itemprop="url"> Fees
+                  <meta itemprop="name" content="Job Seekers Fees">
+                </a>
+              </li>
+              <li>
+                <a href="/job-seekers/faq/" itemprop="url"> FAQ
+                  <meta itemprop="name" content="Job Seekers FAQ">
+                </a>
+              </li>
             </ul>
           </li>
 
-          <li class="item-mega">
-            <a href="#">Features2</a>
-            <ul class="sub-mega-menu">
+          <li class="item-top">
+            <a href="/immigrants/" itemprop="url"><span itemprop="name">Immigrants</span></a>
+
+            <ul class="sub-menu">
+              <li><a href="/apply/" rel="nofollow">Apply</a></li>
               <li>
-                <div class="header-mega-menu">Pages</div>
-                <ul>
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Our Staff</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">Full-Width Page</a></li>
-                  <li><a href="#">Page Left Sidebar</a></li>
-                  <li><a href="#">Page Right Sidebar</a></li>
-                  <li><a href="#">Double Sidebars</a></li>
-                  <li><a href="#">Faq Page</a></li>
-                  <li><a href="#">SiteMap</a></li>
-                  <li><a href="#">404 Page</a></li>
-                </ul>
+                <a href="/immigrants/required-documents/" itemprop="url"> Required Documents
+                  <meta itemprop="name" content="Immigrants Required Documents">
+                </a>
               </li>
               <li>
-                <div class="header-mega-menu">Content</div>
-                <ul>
-                  <li><a href="#">Content Elements</a></li>
-                  <li><a href="#">Typography</a></li>
-                  <li><a href="#">Pricing Plans</a></li>
-                  <li><a href="#">Pricing Plans2</a></li>
-                </ul>
-                <img src="/skins/default/img/250x150-img-2.jpg" alt="">
+                <a href="/immigrants/fees/" itemprop="url"> Fees
+                  <meta itemprop="name" content="Immigrants Fees">
+                </a>
               </li>
               <li>
-                <div class="header-mega-menu">Portfolio</div>
-                <ul>
-                  <li><a href="#">One Column</a></li>
-                  <li><a href="#">Two Columns</a></li>
-                  <li><a href="#">Three Columns</a></li>
-                  <li><a href="#">Four Columns</a></li>
-                  <li><a href="#">Gallery</a></li>
-                  <li><a href="#">Filtered</a></li>
-                </ul>
-                <img src="/skins/default/img/250x150-img-3.jpg" alt="">
-              </li>
-              <li>
-                <div class="header-mega-menu">Blog</div>
-                <ul>
-                  <li id="menu-item-29"><a href="blog-default.html">Default</a></li>
-                  <li id="menu-item-30"><a href="blog-two-columns.html">Two Columns</a></li>
-                  <li id="menu-item-31"><a href="blog-three-columns.html">Three Columns</a></li>
-                  <li id="menu-item-32"><a href="blog-fullwidth.html">Full Width</a></li>
-                  <li id="menu-item-33"><a href="blog-post.html">Blog Post</a></li>
-                </ul>
-                <img src="/skins/default/img/250x150-img-4.jpg" alt="">
+                <a href="/immigrants/faq/" itemprop="url"> FAQ
+                  <meta itemprop="name" content="Immigrants FAQ">
+                </a>
               </li>
             </ul>
           </li>
 
           <li class="item-top no-sub">
-            <a href="#">Contact-us</a>
+            <a href="/static/about-us/" itemprop="url"><span itemprop="name">About-Us</span></a>
           </li>
         </ul>
       </nav>
       <div id="wsnavtoggle"><span></span></div>
     </div>
   </div>
+  <div id="scroll-top"><span>&rsaquo;</span></div>
 </header>
 
 <main><?=$content?></main>
@@ -146,7 +150,8 @@
       <div class="fs-big-link">Contact Us<span class="icon-mortar-board"></span></div>
       <address>
         <a href="<?=(isMobile()? 'tel:' : 'callto:').calltoPhone('2102152724')?>" title="#"><span class="icon-phone"></span>+1(210)215-2724</a>
-        <a href="mailto:info@wcesus.com" title="info@wcesus.com"><span class="icon-mail"></span>info@wcesus.com</a> <p><span class="icon-home"></span>4535 Schertz Rd, Suite 406,  San Antonio, TX, 78233, USA</p>
+        <a href="mailto:info@wcesus.com" title="info@wcesus.com"><span class="icon-mail"></span>info@wcesus.com</a>
+        <p><span class="icon-home"></span>4535 Schertz Rd, Suite 406, San Antonio, TX, 78233, USA</p>
       </address>
       <div class="bottom-info-link">
         <a href="/static/terms-conditions/" title="Terms & Conditions">Terms & Conditions</a>

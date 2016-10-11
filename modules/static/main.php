@@ -1,5 +1,5 @@
 <?php
-
+/*
 $arBlock = array(
     0 => array(
         'name'        => 'test',
@@ -35,3 +35,4 @@ $arBlock = array(
         'description' => 'Donec sollicitudin lacus in felis luctus blandit. Ut hendrerit mattis'
     ),
 );
+*/

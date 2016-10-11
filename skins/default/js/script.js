@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    scroll_top();
+
     // Plese wait 5 sec
     if (window.location.pathname == '/apply/payment/' && $('#payment').length > 0) {
         $('#payment').fadeOut('fast', function () {
@@ -6,19 +8,34 @@ $(document).ready(function () {
         });
     }
 
+    // Active menu
+    var url = window.location.pathname;
+    var mainLink = url.split('/');
+
+    $(".top-menu nav ul li, .top-menu nav ul li > ul li").each(function () {
+        $(".top-menu li a").removeClass("active");
+        $('.top-menu li a[href="' + url + '"], .top-menu li a[href="/' + mainLink[1] + '/"]').addClass('active');
+    });
+
     // Open mobile menu
     $('#wsnavtoggle').click(function () {
         if ($(this).is('.active')) {
             $(this).removeAttr('class');
             $('.overlapblackbg').remove();
-            $('.item-top, .item-mega').removeClass('onclick');
+
             $('.scrolling').delay(300).queue(function (next) {
-                $(this).removeClass('act-mobile').find('nav').removeAttr('style');
+                $(this).find('nav').removeAttr('style');
+                $('.logo').css('margin-left', '100px');
                 next();
+
+                $(this).delay(300).queue(function (next2) {
+                    $('.logo').removeAttr('style');
+                    $(this).removeClass('act-mobile');
+                    next2();
+                });
             });
         } else {
             $(this).addClass('active');
-            $('.item-top, .item-mega').attr('onclick', 'goStop(event, this);');
             $('body').prepend('<div class="overlapblackbg" onclick="closeMobMenu();"></div>');
             $('.scrolling').addClass('act-mobile').delay(300).queue(function (next) {
                 $('.act-mobile nav').css('margin-left', '0');
@@ -88,14 +105,23 @@ $(document).ready(function () {
     $(window).scroll();
 });
 
-function goStop(e, el) {
-    var widthWindow = $(window).outerWidth(true);
-
-    if ($(el).find('.sub-mega-menu, .sub-menu').length > 0 && widthWindow <= 800) {
-        e.preventDefault();
-    }
-}
-
 function closeMobMenu() {
     $('#wsnavtoggle').trigger('click');
+}
+
+function scroll_top() {
+    $('#scroll-top').on('click', function () {
+        $('html, body').animate({scrollTop: 0});
+        return false;
+    });
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 400) {
+            $('#scroll-top').fadeIn();
+        } else {
+            $('#scroll-top').fadeOut();
+        }
+    });
+
+    $(window).scroll();
 }

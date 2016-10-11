@@ -201,13 +201,13 @@ div, p, a, span, ul, li, table, tr, td, h1, h2, h3 {
   &.fixed.act-mobile {
     @media screen and (max-width: 800px) {
       .logo {
-        margin: 3px 0 3px 150px;
+        margin: 6px 0 3px 180px;
         height: 58px;
         .transition(all 0.5s ease);
       }
 
       a {
-        line-height: normal;
+        line-height: 40px;
       }
     }
   }
@@ -226,6 +226,37 @@ div, p, a, span, ul, li, table, tr, td, h1, h2, h3 {
 
 #to_file {
   display: none;
+}
+
+#scroll-top {
+  position: fixed;
+  z-index: 1000;
+  bottom: 25px;
+  right: 25px;
+  background-color: #333333;
+  width: 38px;
+  height: 38px;
+  text-align: center;
+  cursor: pointer;
+  color: #ffffff;
+  display: none;
+  .opacity(0.9);
+  .border-radius(8px);
+
+  &:hover {
+    color: #f27c66;
+  }
+
+  span {
+    line-height: 30px;
+    font-size: 44px;
+    display: inline-block;
+    left: 8px;
+    top: 3px;
+    position: absolute;
+    .transform(rotate(-90deg));
+    .transition(all 0.3s);
+  }
 }
 
 html {
@@ -294,8 +325,8 @@ main {
   }
 
   @media screen and (max-width: 540px) {
-    width: 88%;
-    margin: 0 6% 15px;
+    width: 90%;
+    margin: 0 5% 15px;
   }
 
   &:nth-child(3n + 2) .hover-bg, &:nth-child(3n + 2) .course-date {
@@ -333,27 +364,15 @@ main {
   &:extend(.clearfix all);
   padding: 30px 0;
   background-image: url('@{urlToDirImg}copybook.png');
-}
 
-.left-grid-row {
-  float: left;
-  width: 37%;
-  margin: 0 2% 0 1%;
-}
-
-.right-grid-row {
-  &:extend(.clearfix all);
-  float: right;
-  width: 55%;
-  margin: 0 2% 0 3%;
-
-  h2 {
+  h1 {
     font-family: @font-Merriweather;
     color: @color2;
     font-weight: 400;
     margin: 17px 0 12px;
     font-size: 28px;
     line-height: 1.4;
+    text-align: center;
   }
 
   p {
@@ -617,7 +636,7 @@ main {
   margin: 5px 0;
   .transition(all 0.5s ease);
 
-  @media screen and (max-width: 380px) {
+  @media screen and (max-width: 400px) {
     height: 58px;
     margin: 18px 0;
   }
@@ -857,8 +876,8 @@ nav {
     display: none;
     overflow: auto;
     height: 100%;
-    width: 150px;
-    margin-left: -150px;
+    width: 180px;
+    margin-left: -180px;
     position: fixed;
     left: 0;
     top: 0;
@@ -882,9 +901,12 @@ nav {
       &:after {
         content: '>';
         position: absolute;
-        right: 8px;
-        top: 11px;
-        line-height: 20px;
+        right: 0;
+        top: 0;
+        text-align: center;
+        line-height: 46px;
+        background-color: #6ce3ff;
+        width: 40px;
         .transition(all 0.5s ease);
       }
 
@@ -895,6 +917,10 @@ nav {
         font-family: @font-Raleway;
         white-space: nowrap;
         .transition(all 0.5s ease);
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
 
       &:hover {
@@ -902,7 +928,7 @@ nav {
         cursor: pointer;
         .transition(all 0.5s ease);
 
-        & > a, &::after {
+        & > a {
           color: @color3;
           .transition(all 0.5s ease);
         }
@@ -912,9 +938,20 @@ nav {
 }
 
 .act-mobile {
-  .logo {
-    @media screen and (max-width: 800px) {
-      margin-left: 150px;
+  @media screen and (max-width: 800px) {
+    .logo {
+      margin-left: 180px;
+    }
+
+    .item-top {
+      padding-right: 43px;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    img {
+      height: 74%;
+      margin-top: 4px;
     }
   }
 
@@ -939,16 +976,17 @@ nav {
   @media screen and (max-width: 800px) {
 
     .sub-menu, .sub-mega-menu {
-      background-color: #ebebeb;
+      width: 180px;
 
       & li {
         line-height: 26px;
       }
 
       & a {
-        width: 90%;
-        padding-left: 10%;
+        width: 95%;
+        padding-left: 5%;
         color: #4bbcd7;
+        line-height: 34px;
 
         &:hover {
           text-decoration: underline;
@@ -957,7 +995,7 @@ nav {
     }
 
     &::after {
-      color: @color3;
+      color: #ffffff;
       .transform(rotate(90deg));
       .transition(transform 0.5s ease);
     }
@@ -2134,8 +2172,8 @@ span[data-click] {
 /* font-icons */
 @font-face {
   font-family: 'icomoon';
-  src:  url('@{urlToDirCss}fonts/icon/icomoon.eot?nkq4mu');
-  src:  url('@{urlToDirCss}fonts/icon/icomoon.eot?nkq4mu#iefix') format('embedded-opentype'),
+  src: url('@{urlToDirCss}fonts/icon/icomoon.eot?nkq4mu');
+  src: url('@{urlToDirCss}fonts/icon/icomoon.eot?nkq4mu#iefix') format('embedded-opentype'),
   url('@{urlToDirCss}fonts/icon/icomoon.ttf?nkq4mu') format('truetype'),
   url('@{urlToDirCss}fonts/icon/icomoon.woff?nkq4mu') format('woff'),
   url('@{urlToDirCss}fonts/icon/icomoon.svg?nkq4mu#icomoon') format('svg');
@@ -2161,45 +2199,59 @@ span[data-click] {
 .icon-user:before {
   content: "\e900";
 }
+
 .icon-phone:before {
   content: "\e901";
 }
+
 .icon-mail:before {
   content: "\e902";
 }
+
 .icon-mortar-board:before {
   content: "\e903";
 }
+
 .icon-clock:before {
   content: "\e904";
 }
+
 .icon-google-plus:before {
   content: "\e905";
 }
+
 .icon-twitter:before {
   content: "\e906";
 }
+
 .icon-skype:before {
   content: "\e907";
 }
+
 .icon-home:before {
   content: "\e908";
 }
+
 .icon-lock:before {
   content: "\e909";
 }
+
 .icon-error:before {
   content: "\e90a";
 }
+
 .icon-pencil:before {
   content: "\e911";
 }
+
 .icon-youtube:before {
   content: "\1f3cf";
 }
+
 .icon-calendar:before {
   content: "\e953";
 }
+
 .icon-like:before {
   content: "\ea10";
 }
