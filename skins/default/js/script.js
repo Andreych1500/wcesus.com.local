@@ -44,13 +44,18 @@ $(document).ready(function () {
         }
     });
 
-    $('.item-top, .item-mega').click(function () {
-        if ($(this).find('.sub-mega-menu, .sub-menu').css('display') == 'none') {
-            $(this).addClass('active-sub').find('.sub-mega-menu, .sub-menu').slideDown('middle');
-        } else {
-            $(this).find('.sub-mega-menu, .sub-menu').slideUp('middle', function () {
-                $(this).removeAttr('onclick').parent('.active-sub').removeClass('active-sub');
-            });
+    $('.item-top, .item-mega').click(function (e) {
+        e = e || event;
+        var target = e.target;
+
+        if (target.tagName != 'A') {
+            if ($(this).find('.sub-mega-menu, .sub-menu').css('display') == 'none') {
+                $(this).addClass('active-sub').find('.sub-mega-menu, .sub-menu').slideDown('middle');
+            } else {
+                $(this).find('.sub-mega-menu, .sub-menu').slideUp('middle', function () {
+                    $(this).removeAttr('onclick').parent('.active-sub').removeClass('active-sub');
+                });
+            }
         }
     });
 

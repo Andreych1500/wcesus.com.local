@@ -63,7 +63,9 @@
           </li>
 
           <li class="item-top">
-            <a href="/for-students/" itemprop="url"><span itemprop="name">Students</span></a>
+            <a href="/for-students/" itemprop="url"> Students
+              <meta itemprop="name" content="Students">
+            </a>
 
             <ul class="sub-menu">
               <li><a href="/apply/" rel="nofollow">Apply</a></li>
@@ -86,7 +88,9 @@
           </li>
 
           <li class="item-top">
-            <a href="/job-seekers/" itemprop="url"><span itemprop="name">Job Seekers</span></a>
+            <a href="/job-seekers/" itemprop="url"> Job Seekers
+              <meta itemprop="name" content="Job Seekers">
+            </a>
 
             <ul class="sub-menu">
               <li><a href="/apply/" rel="nofollow">Apply</a></li>
@@ -109,7 +113,9 @@
           </li>
 
           <li class="item-top">
-            <a href="/immigrants/" itemprop="url"><span itemprop="name">Immigrants</span></a>
+            <a href="/immigrants/" itemprop="url"> Immigrants
+              <meta itemprop="name" content="Immigrants">
+            </a>
 
             <ul class="sub-menu">
               <li><a href="/apply/" rel="nofollow">Apply</a></li>
