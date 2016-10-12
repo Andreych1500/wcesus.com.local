@@ -95,7 +95,7 @@ class UploaderFiles {
 
     static function resizeImage($file, $width, $height){
 
-        if($width > 1100 || $height > 1100){
+        if($width > 1280 || $height > 1280){
             return array('error' => 'The dimensions of the new image is too big!');
         }
 

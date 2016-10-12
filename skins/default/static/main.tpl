@@ -1,28 +1,23 @@
 <div class="clear-fix bottom-20px">
-  <?/*<div class="main-free-item">
-    <h2>Latest Courses</h2>
-    <?php foreach($arBlock as $k => $v){ ?>
-      <div class="course-item">
-        <div class="course-hover">
-          <img src="<?=$v['img']?>" alt="<?=$v['name']?>" title="<?=$v['name']?>">
-          <div class="hover-bg"></div>
-          <a href="<?=$v['learn_Link']?>">Learn More</a>
+  <?php if($main_banner->num_rows > 0){ ?>
+  <div class="main-banner">
+    <div class="slide-list">
+      <?php
+      $j = 0;
+      while($arResult = $main_banner->fetch_assoc()){ ?>
+        <div class="slide-item <?=(($j == 0)? 'active-slide' : '')?>">
+          <img src="<?=hsc($arResult['img'])?>" title="<?=hsc($arResult['img_seo_title'])?>" alt="<?=hsc($arResult['img_seo_alt'])?>">
         </div>
-
-        <div class="course-name">
-          <span class="price"><?=$v['price']?></span>
-          <div><a href="<?=$v['link_T_link']?>"><?=$v['text_link']?></a></div>
-        </div>
-
-        <div class="course-date">
-          <div class="day"><i class="icon-calendar"></i><?=$v['date']?></div>
-          <div class="time"><i class="icon-clock"></i><?=$v['time']?></div>
-          <div class="divider"></div>
-          <div class="description"><?=$v['description']?></div>
-        </div>
+        <?php ++$j;
+      } ?>
+      <div class="row-slide">
+        <?php for($i = 0; $i < $j; ++$i){ ?>
+          <span class="<?=(($i == 0)? 'active-row' : '')?>"></span>
+        <?php } ?>
       </div>
-    <?php } ?>
-  </div>*/?>
+    </div>
+  </div>
+  <?php } ?>
 
   <hr class="divider-color">
 

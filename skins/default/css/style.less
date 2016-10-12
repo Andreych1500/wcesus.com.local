@@ -2104,6 +2104,53 @@ textarea[name="reason_text"] {
   }
 }
 
+// Slider
+.main-banner {
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.slide-list {
+  max-height: 346px;
+  overflow: hidden;
+  position: relative;
+  font-size: 0;
+
+  img {
+    width: 100%;
+  }
+
+  .slide-item {
+    display: none;
+  }
+
+  .active-slide {
+    display: block;
+  }
+}
+
+.row-slide {
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  text-align: center;
+  font-size: 0;
+
+  span {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin: 0 5px;
+    border: 1px solid #ef4429;
+    cursor: pointer;
+    .border-radius(100%);
+  }
+
+  .active-row {
+    background: #ef4429;
+  }
+}
+
 .cab-link {
   float: right !important;
   width: auto !important;

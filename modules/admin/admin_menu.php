@@ -16,6 +16,9 @@ $admin_menu = array(
                 ),
                 'For-students' => array(
                     'Country' => '/admin/for-students/'
+                ),
+                'Main-banner' => array(
+                    'Banners' => '/admin/for-students/main-banner/'
                 )
             )
         ),
@@ -71,6 +74,9 @@ $admin_menu = array(
                 ),
                 'For-students' => array(
                     'Country' => '/admin/for-students/'
+                ),
+                'Main-banner' => array(
+                    'Banners' => '/admin/for-students/main-banner/'
                 )
             )
         ),
@@ -126,6 +132,9 @@ $admin_menu = array(
                 ),
                 'For-students' => array(
                     'Country' => '/admin/for-students/'
+                ),
+                'Main-banner' => array(
+                    'Banners' => '/admin/for-students/main-banner/'
                 )
             )
         ),
