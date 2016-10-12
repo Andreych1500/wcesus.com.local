@@ -31,7 +31,7 @@ if($accessCab){
                     LIMIT 1
                 ");
 
-                sessionInfo('/cab/', '<p>Ваш пароль успішно змінено, зберігайте його ретельно та ніде не розповсюджуйте!</p>', 1);
+                sessionInfo('/cab/', '<p>Your password was successfully changed, keep it carefully and never safely!</p>', 1);
             } else {
                 $check['your_password'] = 'class="error"';
             }
@@ -96,7 +96,7 @@ if($accessCab){
     }
 
     if(isset($_GET['key1']) && $_GET['key1'] == 'payment-success'){
-        sessionInfo('/cab/', '<p>The payment is successful. We will check your payment data, and after verifying it, ваш статус ціїє анкети буде опчаний і ми відішлемо вам копії.</p>', 1);
+        sessionInfo('/cab/', '<p>The payment is successful. We will check your payment data, and after verifying it your account application will be processed.</p>', 1);
     }
 
     if(isset($_POST['add_copy'], $_POST['text_copy'], $_POST['mailing_copy'])){
@@ -120,7 +120,7 @@ if($accessCab){
             ");
 
             if($all_card->num_rows >= 10){
-                sessionInfo('/cab/', '<p>Існує ліміт у 10 копій</p>');
+                sessionInfo('/cab/', '<p>There is 10 copies limit</p>');
             }
 
             if(isset($_GET['edit'])){
@@ -145,9 +145,9 @@ if($accessCab){
                         AND `idCard` = '".mres($_SESSION['dataCard']['idCard'])."'
                     ");
 
-                    sessionInfo('/cab/', '<p>Редагування успішно проведено!</p>', 1);
+                    sessionInfo('/cab/', '<p>Editing is successful!</p>', 1);
                 } else {
-                    sessionInfo('/cab/', '<p>Цей ідентифікатор скопії не є дійсний для твого кабінету!</p>');
+                    sessionInfo('/cab/', '<p>This WCES ID is invalid for this profile!</p>');
                 }
             } else {
                 $price = ((int)$param['mailing_copy'][$_POST['mailing_copy']]['price'] + 20).'.00'; // +20$ to copy
@@ -161,7 +161,7 @@ if($accessCab){
                     `date_create`    = NOW()
                 ");
 
-                sessionInfo('/cab/', '<p>Новий запис успішно добавлено!</p>', 1);
+                sessionInfo('/cab/', '<p>New record is successfully added!</p>', 1);
             }
         }
     }

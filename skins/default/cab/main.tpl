@@ -1,32 +1,32 @@
 <?php if($accessCab){ ?>
   <div class="clear-fix apply-user">
-    <div class="header-question">Персональний кабінет</div>
-    <div class="input-value"> Hello, ця сторінка є персональним кабінетом, для вашого профілю на цьому сайті. Тут ви можите змінити пароль, переглянути ваші заповнені дані анкети, та запросити додаткову копію з оплатою.</div>
+    <div class="header-question">Personal WCES Account</div>
+    <div class="input-value">Hello, this is WCES personal Account page. Here you can change your password, view your completed application, make payment and request additional copies.</div>
     <div class="free-cab-block">
-      <div data-section="1" <?=(isset($_COOKIE['open_tabs']) && $_COOKIE['open_tabs'] == 1? 'class="active"' : '')?>>Новий пароль</div>
-      <div data-section="2" <?=(isset($_COOKIE['open_tabs']) && $_COOKIE['open_tabs'] == 2? 'class="active"' : '')?>>Показати анкету</div>
-      <div data-section="3" <?=(isset($_COOKIE['open_tabs']) && $_COOKIE['open_tabs'] == 3? 'class="active"' : '')?>>Додаткова копія</div>
+      <div data-section="1" <?=(isset($_COOKIE['open_tabs']) && $_COOKIE['open_tabs'] == 1? 'class="active"' : '')?>>New Password</div>
+      <div data-section="2" <?=(isset($_COOKIE['open_tabs']) && $_COOKIE['open_tabs'] == 2? 'class="active"' : '')?>>Show Application</div>
+      <div data-section="3" <?=(isset($_COOKIE['open_tabs']) && $_COOKIE['open_tabs'] == 3? 'class="active"' : '')?>>Additional Copy</div>
     </div>
 
     <div data-view-section="1" <?=(isset($_COOKIE['open_tabs']) && $_COOKIE['open_tabs'] == 1? 'style="display:block"' : '')?>>
       <form action="" method="post" class="line-input-free">
         <div class="input-value">
-          <div class="name-section">Минулий пароль:<span class="accent">*</span></div>
+          <div class="name-section">Last password:<span class="accent">*</span></div>
           <input <?=(isset($check['your_password'])? $check['your_password'] : '')?> type="password" name="your_password" value="<?=(isset($_POST['your_password'])? hsc($_POST['your_password']) : "")?>">
         </div>
 
         <div class="input-value">
-          <div class="name-section">Новий пароль:<span class="accent">*</span></div>
+          <div class="name-section">New password:<span class="accent">*</span></div>
           <input <?=(isset($check['new_password'])? $check['new_password'] : '')?> type="password" name="new_password" value="<?=(isset($_POST['new_password'])? hsc($_POST['new_password']) : "")?>" placeholder="Min 6 symbol">
         </div>
 
         <div class="input-value">
-          <div class="name-section">Повторыть знов:<span class="accent">*</span></div>
+          <div class="name-section">Repeat new password:<span class="accent">*</span></div>
           <input <?=(isset($check['check_password'])? $check['check_password'] : '')?> type="password" name="check_password" value="<?=(isset($_POST['check_password'])? hsc($_POST['check_password']) : "")?>">
         </div>
 
         <div class="save-or-continue">
-          <input type="submit" name="replace_password" value="Змінити пароль">
+          <input type="submit" name="replace_password" value="Change Password">
         </div>
       </form>
     </div>
@@ -45,7 +45,7 @@
         </tr>
         <tr>
           <td>Address:</td>
-          <td><?=$arResult['country'].', '.$arResult['state'].$arResult['region'].', '.$arResult['addressOneLine'].', '.$arResult['addressTwoLine'].', '.$arResult['city'].', '.$arResult['zip_code'].$arResult['postal_code']?></td>
+          <td><?=$arResult['country'].', '.$arResult['state'].$arResult['region'].', '.$arResult['addressOneLine'].', '.(!empty($arResult['addressTwoLine'])? $arResult['addressTwoLine'].', ' : '').$arResult['city'].', '.$arResult['zip_code'].$arResult['postal_code']?></td>
         </tr>
         <tr>
           <td>Day Phone:</td>
@@ -198,14 +198,14 @@
                 <div><?=$param['mailing_copy'][$res['mailing_copy']]['text'].' ($'.$res['price'].') '?></div>
                 <div>
                   <?php if($res['payment_status'] == 0 && !isset($_GET['payment'])){ ?>
-                    <a href="/cab/?payment=<?=$res['id']?>">Оплатити</a> /
+                    <a href="/cab/?payment=<?=$res['id']?>">Pay</a> /
                     <a href="/cab/?edit=<?=$res['id']?>">Edit</a> / <a href="/cab/?remove=<?=$res['id']?>">Remove</a>
                   <?php } elseif(isset($_GET['payment']) && $res['id'] != $_GET['payment']) { ?>
                     &#8212;
                   <?php } elseif(isset($_GET['payment']) && $res['id'] == $_GET['payment']) { ?>
                     Please wait 5 seconds...
                   <?php } else { ?>
-                    <i><span class="icon-like"></span> Оплачено</i>
+                    <i><span class="icon-like"></span> Paid</i>
                   <?php } ?>
                 </div>
               </div>

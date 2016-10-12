@@ -112,8 +112,8 @@
     </div>
 
     <div class="input-value">
-      <div class="name-section">Address Line 2:<span class="accent">*</span></div>
-      <input <?=(isset($check['addressTwoLine'])? $check['addressTwoLine'] : '')?> type="text" name="addressTwoLine" value="<?=(isset($_POST['addressTwoLine'])? hsc($_POST['addressTwoLine']) : "")?>">
+      <div class="name-section">Address Line 2:</div>
+      <input type="text" name="addressTwoLine" value="<?=(isset($_POST['addressTwoLine'])? hsc($_POST['addressTwoLine']) : "")?>">
     </div>
   </div>
 
@@ -154,7 +154,7 @@
   <div class="line-input-free">
     <div class="input-value">
       <div class="name-section">Day Phone:<span class="accent">*</span></div>
-      <input <?=(isset($check['phone'])? $check['phone'] : '')?> type="text" name="phone" value="<?=(isset($_POST['addressOneLine'])? hsc($_POST['phone']) : "")?>" placeholder="example: +1-000-000-0000">
+      <input <?=(isset($check['phone'])? $check['phone'] : '')?> type="text" name="phone" value="<?=(isset($_POST['phone'])? hsc($_POST['phone']) : "")?>">
     </div>
 
     <div class="input-value">
@@ -188,10 +188,10 @@
 
   <div class="line-input-two">
     <div class="input-value">
-      <div class="name-section">Have you ever previously used the services of IERF?: <span class="accent">*</span></div>
-      <select name="services_IERF" <?=(isset($check['services_IERF'])? $check['services_IERF'] : '')?>>
-        <?php foreach($param['services_IERF'] as $k => $v){ ?>
-          <option value="<?=$k?>" <?=((isset($_POST['services_IERF']) && $_POST['services_IERF'] == $k || $k === 0)? 'selected' : "")?>>
+      <div class="name-section">Have you ever previously used the services of WCES?: <span class="accent">*</span></div>
+      <select name="services_WCES" <?=(isset($check['services_WCES'])? $check['services_WCES'] : '')?>>
+        <?php foreach($param['services_WCES'] as $k => $v){ ?>
+          <option value="<?=$k?>" <?=((isset($_POST['services_WCES']) && $_POST['services_WCES'] == $k || $k === 0)? 'selected' : "")?>>
             <?=$v?>
           </option>
         <?php } ?>

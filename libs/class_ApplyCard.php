@@ -23,7 +23,7 @@ class ApplyCard {
                     'about_us',
                     'about_us_answer',
                     'country',
-                    'services_IERF',
+                    'services_WCES',
                     'addressOneLine',
                     'addressTwoLine',
                     'city',
@@ -56,7 +56,7 @@ class ApplyCard {
                     '7' => 'Other'
                 );
 
-                $param['services_IERF'] = array(
+                $param['services_WCES'] = array(
                     0 => '',
                     1 => 'No',
                     2 => 'Yes'

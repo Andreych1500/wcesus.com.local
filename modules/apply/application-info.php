@@ -32,10 +32,10 @@ if(isset($_POST['ok'])){
         $check['email'] = (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)? 'class="error"' : '');
         $check['about_us'] = (empty($_POST['about_us']) || !isset($param['about_us'][$_POST['about_us']])? 'class="error"' : '');
         $check['country'] = (empty($_POST['country']) || !isset($param['country'][$_POST['country']])? 'class="error"' : '');
-        $check['services_IERF'] = (empty($_POST['services_IERF']) || !isset($param['services_IERF'][$_POST['services_IERF']])? 'class="error"' : '');
+        $check['services_WCES'] = (empty($_POST['services_WCES']) || !isset($param['services_WCES'][$_POST['services_WCES']])? 'class="error"' : '');
         $check['addressOneLine'] = (empty($_POST['addressOneLine'])? 'class="error"' : '');
-        $check['addressTwoLine'] = (empty($_POST['addressTwoLine'])? 'class="error"' : '');
         $check['city'] = (empty($_POST['city'])? 'class="error"' : '');
+        $check['phone'] = (empty($_POST['phone'])? 'class="error"' : '');
 
         if($_POST['is_records_name'] == 2){
             $check['last_name_records'] = (empty($_POST['last_name_records'])? 'class="error"' : '');
@@ -44,12 +44,6 @@ if(isset($_POST['ok'])){
             $_POST['last_name_records'] = '';
             $_POST['first_name_records'] = '';
             $_POST['middle_name_records'] = '';
-        }
-
-        if(preg_match('#^(\+\d{1})-(\d{3})-(\d{3})-(\d{4})$#uis', $_POST['phone'], $matches)){
-            $_POST['phone'] = $matches[1].'-'.$matches[2].'-'.$matches[3].'-'.$matches[4];
-        } else {
-            $check['phone'] = 'class="error"';
         }
 
         if($_POST['about_us'] == 7){
@@ -123,7 +117,7 @@ if(isset($_POST['ok'])){
                          `about_us`            = '".$_POST['about_us']."',
                          `about_us_answer`     = '".$_POST['about_us_answer']."',
                          `country`             = '".$_POST['country']."',
-                         `services_IERF`       = '".$_POST['services_IERF']."',
+                         `services_WCES`       = '".$_POST['services_WCES']."',
                          `addressOneLine`      = '".$_POST['addressOneLine']."',
                          `addressTwoLine`      = '".$_POST['addressTwoLine']."',
                          `city`                = '".$_POST['city']."',
@@ -185,7 +179,7 @@ if(isset($_POST['ok'])){
                     `about_us`            = '".$_POST['about_us']."',
                     `about_us_answer`     = '".$_POST['about_us_answer']."',
                     `country`             = '".$_POST['country']."',
-                    `services_IERF`       = '".$_POST['services_IERF']."',
+                    `services_WCES`       = '".$_POST['services_WCES']."',
                     `addressOneLine`      = '".$_POST['addressOneLine']."',
                     `addressTwoLine`      = '".$_POST['addressTwoLine']."',
                     `city`                = '".$_POST['city']."',

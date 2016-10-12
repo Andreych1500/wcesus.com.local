@@ -22,7 +22,7 @@
     </tr>
     <tr>
       <td>Address:</td>
-      <td><?=$arResult['country'].', '.$arResult['state'].$arResult['region'].', '.$arResult['addressOneLine'].', '.$arResult['addressTwoLine'].', '.$arResult['city'].', '.$arResult['zip_code'].$arResult['postal_code']?></td>
+      <td><?=$arResult['country'].', '.$arResult['state'].$arResult['region'].', '.$arResult['addressOneLine'].', '.(!empty($arResult['addressTwoLine'])? $arResult['addressTwoLine'].', ' : '').$arResult['city'].', '.$arResult['zip_code'].$arResult['postal_code']?></td>
     </tr>
     <tr>
       <td>Day Phone:</td>
