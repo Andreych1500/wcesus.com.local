@@ -8,8 +8,8 @@
   <div class="header-question">Educational History</div>
 
   <div class="style-text-block">
-    <p>List all educational institutions you have attended or are attending, starting with secondary institutions. Include the name of each certificate/diploma as it appears on your document(s). After you enter each school/program of study, please press the Submit button.</p>
-    <p>The saved information will appear in the first box below. You will be able to edit or remove each entry, if needed.</p>
+    <p>List all educational institutions you have attended or are attending. Include the name of each certificate/diploma as it appears on your document(s). After you enter each school/program of study, please press the Submit button.</p>
+    <p>The saved information will appear in the first box above. You will be able to edit or remove each entry, if needed.</p>
   </div>
 
   <div class="section-question">My Educational History</div>

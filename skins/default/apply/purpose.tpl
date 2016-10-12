@@ -44,12 +44,11 @@
   <div class="section-question" <?=($_POST['main_purpose'] != 0? '' : 'hidden')?> data-hidden="main_purpose">Document Requirements</div>
   <div class="line-input" <?=($_POST['main_purpose'] != 0? '' : 'hidden')?> data-hidden="main_purpose">
     <div class="input-value">
-      <div class="name-section">Please note that there are 2 types of Document Requirements:<span class="accent">*</span>
+      <div class="name-section">Please note that there is Document Requirements:<span class="accent">*</span>
       </div>
-      <ol class="list-info">
-        <li>WCES General Document Requirements</li>
-        <li>WCES Country-Specific Requirements</li>
-      </ol>
+      <ul class="list-info">
+        <li><span class="accent">*</span> WCES Country-Specific Requirements</li>
+      </ul>
 
       <div class="name-section">I have reviewed and understood the Document Requirements outlined above:</div>
       <select name="document_requirements" <?=(isset($check['document_requirements'])? $check['document_requirements'] : '')?>>
