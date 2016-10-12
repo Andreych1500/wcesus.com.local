@@ -115,17 +115,17 @@ class ApplyCard {
                 $param['report_type'] = array(
                     1 => array(
                         'name'   => 'General Report',
-                        'price'  => '75',
+                        'price'  => '85',
                         'sample' => '#'
                     ),
                     2 => array(
                         'name'   => 'Detail Report',
-                        'price'  => '100',
+                        'price'  => '110',
                         'sample' => '#'
                     ),
                     3 => array(
-                        'name'   => 'Detail Report with Course Level Identification',
-                        'price'  => '125',
+                        'name'   => 'Detailed Course-by-Course Report',
+                        'price'  => '135',
                         'sample' => '#'
                     )
                 );

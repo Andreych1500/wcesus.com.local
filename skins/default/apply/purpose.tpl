@@ -65,7 +65,6 @@
   <div class="line-input <?=($_POST['main_purpose'] == 1? '' : 'hidden')?>" data-section="1">
     <div class="input-value">
       <p>Some educational institutions require that the evaluation be addressed and mailed directly to them. It is recommended that you check directly with the officials there and confirm their mailing requirements.</p>
-      <p>Also, in the Applicant Information section, we asked you “How did you hear about us?” If you identified an institution in this section which requires direct mailing, the school's address will be automatically provided in the following section (Mailing Instructions).</p>
     </div>
   </div>
 

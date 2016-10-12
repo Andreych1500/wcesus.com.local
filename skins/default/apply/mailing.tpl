@@ -19,7 +19,7 @@
     <p>If submitting <b>original documents</b>, please select either <b>Domestic Secure Mailing</b> or
       <b>Domestic Next Day Delivery</b> (which will have a tracking number) for the return of your academic records. Otherwise your documents will not be returned to you, unless you instruct us in writing to return them via regular mail. WCES accepts no liability related to the loss or damage of documents during mailing.
     </p>
-    <p>You may request Domestic Secure Mailing for $20 per address, Domestic Next Day Delivery for $35 per address, or International Secure Mailing for $75 per address. Please note that you must provide a street address when requesting Secure Mailing or Next Day Delivery (no P.O. Boxes), as well as a phone number.</p>
+    <p>You may request Domestic Secure Mailing for $20 per address, Domestic Next Day Delivery for $65 per address, or International Secure Mailing for $125 per address. Please note that you must provide a street address when requesting Secure Mailing or Next Day Delivery (no P.O. Boxes), as well as a phone number.</p>
   </div>
 
   <div class="section-question">Applicant Copy (report sent to you - included in the report fee)</div>
