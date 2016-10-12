@@ -17,7 +17,7 @@
   <div class="style-text-block">
     <p>Evaluations are sent via regular mail unless original documents are submitted.</p>
     <p>If submitting <b>original documents</b>, please select either <b>Domestic Secure Mailing</b> or
-      <b>Domestic Next Day Delivery</b> (which will have a tracking number) for the return of your academic records. Otherwise your documents will not be returned to you, unless you instruct us in writing to return them via regular mail. IERF accepts no liability related to the loss or damage of documents during mailing.
+      <b>Domestic Next Day Delivery</b> (which will have a tracking number) for the return of your academic records. Otherwise your documents will not be returned to you, unless you instruct us in writing to return them via regular mail. WCES accepts no liability related to the loss or damage of documents during mailing.
     </p>
     <p>You may request Domestic Secure Mailing for $20 per address, Domestic Next Day Delivery for $35 per address, or International Secure Mailing for $75 per address. Please note that you must provide a street address when requesting Secure Mailing or Next Day Delivery (no P.O. Boxes), as well as a phone number.</p>
   </div>
@@ -142,7 +142,7 @@
     </div>
 
     <div class="input-value">
-      <div class="name-section">I acknowledge that IERF accepts no liability related to the loss or damage of documents during mailing.<span class="accent">*</span>
+      <div class="name-section">I acknowledge that WCES accepts no liability related to the loss or damage of documents during mailing.<span class="accent">*</span>
       </div>
       <input type="checkbox" name="ap_liability" value="1" <?=($_POST['ap_liability'] == 1? 'checked' : "")?> <?=(isset($check['ap_liability'])? $check['ap_liability'] : '')?>>
     </div>

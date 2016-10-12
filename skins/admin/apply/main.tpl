@@ -209,7 +209,7 @@
         </div>
 
         <div class="input-value">
-          <div class="name-section">Have you ever previously used the services of IERF?: <span class="accent">*</span>
+          <div class="name-section">Have you ever previously used the services of WCES?: <span class="accent">*</span>
           </div>
           <select name="services_WCES" <?=(isset($check['services_WCES'])? $check['services_WCES'] : '')?>>
             <?php foreach($param['services_WCES'] as $k => $v){ ?>
@@ -218,6 +218,11 @@
               </option>
             <?php } ?>
           </select>
+        </div>
+
+        <div data-hidden="services_WCES" class="input-value <?=((isset($_POST['services_WCES']) && $_POST['services_WCES'] == 2)? '' : 'hidden')?>">
+          <div class="name-section">Your old number profiles WCES:<span class="accent">*</span> </div>
+          <input type="text" name="old_num_card" value="<?=(isset($_POST['old_num_card'])? hsc($_POST['old_num_card']) : "")?>" placeholder="Min 5 symbol" <?=(isset($check['old_num_card'])? $check['old_num_card'] : '')?>>
         </div>
 
         <div class="header-line">Educational History</div>
@@ -410,7 +415,7 @@
           </div>
 
           <div class="input-value">
-            <div class="name-section">I acknowledge that IERF accepts no liability related to the loss or damage of documents during mailing.<span class="accent">*</span>
+            <div class="name-section">I acknowledge that WCES accepts no liability related to the loss or damage of documents during mailing.<span class="accent">*</span>
             </div>
             <input type="checkbox" name="ap_liability" value="1" <?=($_POST['ap_liability'] == 1? 'checked' : "")?> <?=(isset($check['ap_liability'])? $check['ap_liability'] : '')?>>
           </div>

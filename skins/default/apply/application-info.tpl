@@ -197,6 +197,11 @@
         <?php } ?>
       </select>
     </div>
+
+    <div data-hidden="services_WCES" class="input-value <?=((isset($_POST['services_WCES']) && $_POST['services_WCES'] == 2)? '' : 'hidden')?>">
+      <div class="name-section">Your old number profiles WCES:<span class="accent">*</span> </div>
+      <input type="text" name="old_num_card" value="<?=(isset($_POST['old_num_card'])? hsc($_POST['old_num_card']) : "")?>" placeholder="Min 5 symbol" <?=(isset($check['old_num_card'])? $check['old_num_card'] : '')?>>
+    </div>
   </div>
 
   <?php if(isset($_POST['update'])){ ?>

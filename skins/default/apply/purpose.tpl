@@ -47,8 +47,8 @@
       <div class="name-section">Please note that there are 2 types of Document Requirements:<span class="accent">*</span>
       </div>
       <ol class="list-info">
-        <li>IERF General Document Requirements</li>
-        <li>IERF Country-Specific Requirements</li>
+        <li>WCES General Document Requirements</li>
+        <li>WCES Country-Specific Requirements</li>
       </ol>
 
       <div class="name-section">I have reviewed and understood the Document Requirements outlined above:</div>

@@ -51,6 +51,12 @@ if(isset($_GET['edit'])){
             $check['city'] = (empty($_POST['city'])? 'class="error"' : '');
             $check['phone'] = (empty($_POST['phone'])? 'class="error"' : '');
 
+            if($_POST['services_WCES'] == 2){
+                $check['old_num_card'] = (empty($_POST['old_num_card']) || strlen($_POST['old_num_card']) < 5? 'class="error"' : '');
+            } else {
+                $_POST['old_num_card'] = '';
+            }
+
             $email = q("
                 SELECT `id`
                 FROM `admin_application_info`
@@ -191,6 +197,7 @@ if(isset($_GET['edit'])){
                 `about_us_answer`     = '".$_POST['about_us_answer']."',
                 `country`             = '".$_POST['country']."',
                 `services_WCES`       = '".$_POST['services_WCES']."',
+                `old_num_card`        = '".$_POST['old_num_card']."',
                 `addressOneLine`      = '".$_POST['addressOneLine']."',
                 `addressTwoLine`      = '".$_POST['addressTwoLine']."',
                 `city`                = '".$_POST['city']."',

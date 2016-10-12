@@ -24,6 +24,7 @@ class ApplyCard {
                     'about_us_answer',
                     'country',
                     'services_WCES',
+                    'old_num_card',
                     'addressOneLine',
                     'addressTwoLine',
                     'city',

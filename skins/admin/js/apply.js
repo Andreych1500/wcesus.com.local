@@ -7,7 +7,6 @@ $(document).ready(function () {
         }
     });
 
-
     $('select[name="country"]').change(function () {
         if ($(this).val() != 'USA') {
             $('[data-section="All"]').show();
@@ -23,6 +22,14 @@ $(document).ready(function () {
             $('div[data-hidden="about_us"]').show().removeClass('hidden');
         } else {
             $('div[data-hidden="about_us"]').hide().addClass('hidden');
+        }
+    });
+
+    $('select[name="services_WCES"]').change(function () {
+        if ($(this).val() == 2) {
+            $('div[data-hidden="services_WCES"]').show().removeClass('hidden');
+        } else {
+            $('div[data-hidden="services_WCES"]').hide().addClass('hidden');
         }
     });
 
