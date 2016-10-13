@@ -19,7 +19,7 @@ if(isset($_GET['edit'])){
         $_POST = trimAll($_POST);
 
         foreach($keyPost as $v){
-            if($v == 'admission_ap_pur' || $v == 'admission_to'){
+            if($v == 'admission_to'){
                 if(!isset($_POST[$v])){
                     $_POST[$v] = array();
                 } else {
@@ -106,13 +106,6 @@ if(isset($_GET['edit'])){
                 $check['please_spec'] = (empty($_POST['please_spec'])? 'class="error"' : '');
             }
 
-            $check['admission_ap_pur'] = (count($_POST['admission_ap_pur']) > 0 && arrayNotKey($_POST['admission_ap_pur'], $param['admission_ap_pur'])? 'class="error"' : '');
-
-            if(count($_POST['admission_ap_pur']) > 0 && in_array($_POST['main_purpose'], $_POST['admission_ap_pur'])){
-                $_POST['admission_ap_pur'] = array();
-                $check['admission_ap_pur'] = 'class="error"';
-            }
-
             if($_POST['main_purpose'] != 1){
                 $_POST['admission_to'] = array();
             }
@@ -126,19 +119,14 @@ if(isset($_GET['edit'])){
             $check['report_type'] = (count($_POST['report_type']) <= 0 || arrayNotKey($_POST['report_type'], $param['report_type'])? 'class="error"' : '');
 
             $check['applicant_copy'] = (empty($_POST['applicant_copy']) || !isset($param['applicant_copy'][$_POST['applicant_copy']])? 'class="error"' : '');
-            $check['ap_institution'] = (empty($_POST['ap_institution'])? 'class="error"' : '');
-            $check['ap_attention_to'] = (empty($_POST['ap_attention_to'])? 'class="error"' : '');
-            $check['ap_department'] = (empty($_POST['ap_department'])? 'class="error"' : '');
+            $check['ap_first_name'] = (empty($_POST['ap_first_name'])? 'class="error"' : '');
+            $check['ap_last_name'] = (empty($_POST['ap_last_name'])? 'class="error"' : '');
             $check['ap_address1'] = (empty($_POST['ap_address1'])? 'class="error"' : '');
-            $check['ap_address2'] = (empty($_POST['ap_address2'])? 'class="error"' : '');
             $check['ap_city'] = (empty($_POST['ap_city'])? 'class="error"' : '');
             $check['ap_liability'] = (!isset($_POST['ap_liability']) || $_POST['ap_liability'] != 1? 'class="error"' : '');
             $check['ap_mailing_us'] = (empty($_POST['ap_mailing_us']) || !isset($param['ap_mailing_us'][$_POST['ap_mailing_us']])? 'class="error"' : '');
             $check['ap_mailing_all'] = (empty($_POST['ap_mailing_all']) || !isset($param['ap_mailing_all'][$_POST['ap_mailing_all']])? 'class="error"' : '');
-
-            if(!preg_match('#^(\d{3})-(\d{3})-(\d{4})$#uis', $_POST['ap_phone'], $matches)){
-                $check['ap_phone'] = 'class="error"';
-            }
+            $check['ap_phone'] = (empty($_POST['ap_phone'])? 'class="error"' : '');
 
             if($_POST['applicant_copy'] == 2){
                 $check['ap_region'] = (empty($_POST['ap_region'])? 'class="error"' : '');
@@ -167,7 +155,6 @@ if(isset($_GET['edit'])){
 
             $_POST['access'] = !isset($_POST['access'])? 0 : (int)$_POST['access'];
             $_POST['payment_ok'] = !isset($_POST['payment_ok'])? 0 : (int)$_POST['payment_ok'];
-            $_POST['admission_ap_pur'] = trim(implode(',', $_POST['admission_ap_pur']), ',');
             $_POST['admission_to'] = trim(implode(',', $_POST['admission_to']), ',');
             $country = ($_POST['applicant_copy'] == 1? 'USA' : $_POST['ap_country']);
             $ap_mailing = ($_POST['applicant_copy'] == 1? $_POST['ap_mailing_us'] : $_POST['ap_mailing_all']);
@@ -210,11 +197,10 @@ if(isset($_GET['edit'])){
                 `admission_to`          = '".$_POST['admission_to']."',
                 `document_requirements` = '".$_POST['document_requirements']."',
                 `report_type`           = '".current($_POST['report_type'])."',
-                `admission_ap_pur`      = '".$_POST['admission_ap_pur']."',
                 `applicant_copy`    = '".$_POST['applicant_copy']."',
-                `ap_institution`    = '".$_POST['ap_institution']."',
-                `ap_attention_to`   = '".$_POST['ap_attention_to']."',
-                `ap_department`     = '".$_POST['ap_department']."',
+                `ap_first_name`     = '".$_POST['ap_first_name']."',
+                `ap_last_name`      = '".$_POST['ap_last_name']."',
+                `ap_middle_name`    = '".$_POST['ap_middle_name']."',
                 `ap_address1`       = '".$_POST['ap_address1']."',
                 `ap_address2`       = '".$_POST['ap_address2']."',
                 `ap_city`           = '".$_POST['ap_city']."',

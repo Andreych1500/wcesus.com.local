@@ -287,17 +287,6 @@
           </div>
         </div>
 
-        <div class="input-value <?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-hidden="main_purpose">
-          <div class="name-section">Please check any additional uses for your evaluation (if applicable):</div>
-          <div class="checkbox-div">
-            <?php foreach($param['admission_ap_pur'] as $k => $v){ ?>
-              <label data-check="<?=$k?>" <?=($_POST['main_purpose'] == $k? 'class="hiddenIM"' : '')?>>
-                <input type="checkbox" name="admission_ap_pur[]" value="<?=$k?>" <?=(is_array($_POST['admission_ap_pur']) && in_array($k, $_POST['admission_ap_pur'])? 'checked' : "")?>><?=$v?>
-              </label>
-            <?php } ?>
-          </div>
-        </div>
-
         <div class="header-line">Mailing Instructions</div>
         <div class="input-value">
           <div class="name-section">Please mail my applicant copy and my original documents (if submitted) to:
@@ -314,18 +303,18 @@
 
         <div class="line-input-free <?=($_POST['applicant_copy'] != 0? '' : 'hidden')?>" data-hidden="applicant_copy">
           <div class="input-value">
-            <div class="name-section">Institution:<span class="accent">*</span></div>
-            <input <?=(isset($check['ap_institution'])? $check['ap_institution'] : '')?> type="text" name="ap_institution" value="<?=hsc($_POST['ap_institution'])?>">
+            <div class="name-section">First Name:<span class="accent">*</span></div>
+            <input <?=(isset($check['ap_first_name'])? $check['ap_first_name'] : '')?> type="text" name="ap_first_name" value="<?=hsc($_POST['ap_first_name'])?>">
           </div>
 
           <div class="input-value">
-            <div class="name-section">Attention To:<span class="accent">*</span></div>
-            <input <?=(isset($check['ap_attention_to'])? $check['ap_attention_to'] : '')?> type="text" name="ap_attention_to" value="<?=hsc($_POST['ap_attention_to'])?>">
+            <div class="name-section">Last Name:<span class="accent">*</span></div>
+            <input <?=(isset($check['ap_last_name'])? $check['ap_last_name'] : '')?> type="text" name="ap_last_name" value="<?=hsc($_POST['ap_last_name'])?>">
           </div>
 
           <div class="input-value">
-            <div class="name-section">Department:<span class="accent">*</span></div>
-            <input <?=(isset($check['ap_department'])? $check['ap_department'] : '')?> type="text" name="ap_department" value="<?=hsc($_POST['ap_department'])?>">
+            <div class="name-section">Middle Name:</div>
+            <input type="text" name="ap_middle_name" value="<?=hsc($_POST['ap_middle_name'])?>">
           </div>
 
           <div class="input-value">
@@ -334,8 +323,8 @@
           </div>
 
           <div class="input-value">
-            <div class="name-section">Address Line 2:<span class="accent">*</span></div>
-            <input <?=(isset($check['ap_address2'])? $check['ap_address2'] : '')?> type="text" name="ap_address2" value="<?=hsc($_POST['ap_address2'])?>">
+            <div class="name-section">Address Line 2:</div>
+            <input type="text" name="ap_address2" value="<?=hsc($_POST['ap_address2'])?>">
           </div>
 
           <div class="input-value">
@@ -392,7 +381,7 @@
 
         <div class="input-value <?=($_POST['applicant_copy'] != 0? '' : 'hidden')?>" data-hidden="applicant_copy">
           <div class="name-section">Phone:<span class="accent">*</span></div>
-          <input <?=(isset($check['ap_phone'])? $check['ap_phone'] : '')?> type="text" name="ap_phone" value="<?=hsc($_POST['ap_phone'])?>" placeholder="example: 000-000-0000">
+          <input <?=(isset($check['ap_phone'])? $check['ap_phone'] : '')?> type="text" name="ap_phone" value="<?=hsc($_POST['ap_phone'])?>">
         </div>
 
         <div class="line-input-two <?=($_POST['applicant_copy'] != 0? '' : 'hidden')?>" data-hidden="applicant_copy">

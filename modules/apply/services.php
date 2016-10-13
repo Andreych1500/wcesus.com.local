@@ -45,6 +45,8 @@ if(isset($_POST['ok'], $_POST['update'])){
                 WHERE `id` = '".(int)$el['id']."'
             ");
 
+            ApplyCard::priceCard($data['idCard'], true); // Update peirce
+
             setcookie('idCardHash', $el['idCardHash'], time() + 3600, '/');
             header('Location: '.(isset($_REQUEST['review'])? '/apply/review/' : '/apply/review/').'');
             exit();

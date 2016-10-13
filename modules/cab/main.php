@@ -214,7 +214,7 @@ if($accessCab){
 
     foreach($data as $k => $v){
         if(isset($param[$k]) && !empty($v)){
-            if($k == 'admission_to' || $k == 'admission_ap_pur'){
+            if($k == 'admission_to'){
                 foreach(explode(',', $v) as $k2){
                     $arResult[$k][$k2] = $param[$k][$k2];
                 }
@@ -270,7 +270,7 @@ if($accessCab){
         $price = 0;
 
         while($copy = hsc($arAgencyCopy->fetch_assoc())){
-            $price += (int)$param['mailing_copy'][$copy['mailing_copy']]['price'];
+            $price += (int)$param['mailing_copy'][$copy['mailing_copy']]['price'] + 20;
         }
     }
 

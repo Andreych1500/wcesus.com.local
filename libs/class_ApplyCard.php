@@ -1,7 +1,5 @@
 <?php
 class ApplyCard {
-    static $arParam = array();
-
     static function param($item, $get = array()){
         switch($item){
             case 1:
@@ -86,8 +84,7 @@ class ApplyCard {
                     'please_spec',
                     'admission_to',
                     'document_requirements',
-                    'report_type',
-                    'admission_ap_pur'
+                    'report_type'
                 );
 
                 $param['main_purpose'] = array(
@@ -130,13 +127,6 @@ class ApplyCard {
                     )
                 );
 
-                $param['admission_ap_pur'] = array(
-                    1 => 'Education',
-                    2 => 'Employment / Salary Adjustment',
-                    3 => 'Immigration',
-                    4 => 'Other'
-                );
-
                 $param['report_type_text'] = array(
                     1 => 'Unless otherwise instructed by your institution, we recommend that you select a Detail Report with Course Level Identification.',
                     2 => 'Unless otherwise instructed by your employer (or potential employer), we recommend that you select a General Report.',
@@ -148,9 +138,9 @@ class ApplyCard {
             case 4:
                 $param['keyPost'] = array(
                     'applicant_copy',
-                    'ap_institution',
-                    'ap_attention_to',
-                    'ap_department',
+                    'ap_first_name',
+                    'ap_last_name',
+                    'ap_middle_name',
                     'ap_address1',
                     'ap_address2',
                     'ap_city',
@@ -223,7 +213,7 @@ class ApplyCard {
 
                 $param['turnaround_time'] = array(
                     1 => array(
-                        'text'  => '5-Day Rush *',
+                        'text'  => '* 5-Day Service',
                         'price' => '0',
                     ),
                     2 => array(
@@ -797,11 +787,11 @@ class ApplyCard {
         if(count($get) > 0){
             foreach($get as $v){
                 if(isset($param[$v])){
-                    self::$arParam[$v] = $param[$v];
+                    $arParam[$v] = $param[$v];
                 }
             }
 
-            return self::$arParam;
+            return $arParam;
         } else {
             unset($param['keyPost']);
 
@@ -869,39 +859,64 @@ class ApplyCard {
         }
     }
 
-    static function getAllPrice($data){
-        if($data['applicant_copy'] == 1){
-            $get = 'ap_mailing_us';
-        } elseif($data['applicant_copy'] == 2) {
-            $get = 'ap_mailing_all';
-        }
+    static function priceCard($idCard, $update = false){
 
-        $data['report_type'] = (is_array($data['report_type'])? current($data['report_type']) : $data['report_type']);
-        $data['ap_mailing'] = (!isset($data['ap_mailing'])? $data[$get] : $data['ap_mailing']);
-
-        $param = self::param(3, array('report_type'));
-        $param = self::param(4, array('mailing_copy'));
-        $param = self::param(4, array($get));
-        $param = self::param(5, array('turnaround_time'));
-
-        $price = 0;
-        $price += $param['report_type'][$data['report_type']]['price']; // Report type price;
-        $price += $param['turnaround_time'][$data['turnaround_time']]['price']; // Report type price;
-        $price += $param[$get][$data['ap_mailing']]['price']; // Applicant copy price
+        $data = hsc(q("
+            SELECT `applicant_copy`, `ap_mailing`, `report_type`, `turnaround_time`
+            FROM `admin_application_info`
+            WHERE `idCard` = '".mres($idCard)."' 
+        ")->fetch_assoc());
 
         $arAgencyCopy = q("
             SELECT *
             FROM `admin_official_agency_copy`
-            WHERE `idCard` = '".mres($data['idCard'])."'
+            WHERE `idCard` = '".mres($idCard)."'
         ");
 
+        $price = 0;
+
+        if(!empty($data['report_type'])){ // Report type price;
+            $param = self::param(3, array('report_type'));
+            $price += $param['report_type'][$data['report_type']]['price'];
+        }
+
+        if(!empty($data['applicant_copy'])){ // Applicant copy price
+
+            if($data['applicant_copy'] == 1){
+                $get = 'ap_mailing_us';
+            } elseif($data['applicant_copy'] == 2) {
+                $get = 'ap_mailing_all';
+            }
+
+            $param = self::param(4, array($get));
+            $price += $param[$get][$data['ap_mailing']]['price'];
+        }
+
         if($arAgencyCopy->num_rows > 0){
+            $param = self::param(4, array('mailing_copy'));
+
             while($copy = hsc($arAgencyCopy->fetch_assoc())){
-                $price += (int)$param['mailing_copy'][$copy['mailing_copy']]['price'];
+                $price += (int)$param['mailing_copy'][$copy['mailing_copy']]['price'] + 20; // + 20$ to copy
             }
         }
 
-        return $price;
+        if(!empty($data['turnaround_time'])){ // Services type price;
+            $param = self::param(5, array('turnaround_time'));
+            $price += $param['turnaround_time'][$data['turnaround_time']]['price'];
+        }
+
+        if($update == true){
+            q("
+                UPDATE `admin_application_info` SET
+                `all_price` = ".mres($price.'.00')."
+                WHERE `idCard` = '".mres($idCard)."'
+                LIMIT 1
+            ");
+
+            return false;
+        } else {
+            return $price;
+        }
     }
 
     static function hash($var){

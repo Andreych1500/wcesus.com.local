@@ -80,10 +80,6 @@
       <td>Report Type:</td>
       <td><?=(is_array($arResult['report_type'])? $arResult['report_type']['name'] : '')?></td>
     </tr>
-    <tr>
-      <td>Additional Purpose(s):</td>
-      <td><?=(is_array($arResult['admission_ap_pur'])? implode(', ', $arResult['admission_ap_pur']) : '')?></td>
-    </tr>
   </table>
 
   <div class="section-question">Mailing Instructions
@@ -95,16 +91,16 @@
       <td><?=$arResult['applicant_copy']?></td>
     </tr>
     <tr>
-      <td>Institution:</td>
-      <td><?=$arResult['ap_institution']?></td>
+      <td>First Name:</td>
+      <td><?=$arResult['ap_first_name']?></td>
     </tr>
     <tr>
-      <td>Attention To:</td>
-      <td><?=$arResult['ap_attention_to']?></td>
+      <td>Last Name:</td>
+      <td><?=$arResult['ap_last_name']?></td>
     </tr>
     <tr>
-      <td>Department:</td>
-      <td><?=$arResult['ap_department']?></td>
+      <td>Middle Name:</td>
+      <td><?=$arResult['ap_middle_name']?></td>
     </tr>
     <tr>
       <td>Address:</td>

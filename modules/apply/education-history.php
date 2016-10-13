@@ -154,6 +154,18 @@ if(isset($_GET['getType']) && isset($_GET['ajax']) && isset($_POST['data-priorit
 if($data = ApplyCard::checkData()){
 
     if(isset($_POST['ok'])){
+        $step2 = q("
+            SELECT *
+            FROM `steps_ok_cards`
+            WHERE `idCard` = '".mres($data['idCard'])."'
+            AND `step2` = 1
+            LIMIT 1
+        ");
+
+        if($step2->num_rows == 0){
+           sessionInfo('/apply/education-history/', '<p>Будь-ласка заповніть хочаб одну свою історію навчання!</p>');
+        }
+
         setcookie('idCardHash', $data['idCardHash'], time() + 3600, '/');
         header('Location: '.(isset($_GET['review'])? '/apply/review/' : '/apply/purpose/').'');
         exit();

@@ -29,19 +29,14 @@ if(isset($_POST['ok'], $_POST['ap_mailing_us'], $_POST['ap_mailing_all'], $_POST
         $error['stop'] = 1;
     } else {
         $check['applicant_copy'] = (empty($_POST['applicant_copy']) || !isset($param['applicant_copy'][$_POST['applicant_copy']])? 'class="error"' : '');
-        $check['ap_institution'] = (empty($_POST['ap_institution'])? 'class="error"' : '');
-        $check['ap_attention_to'] = (empty($_POST['ap_attention_to'])? 'class="error"' : '');
-        $check['ap_department'] = (empty($_POST['ap_department'])? 'class="error"' : '');
+        $check['ap_first_name'] = (empty($_POST['ap_first_name'])? 'class="error"' : '');
+        $check['ap_last_name'] = (empty($_POST['ap_last_name'])? 'class="error"' : '');
         $check['ap_address1'] = (empty($_POST['ap_address1'])? 'class="error"' : '');
-        $check['ap_address2'] = (empty($_POST['ap_address2'])? 'class="error"' : '');
         $check['ap_city'] = (empty($_POST['ap_city'])? 'class="error"' : '');
         $check['ap_liability'] = (!isset($_POST['ap_liability']) || $_POST['ap_liability'] != 1? 'class="error"' : '');
         $check['ap_mailing_us'] = (empty($_POST['ap_mailing_us']) || !isset($param['ap_mailing_us'][$_POST['ap_mailing_us']])? 'class="error"' : '');
         $check['ap_mailing_all'] = (empty($_POST['ap_mailing_all']) || !isset($param['ap_mailing_all'][$_POST['ap_mailing_all']])? 'class="error"' : '');
-
-        if(!preg_match('#^(\d{3})-(\d{3})-(\d{4})$#uis', $_POST['ap_phone'], $matches)){
-            $check['ap_phone'] = 'class="error"';
-        }
+        $check['ap_phone'] = (empty($_POST['ap_phone'])? 'class="error"' : '');
 
         if($_POST['applicant_copy'] == 2){
             $check['ap_region'] = (empty($_POST['ap_region'])? 'class="error"' : '');
@@ -89,9 +84,9 @@ if(isset($_POST['ok'], $_POST['ap_mailing_us'], $_POST['ap_mailing_all'], $_POST
             q("
                 UPDATE `admin_application_info` SET
                 `applicant_copy`    = '".$_POST['applicant_copy']."',
-                `ap_institution`    = '".$_POST['ap_institution']."',
-                `ap_attention_to`   = '".$_POST['ap_attention_to']."',
-                `ap_department`     = '".$_POST['ap_department']."',
+                `ap_first_name`     = '".$_POST['ap_first_name']."',
+                `ap_last_name`      = '".$_POST['ap_last_name']."',
+                `ap_middle_name`    = '".$_POST['ap_middle_name']."',
                 `ap_address1`       = '".$_POST['ap_address1']."',
                 `ap_address2`       = '".$_POST['ap_address2']."',
                 `ap_city`           = '".$_POST['ap_city']."',
@@ -108,6 +103,8 @@ if(isset($_POST['ok'], $_POST['ap_mailing_us'], $_POST['ap_mailing_all'], $_POST
                 `date_custom`         = NOW()
                 WHERE `id` = '".(int)$el['id']."'
             ");
+
+            ApplyCard::priceCard($data['idCard'], true); // Update peirce
 
             setcookie('idCardHash', $el['idCardHash'], time() + 3600, '/');
             header('Location: '.(isset($_REQUEST['review'])? '/apply/review/' : '/apply/services/').'');
@@ -155,6 +152,8 @@ if(isset($_POST['add_copy'], $_POST['text_copy'], $_POST['mailing_copy'])){
                 AND `idCard` = '".mres($arResult['idCard'])."'
             ");
 
+            ApplyCard::priceCard($data['idCard'], true); // Update peirce
+
             setcookie('idCardHash', $arResult['idCardHash'], time() + 3600, '/');
             header('Location: /apply/mailing/');
             exit();
@@ -179,11 +178,13 @@ if(isset($_POST['add_copy'], $_POST['text_copy'], $_POST['mailing_copy'])){
 
             q("
                 INSERT INTO `admin_official_agency_copy` SET
-                    `idCard`       = '".mres($arResult['idCard'])."',
-                    `text_copy`    = '".$_POST['text_copy']."',
-                    `mailing_copy` = '".$_POST['mailing_copy']."',
-                    `date_create`  = NOW()
+                `idCard`       = '".mres($arResult['idCard'])."',
+                `text_copy`    = '".$_POST['text_copy']."',
+                `mailing_copy` = '".$_POST['mailing_copy']."',
+                `date_create`  = NOW()
             ");
+
+            ApplyCard::priceCard($data['idCard'], true); // Update peirce
 
             setcookie('idCardHash', $arResult['idCardHash'], time() + 3600, '/');
             header('Location: /apply/mailing/');
@@ -240,6 +241,8 @@ if(isset($_GET['remove'])){
         WHERE `id` = ".(int)$_GET['remove']."
         AND `idCard` = '".mres($data['idCard'])."'
     ");
+
+    ApplyCard::priceCard($data['idCard'], true); // Update peirce
 
     header('Location: /apply/mailing/');
     exit();

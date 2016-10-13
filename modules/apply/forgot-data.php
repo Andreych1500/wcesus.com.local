@@ -23,9 +23,10 @@ if(isset($_POST['ok'], $_POST['email'])){
             $arResult = hsc($getCard->fetch_assoc());
 
             $set = array(
-                'idCard' => $arResult['idCard'],
-                'date_mm' => $arResult['date_mm'],
-                'date_dd' => $arResult['date_dd'],
+                'idCard'    => $arResult['idCard'],
+                'email'     => $_POST['email'],
+                'date_mm'   => $arResult['date_mm'],
+                'date_dd'   => $arResult['date_dd'],
                 'date_yyyy' => $arResult['date_yyyy']
             );
 

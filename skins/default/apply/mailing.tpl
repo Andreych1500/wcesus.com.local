@@ -40,18 +40,18 @@
 
   <div class="line-input-free <?=($_POST['applicant_copy'] != 0? '' : 'hidden')?>" data-hidden="applicant_copy">
     <div class="input-value">
-      <div class="name-section">Institution:<span class="accent">*</span></div>
-      <input <?=(isset($check['ap_institution'])? $check['ap_institution'] : '')?> type="text" name="ap_institution" value="<?=hsc($_POST['ap_institution'])?>">
+      <div class="name-section">First Name:<span class="accent">*</span></div>
+      <input <?=(isset($check['ap_first_name'])? $check['ap_first_name'] : '')?> type="text" name="ap_first_name" value="<?=hsc($_POST['ap_first_name'])?>">
     </div>
 
     <div class="input-value">
-      <div class="name-section">Attention To:<span class="accent">*</span></div>
-      <input <?=(isset($check['ap_attention_to'])? $check['ap_attention_to'] : '')?> type="text" name="ap_attention_to" value="<?=hsc($_POST['ap_attention_to'])?>">
+      <div class="name-section">Last Name:<span class="accent">*</span></div>
+      <input <?=(isset($check['ap_last_name'])? $check['ap_last_name'] : '')?> type="text" name="ap_last_name" value="<?=hsc($_POST['ap_last_name'])?>">
     </div>
 
     <div class="input-value">
-      <div class="name-section">Department:<span class="accent">*</span></div>
-      <input <?=(isset($check['ap_department'])? $check['ap_department'] : '')?> type="text" name="ap_department" value="<?=hsc($_POST['ap_department'])?>">
+      <div class="name-section">Middle Name:</div>
+      <input type="text" name="ap_middle_name" value="<?=hsc($_POST['ap_middle_name'])?>">
     </div>
 
     <div class="input-value">
@@ -60,8 +60,8 @@
     </div>
 
     <div class="input-value">
-      <div class="name-section">Address Line 2:<span class="accent">*</span></div>
-      <input <?=(isset($check['ap_address2'])? $check['ap_address2'] : '')?> type="text" name="ap_address2" value="<?=hsc($_POST['ap_address2'])?>">
+      <div class="name-section">Address Line 2:</div>
+      <input type="text" name="ap_address2" value="<?=hsc($_POST['ap_address2'])?>">
     </div>
 
     <div class="input-value">
@@ -116,11 +116,11 @@
       <input <?=(isset($check['ap_postal_code'])? $check['ap_postal_code'] : '')?> type="text" name="ap_postal_code" value="<?=hsc($_POST['ap_postal_code'])?>">
     </div>
   </div>
-  
+
   <div class="line-input-two <?=($_POST['applicant_copy'] != 0? '' : 'hidden')?>" data-hidden="applicant_copy">
     <div class="input-value">
       <div class="name-section">Phone:<span class="accent">*</span></div>
-      <input <?=(isset($check['ap_phone'])? $check['ap_phone'] : '')?> type="text" name="ap_phone" value="<?=hsc($_POST['ap_phone'])?>" placeholder="example: 000-000-0000">
+      <input <?=(isset($check['ap_phone'])? $check['ap_phone'] : '')?> type="text" name="ap_phone" value="<?=hsc($_POST['ap_phone'])?>">
     </div>
   </div>
 
@@ -170,6 +170,8 @@
   <div class="section-question">Additional Official Agency Copy (+$20)</div>
   <div class="style-text-block">
     <p>If you would like to request an additional copy at this time, please fill in the section below.(LIMIT 4)</p>
+    <p>Enter the Institution Name; Contact Person; Full Address; and Phone Number.</p>
+    <p>For electronic delivery, provide Email Address or Fax Number.</p>
   </div>
 
   <div class="input-value">

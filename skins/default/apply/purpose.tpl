@@ -89,20 +89,6 @@
     </div>
   </div>
 
-  <div class="section-question <?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-hidden="main_purpose">Additional Application Purposes</div>
-  <div class="line-input <?=($_POST['main_purpose'] != 0? '' : 'hidden')?>" data-hidden="main_purpose">
-    <div class="input-value">
-      <div class="name-section">Please check any additional uses for your evaluation (if applicable):</div>
-      <div class="checkbox-div">
-        <?php foreach($param['admission_ap_pur'] as $k => $v){ ?>
-          <label data-check="<?=$k?>" <?=($_POST['main_purpose'] == $k? 'class="hiddenIM"' : '')?>>
-            <input type="checkbox" name="admission_ap_pur[]" value="<?=$k?>" <?=(is_array($_POST['admission_ap_pur']) && in_array($k, $_POST['admission_ap_pur'])? 'checked' : "")?>><?=$v?>
-          </label>
-        <?php } ?>
-      </div>
-    </div>
-  </div>
-
   <input type="hidden" name="update" value="<?=$_POST['update']?>">
 
   <div class="save-or-continue">

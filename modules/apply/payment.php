@@ -155,7 +155,7 @@ if($data = ApplyCard::checkData()){
     if($checkStep->num_rows == 0){
         sessionInfo('/apply/review/', '<p>Complete all fields in the application and come back to the payment stage!</p>');
     } else {
-        $price = ApplyCard::getAllPrice($data);
+        $price = ApplyCard::priceCard($data['idCard']);
 
         q("
              UPDATE `admin_application_info` SET

@@ -11,7 +11,7 @@ if(isset($_POST['ok'], $_POST['update'])){
     }
 
     foreach($keyPost['keyPost'] as $v){
-        if($v == 'admission_ap_pur' || $v == 'admission_to'){
+        if($v == 'admission_to'){
             if(!isset($_POST[$v])){
                 $_POST[$v] = array();
             } else {
@@ -34,13 +34,6 @@ if(isset($_POST['ok'], $_POST['update'])){
             $check['admission_to'] = (count($_POST['admission_to']) <= 0 || arrayNotKey($_POST['admission_to'], $param['admission_to'])? 'class="error"' : '');
         } elseif($_POST['main_purpose'] == 4) {
             $check['please_spec'] = (empty($_POST['please_spec'])? 'class="error"' : '');
-        }
-
-        $check['admission_ap_pur'] = (count($_POST['admission_ap_pur']) > 0 && arrayNotKey($_POST['admission_ap_pur'], $param['admission_ap_pur'])? 'class="error"' : '');
-
-        if(count($_POST['admission_ap_pur']) > 0 && in_array($_POST['main_purpose'], $_POST['admission_ap_pur'])){
-            $_POST['admission_ap_pur'] = array();
-            $check['admission_ap_pur'] = 'class="error"';
         }
 
         if($_POST['main_purpose'] != 1){
@@ -75,7 +68,6 @@ if(isset($_POST['ok'], $_POST['update'])){
             if($id->num_rows > 0){
                 $el = hsc($id->fetch_assoc());
 
-                $_POST['admission_ap_pur'] = trim(implode(',', $_POST['admission_ap_pur']), ',');
                 $_POST['admission_to'] = trim(implode(',', $_POST['admission_to']), ',');
 
                 q("
@@ -91,12 +83,13 @@ if(isset($_POST['ok'], $_POST['update'])){
                     `admission_to`          = '".$_POST['admission_to']."',
                     `document_requirements` = '".$_POST['document_requirements']."',
                     `report_type`           = '".current($_POST['report_type'])."',
-                    `admission_ap_pur`      = '".$_POST['admission_ap_pur']."',
                     `agent`           = '".mres($_SERVER['HTTP_USER_AGENT'])."',
                     `user_ip`         = '".mres($_SERVER['REMOTE_ADDR'])."',
                     `date_custom`     = NOW()
                     WHERE `id` = '".(int)$el['id']."'
                 ");
+
+                ApplyCard::priceCard($data['idCard'], true); // Update peirce
 
                 setcookie('idCardHash', $el['idCardHash'], time() + 3600, '/');
                 header('Location: '.(isset($_GET['review'])? '/apply/review/' : '/apply/mailing/').'');
