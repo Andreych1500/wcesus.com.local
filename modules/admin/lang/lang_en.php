@@ -39,8 +39,7 @@ $messG['floor'] = array(
 
 $messG['payment_status'] = array(
     0 => 'Неоплачено',
-    1 => 'Оплачено',
-    2 => 'Перевіряється'
+    1 => 'Оплачено'
 );
 
 // All page

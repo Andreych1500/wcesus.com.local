@@ -71,7 +71,7 @@ if($accessCab){
 
             // Якщо потрібно додаткові параметри додаємо тут!
             $p->add_field('item_name', 'Service in cab copy');  // Короткий опис для покупця
-            $p->add_field('amount', $price);       // Повна ціна оплати
+            $p->add_field('amount', $arPayment['price']);       // Повна ціна оплати
             $p->add_field('item_number', $priNum);              // Номер замовлення ( Унікальний!!! )
             $p->add_field('no_shipping', '1');                  // Запрос на адрес доставки (виключили)
             $p->add_field('currency_code', 'USD');              // Валюта
@@ -270,7 +270,7 @@ if($accessCab){
         $price = 0;
 
         while($copy = hsc($arAgencyCopy->fetch_assoc())){
-            $price += (int)$param['mailing_copy'][$copy['mailing_copy']]['price'] + 20;
+            $price += (int)$param['mailing_copy'][$copy['mailing_copy']]['price'] + 20; // +20$ to copy
         }
     }
 

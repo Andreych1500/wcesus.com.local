@@ -40,7 +40,7 @@ if(isset($_POST['ok'], $_POST['email'])){
             Mail::$text = TemplateMail::HtmlMail($set, 'forgot_password', $arMainParam);
 
             if(Mail::$text){
-                Mail::$to = mres($getCardActive->fetch_assoc()['email']);
+                Mail::$to = $_POST['email'];
                 Mail::send();
             }
             sessionInfo('/cab/', '<p>The operation was successful! На ваш емейл був відправлений лисс з новим паролем довашого кабінету.</p>', 1);

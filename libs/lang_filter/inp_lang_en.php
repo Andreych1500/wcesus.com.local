@@ -48,6 +48,5 @@ $inpMess['ortopeding'] = array(
 $inpMess['payment_status'] = array(
     '' => 'Всі',
     0 => 'Неоплачено',
-    1 => 'Оплачено',
-    2 => 'Перевіряється'
+    1 => 'Оплачено'
 );
