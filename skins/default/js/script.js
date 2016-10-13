@@ -65,6 +65,7 @@ $(document).ready(function () {
             } else {
                 $(this).find('.sub-mega-menu, .sub-menu').slideUp('middle', function () {
                     $(this).removeAttr('onclick').parent('.active-sub').removeClass('active-sub');
+                    $(this).removeAttr('style');
                 });
             }
         }
