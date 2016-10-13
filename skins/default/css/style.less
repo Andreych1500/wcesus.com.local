@@ -104,6 +104,10 @@ a img {
 
 ul {
   list-style: none;
+
+  li > ul {
+    list-style: none;
+  }
 }
 
 a:link {
@@ -213,6 +217,14 @@ div, p, a, span, ul, li, table, tr, td, h1, h2, h3 {
   }
 }
 
+.stan-list {
+  list-style: inherit !important;
+
+  li {
+    margin-top: 5px;
+  }
+}
+
 .i_Error {
   font: 140pt @font-Merriweather;
   color: @color3;
@@ -282,6 +294,7 @@ main {
 
   @media screen and (max-width: 740px) {
     padding-bottom: 447px;
+    text-align: justify;
   }
 
   @media screen and (max-width: 600px) {
