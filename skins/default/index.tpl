@@ -138,7 +138,7 @@
           </li>
 
           <li class="item-top no-sub">
-            <a href="/static/about-us/" itemprop="url"><span itemprop="name">About-Us</span></a>
+            <a href="/static/about-us/" itemprop="url"><span itemprop="name">About Us</span></a>
           </li>
         </ul>
       </nav>

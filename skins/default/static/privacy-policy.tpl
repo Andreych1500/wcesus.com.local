@@ -8,14 +8,14 @@
 
   <p>However, if you reveal or provide any personal or confidential information, you will no longer be anonymous to WCES. Any confidential or personal information you provide to WCES is treated by applicable laws and according to that stated below.</p>
 
-  <p>By using the WCES website, you acknowledge and consent to IERF's privacy policy as follows:</p>
+  <p>By using the WCES website, you acknowledge and consent to WCES's privacy policy as follows:</p>
 
   <ul class="stan-list">
     <li>Any personal information provided (for example, name, schools attended, courses taken, grades received, etc.) may be used for the purpose of evaluating an applicant's credentials. Our employees, agents, and contractors will have access to this information as necessary to perform their duties.</li>
     <li>
       Personal information will not be released to a third party except in the following circumstances:
       <ul>
-        <li>To comply with a judicial order, subpoena, lawful requests from governmental authorities or other legal requirements, to exercise our legal rights or to defend against any legal claims or actions brought against IERF;</li>
+        <li>To comply with a judicial order, subpoena, lawful requests from governmental authorities or other legal requirements, to exercise our legal rights or to defend against any legal claims or actions brought against WCES;</li>
         <li>To contact designated recipients of evaluation reports, educational institutions the applicant has attended and governmental institutions/agencies for additional information and/or verification of the authenticity of the applicant's credentials;</li>
         <li>To inform appropriate persons (academic institutions, government agencies, professional organizations and other evaluation services) in cases where documents submitted to WCES are reported to WCES by the appropriate persons not to be authentic or to be forged, altered or falsified;</li>
         <li>To prevent or protect against fraud or illegal activities;</li>
@@ -30,7 +30,7 @@
   <b class="iH3">Cookies</b>
   <p>A cookie is a small removable data file that is stored by your web browser on your computer. Cookies do not retrieve personal information stored on your hard drive and do not corrupt or damage your computer or computer files. To provide "state of the art" customer service, WCES uses cookies on its website so that it can track how users navigate through the WCES website. Cookies allow you to submit an application on our website and allow us to enhance and personalize your online surfing and client experience.</p>
   <p>The information collected via cookies is used to compile statistical data on the utilization of the WCES website. All Information gathered is anonymous, and an applicant cannot be identified from this information.</p>
-  <p>Applicants may set their browsers to reject cookies, but such may affect the ability to use all of the functions and features of the IERF website.</p>
+  <p>Applicants may set their browsers to reject cookies, but such may affect the ability to use all of the functions and features of the WCES website.</p>
 
   <b class="iH3">External Links</b>
   <p>This website contains links to other sites. WCES is not responsible for the privacy practices or the content of such websites. WCES encourages you to review the privacy policies of these websites. Applicants should take such steps as they deem necessary to protect their privacy before linking to these other websites.</p>
