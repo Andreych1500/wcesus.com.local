@@ -162,7 +162,7 @@
       <div class="bottom-info-link">
         <a href="/static/terms-conditions/" title="Terms & Conditions">Terms & Conditions</a>
         <a href="/static/privacy-policy/" title="Privacy Policy">Privacy Policy</a>
-        <a href="/static/sitemap/" title="Sitemap">Sitemap</a>
+        <a href="/static/sitemap/" title="Site Map">Site Map</a>
       </div>
     </div>
     <div class="section-second-block">

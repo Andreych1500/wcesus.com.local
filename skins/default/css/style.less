@@ -1496,13 +1496,27 @@ div[data-view-section] {
       content: '';
       right: -40px;
       position: absolute;
-      border: 20px solid transparent;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-right: 20px solid transparent;
       border-left: 20px solid @bg-c5;
     }
 
     &:last-child::before {
       display: none;
     }
+  }
+}
+
+.site_map_list {
+  li {
+    margin: 5px 0;
+  }
+
+  .section {
+    list-style: none;
+    font-size: 18px;
+    margin-top: 25px;
   }
 }
 
