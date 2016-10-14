@@ -1,6 +1,6 @@
 <?php
 // Column translate
-$messG['active'] = array(
+$mess['active'] = array(
     0 => 'Нет',
     1 => 'Да'
 );
@@ -29,4 +29,10 @@ $mess['access'] = array(
 $mess['payment_status'] = array(
     0 => 'Неоплачено',
     1 => 'Оплачено'
+);
+
+$mess['type_faq'] = array(
+    1 => 'Students',
+    2 => 'Job Seekers',
+    3 => 'Immigrants',
 );

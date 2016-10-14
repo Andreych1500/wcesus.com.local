@@ -1,16 +1,16 @@
 <?php
 // Column translate
-$messG['active'] = array(
+$mess['active'] = array(
     0 => 'No',
     1 => 'Yes'
 );
 
-$messG['dinamic_page'] = array(
+$mess['dinamic_page'] = array(
     0 => 'No',
     1 => 'Yes'
 );
 
-$messG['detail_page'] = array(
+$mess['detail_page'] = array(
     0 => 'No',
     1 => 'Yes'
 );
@@ -29,4 +29,10 @@ $mess['access'] = array(
 $mess['payment_status'] = array(
     0 => 'Неоплачено',
     1 => 'Оплачено'
+);
+
+$mess['type_faq'] = array(
+    1 => 'Students',
+    2 => 'Job Seekers',
+    3 => 'Immigrants',
 );

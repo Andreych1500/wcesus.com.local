@@ -8,17 +8,16 @@ $admin_menu = array(
             'name'     => 'WCES',
             'icon'     => 'content',
             'sections' => array(
-                'Profiles' => array(
+                'Profiles'       => array(
                     'Inventory'           => '/admin/apply/',
                     'Educational History' => '/admin/apply/educational-history/',
                     'Applicant copy'      => '/admin/apply/copy-agency/',
                     'Cab applicant copy'  => '/admin/apply/cab-copy/'
                 ),
-                'For-students' => array(
-                    'Country' => '/admin/for-students/'
-                ),
-                'Main-banner' => array(
-                    'Banners' => '/admin/for-students/main-banner/'
+                'Related Topics' => array(
+                    'Country' => '/admin/for-students/',
+                    'Banners' => '/admin/for-students/main-banner/',
+                    'FAQ'     => '/admin/static/faq/'
                 )
             )
         ),
@@ -66,17 +65,16 @@ $admin_menu = array(
             'name'     => 'WCES',
             'icon'     => 'content',
             'sections' => array(
-                'Profiles' => array(
+                'Profiles'       => array(
                     'Inventory'           => '/admin/apply/',
                     'Educational History' => '/admin/apply/educational-history/',
                     'Applicant copy'      => '/admin/apply/copy-agency/',
                     'Cab applicant copy'  => '/admin/apply/cab-copy/'
                 ),
-                'For-students' => array(
-                    'Country' => '/admin/for-students/'
-                ),
-                'Main-banner' => array(
-                    'Banners' => '/admin/for-students/main-banner/'
+                'Related Topics' => array(
+                    'Country' => '/admin/for-students/',
+                    'Banners' => '/admin/for-students/main-banner/',
+                    'FAQ'     => '/admin/static/faq/'
                 )
             )
         ),
@@ -124,17 +122,16 @@ $admin_menu = array(
             'name'     => 'WCES',
             'icon'     => 'content',
             'sections' => array(
-                'Profiles' => array(
+                'Profiles'       => array(
                     'Inventory'           => '/admin/apply/',
                     'Educational History' => '/admin/apply/educational-history/',
                     'Applicant copy'      => '/admin/apply/copy-agency/',
                     'Cab applicant copy'  => '/admin/apply/cab-copy/'
                 ),
-                'For-students' => array(
-                    'Country' => '/admin/for-students/'
-                ),
-                'Main-banner' => array(
-                    'Banners' => '/admin/for-students/main-banner/'
+                'Related Topics' => array(
+                    'Country' => '/admin/for-students/',
+                    'Banners' => '/admin/for-students/main-banner/',
+                    'FAQ'     => '/admin/static/faq/'
                 )
             )
         ),

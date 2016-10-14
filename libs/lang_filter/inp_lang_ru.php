@@ -51,3 +51,8 @@ $inpMess['payment_status'] = array(
     1 => 'Оплачено',
     2 => 'Провераетса'
 );
+$inpMess['type_faq'] = array(
+    1 => 'Students',
+    2 => 'Job Seekers',
+    3 => 'Immigrants',
+);

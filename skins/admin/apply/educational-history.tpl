@@ -107,7 +107,7 @@
             </div>
           <?php } ?>
 
-          <div class="add_more">Add more</div>
+          <div class="add_more" data-input-more="fileScan">Add more</div>
         </div>
       </div>
 

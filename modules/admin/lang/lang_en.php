@@ -42,6 +42,12 @@ $messG['payment_status'] = array(
     1 => 'Оплачено'
 );
 
+$messG['type_faq'] = array(
+    1 => 'Students',
+    2 => 'Job Seekers',
+    3 => 'Immigrants',
+);
+
 // All page
 $messG['Адміністративна панель title'] = 'Administrative panel title';
 $messG['Вихід'] = 'Output';

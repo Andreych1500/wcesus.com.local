@@ -24,11 +24,12 @@ $(document).ready(function () {
 
     // More photo add button
     $('.add_more').click(function () {
-        var input = $('.upload_file[id^="fileScan_"]');
+        var name = $(this).attr('data-input-more');
+        var input = $('.upload_file[id^="' + name + '_"]');
         var last_index = input.length - 1;
         ++last_index; // new id
 
-        var html = '<div class="input-value upload_file" id="fileScan_' + last_index + '" data-priority-type="img"><button type="button" onclick="getIdElement(this)"><span class="icon-link"></span>Select file</button><input name="fileScan[]" type="hidden" value=""><input name="del[fileScan][]" type="hidden" value=""><div class="photos hidden"><span class="icon-cross removeFile" onclick="removeImage(this)"></span><img src=""></div></div>';
+        var html = '<div class="input-value upload_file" id="' + name + '_' + last_index + '" data-priority-type="img"><button type="button" onclick="getIdElement(this)"><span class="icon-link"></span>Select file</button><input name="' + name + '[]" type="hidden" value=""><input name="del[' + name + '][]" type="hidden" value=""><div class="photos hidden"><span class="icon-cross removeFile" onclick="removeImage(this)"></span><img src=""></div></div>';
 
         input.last().after(html);
     });
@@ -307,8 +308,8 @@ $(document).ready(function () {
     }
 
     // Import replace
-    $('select[name="type_import"]').change(function(){
-        if($(this).val() == 'csv'){
+    $('select[name="type_import"]').change(function () {
+        if ($(this).val() == 'csv') {
             $('select[name="what_option"] option:not([disabled])').attr('disabled', true).hide();
             $('option[data-option="csv"]').removeAttr('disabled').attr('selected', true).show().trigger('click');
         } else {
