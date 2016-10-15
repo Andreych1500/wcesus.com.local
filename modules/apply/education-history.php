@@ -163,7 +163,7 @@ if($data = ApplyCard::checkData()){
         ");
 
         if($step2->num_rows == 0){
-           sessionInfo('/apply/education-history/', '<p>Будь-ласка заповніть хочаб одну свою історію навчання!</p>');
+           sessionInfo('/apply/education-history/', '<p>Please fill in at least one educational history!</p>');
         }
 
         setcookie('idCardHash', $data['idCardHash'], time() + 3600, '/');

@@ -147,6 +147,10 @@ div, p, a, span, ul, li, table, tr, td, h1, h2, h3 {
   }
 }
 
+.clear {
+  clear: both;
+}
+
 .clear-fix() {
   width: 98%;
   padding: 0 1%;
@@ -971,6 +975,10 @@ nav {
   nav {
     display: block;
   }
+
+  .item-top .active, .item-mega .active {
+    text-decoration: underline;
+  }
 }
 
 .overlapblackbg {
@@ -1518,6 +1526,87 @@ div[data-view-section] {
     font-size: 18px;
     margin-top: 25px;
   }
+}
+
+.faq-items {
+  &:extend(.clearfix all);
+  margin: 20px 0;
+  font-family: @font-Raleway;
+
+  .answer {
+    &:extend(.clearfix all);
+    display: none;
+    margin: 2px 4px;
+    padding: 4px 4px;
+    background: #fff;
+    .border-radius(3px);
+  }
+
+  img {
+    float: left;
+    margin: 5px 5px 10px 0;
+  }
+
+  a {
+    text-decoration: underline;
+    color: @color3;
+    .transition(all 0.3s ease);
+
+    &:hover {
+      color: #0e90d2;
+      text-decoration: none;
+      .transition(all 0.3s ease);
+    }
+  }
+
+  .item {
+    border-bottom: 1px solid #0c6333;
+    margin: 10px 0;
+    padding: 4px 1px;
+    .transition(all 0.3s);
+
+    &:hover, &.active {
+      background: #0c6333;
+      .border-radius(3px);
+      .transition(all 0.3s);
+
+      .x-icon-question {
+        background: #ffffff;
+        color: #0c6333;
+        .transition(all 0.3s);
+      }
+
+      .question-text {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.no-question {
+  color: #0c6333;
+  font-family: @font-Raleway;
+  font-size: 18px;
+  border-bottom: 1px solid #0c6333;
+}
+
+.x-icon-question {
+  background: #0c6333;
+  color: #ffffff;
+  margin: 3px 4px;
+  width: 25px;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  .border-radius(3px);
+  .transition(all 0.3s);
+}
+
+.question-text {
+  margin: 0 4px;
+  display: inline-block;
+  color: #0c6333;
+  .border-radius(3px);
 }
 
 .header-goForm {

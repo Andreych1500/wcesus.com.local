@@ -104,6 +104,22 @@ $(document).ready(function () {
         });
     });
 
+    // Click in FAQ
+    $('.faq-items .item').click(function(e){
+        e = e || event;
+        var target = e.target;
+
+        if(!$(target).is('.answer')) {
+           if($(this).is('.active')){
+               $(this).removeClass('active');
+           } else {
+               $(this).addClass('active');
+           }
+
+            $(this).find('.answer').slideToggle('slow');
+        }
+    });
+
     // Scroll menu
     $(window).scroll(function () {
         var scrolledY = window.pageYOffset || document.documentElement.scrollTop;

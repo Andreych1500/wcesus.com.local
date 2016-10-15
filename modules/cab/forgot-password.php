@@ -43,10 +43,10 @@ if(isset($_POST['ok'], $_POST['email'])){
                 Mail::$to = $_POST['email'];
                 Mail::send();
             }
-            sessionInfo('/cab/', '<p>The operation was successful! На ваш емейл був відправлений лисс з новим паролем довашого кабінету.</p>', 1);
+            sessionInfo('/cab/', '<p>The operation was successful! The new password to your account has been sent to your Email.</p>', 1);
         } else {
             $check['email'] = 'class="error"';
-            sessionInfo('/cab/forgot-password/', '<p>Не знайдено жодного запису емейл адреса чи історії платижів з цим адресов.</p>');
+            sessionInfo('/cab/forgot-password/', '<p>No payment history or account information are associated with this Email.</p>');
         }
     }
 }

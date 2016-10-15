@@ -48,18 +48,14 @@ if(isset($_GET['add'])){
             $_POST['active'] = !isset($_POST['active'])? 0 : (int)$_POST['active'];
             $_POST['sort'] = (!isset($_POST['sort'])? 100 : $_POST['sort']);
 
-            $arImage = array(
-                'img' => $_POST['img'],
-            );
-
-            foreach($arImage as $k => $v){
+            foreach($_POST['img'] as $k => $v){
                 if(!empty($v) && file_exists($_SERVER['DOCUMENT_ROOT'].$v)){
                     rename($_SERVER['DOCUMENT_ROOT'].$v, $_SERVER['DOCUMENT_ROOT'].'/uploaded/faq/'.basename($v));
                     $image[$k] = '/uploaded/faq/'.basename($v);
                 }
             }
 
-            $image = trim(implode('#|#', $_POST['img']), '#|#');
+            $image = implode('#|#', $image);
 
             q("
                 UPDATE `admin_faq` SET
