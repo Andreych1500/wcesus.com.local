@@ -1536,6 +1536,7 @@ div[data-view-section] {
   .answer {
     &:extend(.clearfix all);
     display: none;
+    cursor: default;
     margin: 2px 4px;
     padding: 4px 4px;
     background: #fff;
@@ -1560,6 +1561,7 @@ div[data-view-section] {
   }
 
   .item {
+    cursor: pointer;
     border-bottom: 1px solid #0c6333;
     margin: 10px 0;
     padding: 4px 1px;
@@ -1984,6 +1986,42 @@ div.error {
       width: 100%;
     }
 
+  }
+}
+
+.table-fees {
+  width: 100%;
+  color: @color4;
+  font-family: @font-Raleway;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+
+  td {
+    border: 1px solid #ccc;
+    padding: 4px;
+
+    &:not([colspan]):nth-child(odd) {
+      text-align: center;
+    }
+  }
+
+  .silver-br {
+    background: #f3f3f3;
+  }
+
+  .top-line {
+    background: #0f8644;
+    color: #ffffff;
+  }
+
+  @media screen and (max-width: 520px) {
+    display: block;
+    overflow-x: auto;
+
+    tbody {
+      display: table;
+      width: 100%;
+    }
   }
 }
 
