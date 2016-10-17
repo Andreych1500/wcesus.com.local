@@ -758,7 +758,7 @@ nav {
       & > a {
         color: @color4;
         line-height: 94px;
-        padding-left: 20px;
+        padding-left: 15px;
         font-family: @font-Raleway;
         .transition(all 0.5s ease);
 
@@ -767,6 +767,10 @@ nav {
           .transition(all 0.5s ease);
         }
       }
+
+      &:last-child > .sub-menu{
+        right: -10px;
+      }
     }
 
     .item-top {
@@ -774,7 +778,7 @@ nav {
 
       &:not(:last-child) > a::after {
         content: "|";
-        padding-left: 20px;
+        padding-left: 15px;
         color: #dfdfdf;
         font-size: 1em;
       }

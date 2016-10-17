@@ -47,88 +47,30 @@
       <a class="logo" href="/"> <img src="/skins/default/img/logo.png" alt="logo" title="logo"></a>
       <nav itemscope="" itemtype="http://www.schema.org/SiteNavigationElement">
         <ul>
-          <li class="item-top no-sub">
-            <a href="/" itemprop="url"><span itemprop="name">Home</span></a>
-          </li>
+          <?php foreach($menu as $name => $v){
+            if(is_array($v)){ ?>
+              <li class="item-top">
+                <a href="<?=$v['this']?>" itemprop="url" title="<?=$name?>"><?=$name?>
+                  <meta itemprop="name" content="<?=$name?>">
+                </a>
 
-          <li class="item-top">
-            <a href="/for-students/" itemprop="url"> Students
-              <meta itemprop="name" content="Students">
-            </a>
+                <?php unset($v['this']); ?>
 
-            <ul class="sub-menu">
-              <li><a href="/apply/" rel="nofollow">Apply</a></li>
-              <li>
-                <a href="/for-students/required-documents/" itemprop="url"> Required Documents
-                  <meta itemprop="name" content="Students Required Documents">
-                </a>
+                <ul class="sub-menu">
+                  <?php foreach($v as $name2 => $v2){ ?>
+                    <li><a href="<?=$v2?>" itemprop="url" title="<?=$name2?>"><?=$name2?>
+                        <meta itemprop="name" content="<?=$name2?>">
+                      </a></li>
+                  <?php } ?>
+                </ul>
               </li>
-              <li>
-                <a href="/for-students/fees/" itemprop="url"> Fees
-                  <meta itemprop="name" content="Students Fees">
-                </a>
+            <?php } else { ?>
+              <li class="item-top no-sub">
+                <a href="<?=$v?>" itemprop="url" title="<?=$name?>"><span itemprop="name"><?=$name?></span></a>
               </li>
-              <li>
-                <a href="/for-students/faq/" itemprop="url"> FAQ
-                  <meta itemprop="name" content="Students FAQ">
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="item-top">
-            <a href="/job-seekers/" itemprop="url"> Job Seekers
-              <meta itemprop="name" content="Job Seekers">
-            </a>
-
-            <ul class="sub-menu">
-              <li><a href="/apply/" rel="nofollow">Apply</a></li>
-              <li>
-                <a href="/job-seekers/required-documents/" itemprop="url"> Required Documents
-                  <meta itemprop="name" content="Job Seekers Required Documents">
-                </a>
-              </li>
-              <li>
-                <a href="/job-seekers/fees/" itemprop="url"> Fees
-                  <meta itemprop="name" content="Job Seekers Fees">
-                </a>
-              </li>
-              <li>
-                <a href="/job-seekers/faq/" itemprop="url"> FAQ
-                  <meta itemprop="name" content="Job Seekers FAQ">
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="item-top">
-            <a href="/immigrants/" itemprop="url"> Immigrants
-              <meta itemprop="name" content="Immigrants">
-            </a>
-
-            <ul class="sub-menu">
-              <li><a href="/apply/" rel="nofollow">Apply</a></li>
-              <li>
-                <a href="/immigrants/required-documents/" itemprop="url"> Required Documents
-                  <meta itemprop="name" content="Immigrants Required Documents">
-                </a>
-              </li>
-              <li>
-                <a href="/immigrants/fees/" itemprop="url"> Fees
-                  <meta itemprop="name" content="Immigrants Fees">
-                </a>
-              </li>
-              <li>
-                <a href="/immigrants/faq/" itemprop="url"> FAQ
-                  <meta itemprop="name" content="Immigrants FAQ">
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="item-top no-sub">
-            <a href="/static/about-us/" itemprop="url"><span itemprop="name">About Us</span></a>
-          </li>
+            <?php }
+          }
+          ?>
         </ul>
       </nav>
       <div id="wsnavtoggle"><span></span></div>

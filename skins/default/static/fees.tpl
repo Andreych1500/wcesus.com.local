@@ -1,5 +1,5 @@
 <div class="clear-fix apply-user">
-  <div class="header-question">bla bla</div>
+  <div class="header-question">WCES Fee</div>
 
   <table class="table-fees">
     <tr>

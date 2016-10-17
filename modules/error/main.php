@@ -26,3 +26,28 @@ if(isset($_SERVER['REDIRECT_STATUS']) && $_SERVER['REDIRECT_STATUS'] == 403){
     $_SERVER['REDIRECT_REDIRECT_STATUS'] = 404;
     $status_error = 404;
 }
+
+$menu = array(
+    'Home'        => array(
+        'this'        => '/',
+        'About Us'    => '/static/about-us/',
+        'Credentials' => '/static/required-documents/'
+    ),
+    'Students'    => array(
+        'this'               => '/for-students/',
+        'Required Documents' => '/for-students/required-documents/',
+        'FAQ'                => '/for-students/faq/'
+    ),
+    'Job Seekers' => array(
+        'this'               => '/job-seekers/',
+        'Required Documents' => '/job-seekers/required-documents/',
+        'FAQ'                => '/job-seekers/faq/'
+    ),
+    'Immigrants'  => array(
+        'this'               => '/immigrants/',
+        'Required Documents' => '/immigrants/required-documents/',
+        'FAQ'                => '/immigrants/faq/'
+    ),
+    'Fees'                 => '/static/fees/',
+    'Apply Now'            => '/apply/',
+);

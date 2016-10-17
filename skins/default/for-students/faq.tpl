@@ -11,7 +11,7 @@
         <div class="item">
           <span class="x-icon-question">?</span>
           <p class="question-text"><?=$v['question']?></p>
-          <div class="answer"><?=$v['answer']?></div>
+          <div class="answer"><?=nl2br($v['answer'])?></div>
         </div>
       <?php } ?>
 
