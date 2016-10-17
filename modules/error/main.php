@@ -31,7 +31,7 @@ $menu = array(
     'Home'        => array(
         'this'        => '/',
         'About Us'    => '/static/about-us/',
-        'Credentials' => '/static/required-documents/'
+        'Credentials' => '/static/credentials/'
     ),
     'Students'    => array(
         'this'               => '/for-students/',

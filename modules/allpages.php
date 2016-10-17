@@ -112,7 +112,7 @@ if(Core::$CONT != 'modules/admin'){
         'Home'        => array(
             'this'        => '/',
             'About Us'    => '/static/about-us/',
-            'Credentials' => '/static/required-documents/'
+            'Credentials' => '/static/credentials/'
         ),
         'Students'    => array(
             'this'               => '/for-students/',
@@ -129,8 +129,8 @@ if(Core::$CONT != 'modules/admin'){
             'Required Documents' => '/immigrants/required-documents/',
             'FAQ'                => '/immigrants/faq/'
         ),
-        'Fees'                 => '/static/fees/',
-        'Apply Now'            => '/apply/',
+        'Fees'        => '/static/fees/',
+        'Apply Now'   => '/apply/',
     );
 } else {
 
