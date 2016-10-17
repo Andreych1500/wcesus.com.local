@@ -105,19 +105,58 @@ $(document).ready(function () {
     });
 
     // Click in FAQ
-    $('.faq-items .item').click(function(e){
+    $('.faq-items .item').click(function (e) {
         e = e || event;
         var target = e.target;
 
-        if(!$(target).is('.answer')) {
-           if($(this).is('.active')){
-               $(this).removeClass('active');
-           } else {
-               $(this).addClass('active');
-           }
+        if (!$(target).is('.answer')) {
+            if ($(this).is('.active')) {
+                $(this).removeClass('active');
+            } else {
+                $(this).addClass('active');
+            }
 
             $(this).find('.answer').slideToggle('slow');
         }
+    });
+
+    // Change country documents
+    $('select[name="country_doc"]').change(function () {
+        var code = $(this).val();
+        var name = $(this).find('option[value="' + code + '"]').text();
+        var path = window.location.pathname;
+
+        if (code.length > 0) {
+            $.ajax({
+                url: path + "?ajax=ok",
+                type: "POST",
+                data: {'code': code},
+                cache: false,
+                success: function (response) {
+                    var res = JSON.parse(response);
+
+                    if (res['error'] === undefined) {
+                       $('.documents').attr('href', res['doc']).text(name).removeClass('hiddenIM');
+                    } else {
+                        $('.documents').addClass('hiddenIM');
+                        alert(res['error']);
+                    }
+
+                }
+            });
+        } else {
+            $('.documents').addClass('hiddenIM');
+        }
+    });
+
+    // Download file
+    $('.documents').click(function(e){
+        e.preventDefault();
+
+        window.downloadFile.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+        window.downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
+
+        downloadFile($(this).attr('href'));
     });
 
     // Scroll menu
@@ -186,4 +225,33 @@ function Slider(eq, animate, stop) {
             Slider(undefined, 'Y', 'Y');
         }, 20000);
     }
+}
+
+function downloadFile(sUrl) {
+
+    //If in Chrome or Safari - download via virtual link click
+    if (window.downloadFile.isChrome || window.downloadFile.isSafari) {
+        //Creating new link node.
+        var link = document.createElement('a');
+        link.href = sUrl;
+
+        if (link.download !== undefined){
+            //Set HTML5 download attribute. This will prevent file from opening if supported.
+            var fileName = sUrl.substring(sUrl.lastIndexOf('/') + 1, sUrl.length);
+            link.download = fileName;
+        }
+
+        //Dispatching click event.
+        if (document.createEvent) {
+            var e = document.createEvent('MouseEvents');
+            e.initEvent('click' ,true ,true);
+            link.dispatchEvent(e);
+            return true;
+        }
+    }
+
+    // Force file download (whether supported by server).
+    var query = '?download';
+
+    window.open(sUrl + query, '_self');
 }
