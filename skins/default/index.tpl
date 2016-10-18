@@ -61,7 +61,7 @@
           <?php foreach($menu as $name => $v){
             if(is_array($v)){ ?>
               <li class="item-top">
-                <a href="<?=$v['this']?>" itemprop="url" title="<?=$name?>">
+                <a href="<?=$v['this']?>" itemprop="url">
                   <?=$name?>
                   <meta itemprop="name" content="<?=$name?>">
                 </a>
@@ -71,7 +71,7 @@
                 <ul class="sub-menu">
                   <?php foreach($v as $name2 => $v2){ ?>
                     <li>
-                      <a href="<?=$v2?>" itemprop="url" title="<?=$name2?>">
+                      <a href="<?=$v2?>" itemprop="url">
                         <?=$name2?>
                         <meta itemprop="name" content="<?=$name2?>">
                       </a>
@@ -81,7 +81,7 @@
               </li>
             <?php } else { ?>
               <li class="item-top no-sub">
-                <a href="<?=$v?>" itemprop="url" title="<?=$name?>"><span itemprop="name"><?=$name?></span></a>
+                <a href="<?=$v?>" itemprop="url"><span itemprop="name"><?=$name?></span></a>
               </li>
             <?php }
           }

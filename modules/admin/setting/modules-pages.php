@@ -29,6 +29,7 @@ if(isset($_REQUEST['add'])){
 
             $_POST['active'] = !isset($_POST['active'])? 0 : (int)$_POST['active'];
 
+
             q(" INSERT INTO `admin_module_pages` SET
                 `active`       = ".$_POST['active'].",
                 `module`       = '".$_POST['module']."',
@@ -67,9 +68,6 @@ if(isset($_REQUEST['add'])){
         $meta_keywords = (isset($_POST['meta_keywords'])? implode('#|#', $_POST['meta_keywords']) : '');
         $meta_description = (isset($_POST['meta_description'])? implode('#|#', $_POST['meta_description']) : '');
 
-        // Photo
-        $og_image = ((isset($_POST['og_image']))? explode('|', $_POST['og_image']) : '');
-
         if(in_array('class="error"', $check)){
             $error['stop'] = 1;
         }
@@ -81,6 +79,19 @@ if(isset($_REQUEST['add'])){
             $_POST['detail_page'] = !isset($_POST['detail_page'])? 0 : (int)$_POST['detail_page'];
             $_POST['dinamic_page'] = !isset($_POST['dinamic_page'])? 0 : (int)$_POST['dinamic_page'];
             $_POST['open_graph_page'] = !isset($_POST['open_graph_page'])? 0 : (int)$_POST['open_graph_page'];
+
+            $arImage = array(
+                'og_image'  => $_POST['og_image'],
+            );
+
+            foreach($arImage as $k => $v){
+                if(!empty($v) && file_exists($_SERVER['DOCUMENT_ROOT'].$v)){
+                    rename($_SERVER['DOCUMENT_ROOT'].$v, $_SERVER['DOCUMENT_ROOT'].'/uploaded/og/'.basename($v));
+                    $og_image[$k] = '/uploaded/og/'.basename($v);
+                }
+            }
+
+            $og_image = implode('#|#', $og_image);
 
             q(" UPDATE `admin_module_pages` SET
                 `active`           = ".$_POST['active'].",
@@ -94,7 +105,7 @@ if(isset($_REQUEST['add'])){
                 `open_graph_page`  = '".$_POST['open_graph_page']."',
                 `og_type`          = '".$_POST['og_type']."',
                 `og_url`          = '".$_POST['og_url']."',
-                `og_image`           = '".mres($og_image[0])."',
+                `og_image`           = '".mres($og_image)."',
                 `user_custom`  = '".mres($_SESSION['user']['last_name'].' '.$_SESSION['user']['name'])."'
                 WHERE `id` = ".(int)$_REQUEST['edit']."
             ");
