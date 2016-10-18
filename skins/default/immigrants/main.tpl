@@ -1,24 +1,24 @@
 <div class="clear-fix">
   <div class="main-free-item">
-    <h2> Latest Courses </h2>
     <?php foreach($arBlock as $k => $v){ ?>
       <div class="course-item">
         <div class="course-hover">
-          <img src="<?=$v['img']?>" alt="<?=$v['name']?>" title="<?=$v['name']?>">
+          <img src="<?=$v['img']?>" alt="<?=$v['alt_img']?>">
           <div class="hover-bg"></div>
-          <a href="<?=$v['learn_Link']?>">Learn More</a>
+          <a href="/apply/">Apply Now</a>
         </div>
 
         <div class="course-name">
           <span class="price"><?=$v['price']?></span>
-          <div><a href="<?=$v['link_T_link']?>"><?=$v['text_link']?></a></div>
+          <div><?=$v['name']?></div>
         </div>
 
-        <div class="course-date">
-          <div class="day"><i class="icon-calendar"></i><?=$v['date']?></div>
-          <div class="time"><i class="icon-clock"></i><?=$v['time']?></div>
+        <div class="course-desc">
+          <div class="desc-text"><?=$v['description']?></div>
           <div class="divider"></div>
-          <div class="description"><?=$v['description']?></div>
+          <div class="reqDoc">
+            <a href="/for-students/required-documents/">Required Documents</a>
+          </div>
         </div>
       </div>
     <?php } ?>

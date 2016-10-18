@@ -315,6 +315,7 @@ main {
 }
 
 .main-free-item {
+  margin-top: 20px;
   &:extend(.clearfix all);
 
   h2 {
@@ -325,37 +326,6 @@ main {
     margin: 15px 0;
     color: @color2;
     font-family: @font-Merriweather;
-  }
-}
-
-.course-item {
-  float: left;
-  width: 31.3%;
-  margin: 0 1% 15px;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
-  .border-radius(4px);
-
-  @media screen and (max-width: 800px) {
-    width: 48%;
-  }
-
-  @media screen and (max-width: 540px) {
-    width: 90%;
-    margin: 0 5% 15px;
-  }
-
-  &:nth-child(3n + 2) .hover-bg, &:nth-child(3n + 2) .course-date {
-    background: @bg-c4;
-  }
-
-  &:nth-child(3n + 3) .hover-bg, &:nth-child(3n + 3) .course-date {
-    background: #e3983f;
-  }
-
-  &:nth-child(3n + 4) .hover-bg, &:nth-child(3n + 4) .course-date {
-    background: @bg-c2;
   }
 }
 
@@ -441,6 +411,37 @@ main {
   }
 }
 
+.course-item {
+  float: left;
+  width: 31.3%;
+  margin: 0 1% 15px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  .border-radius(4px);
+
+  @media screen and (max-width: 840px) {
+    width: 48%;
+  }
+
+  @media screen and (max-width: 540px) {
+    width: 90%;
+    margin: 0 5% 15px;
+  }
+
+  &:nth-child(3n - 2) .course-desc, &:nth-child(3n - 2) .hover-bg {
+    background: @bg-c4;
+  }
+
+  &:nth-child(3n - 1) .course-desc, &:nth-child(3n - 1) .hover-bg {
+    background: #e3983f;
+  }
+
+  &:nth-child(3n) .course-desc, &:nth-child(3n) .hover-bg {
+    background: @bg-c2;
+  }
+}
+
 .course-hover {
   position: relative;
   z-index: 1;
@@ -505,24 +506,21 @@ main {
 }
 
 .course-name {
-  padding: 10px 24px;
+  padding: 10px;
   background-color: #333333;
   &:extend(.clearfix all);
 
+  @media screen and (min-width: 921px) {
+    font-size: 18px;
+  }
+
   div {
     display: inline-block;
-    font-size: 15px;
     clear: none;
     color: #ffffff;
     margin: 0;
     font-weight: 400;
     font-family: @font-Raleway;
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      .transition(all 0.3s);
-    }
   }
 
   .price {
@@ -534,41 +532,35 @@ main {
   }
 }
 
-.course-date {
-  padding: 20px 24px;
+.course-desc {
+  padding: 10px;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   font-family: @font-Raleway;
 
-  .day {
-    i {
-      margin-right: 4px;
-    }
-
-    display: inline-block;
-  }
-
-  .time {
-    i {
-      margin-right: 4px;
-    }
-
-    float: right;
+  p {
+    margin-bottom: 5px;
+    text-align: justify;
   }
 
   .divider {
-    width: 70px;
+    width: 110px;
     height: 2px;
     clear: both;
     background-color: #ffffff;
     margin: 15px auto;
   }
+}
 
-  .description {
-    text-align: center;
-    font-size: 15px;
-    font-weight: 400;
+.reqDoc {
+  text-align: center;
+  a {
+    color: #ffffff;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -768,7 +760,7 @@ nav {
         }
       }
 
-      &:last-child > .sub-menu{
+      &:last-child > .sub-menu {
         right: -10px;
       }
     }
@@ -1336,6 +1328,51 @@ footer {
   }
 }
 
+select[name="country_doc"] {
+  height: 46px;
+  padding: 6px 14px;
+  font-size: 18px;
+  color: #666666;
+  .border-radius(4px);
+}
+
+.document-block-a {
+  margin-top: 30px;
+
+  .download {
+    margin-top: 10px;
+    max-width: 235px;
+  }
+
+  a {
+    font-family: @font-Merriweather;
+    color: #ffffff;
+    background: #ef4429;
+    padding: 10px 25px;
+    text-align: center;
+    .border-radius(4px);
+    .transition(all 0.5s);
+
+    &:hover {
+      text-decoration: underline;
+      .box-shadow(0 0 10px rgba(0,0,0,.54));
+      .transition(all 0.5s);
+    }
+  }
+}
+
+.no-country {
+  font-size: 18px;
+  color: @color3;
+  font-family: @font-Raleway;
+  border-bottom: 1px solid @color3;
+}
+
+.mar-top {
+  margin-top: 30px;
+  display: inline-block;
+}
+
 .apply-user {
   &:extend(.clearfix all);
   padding-top: 15px;
@@ -1346,6 +1383,14 @@ footer {
 
   & > p {
     margin: 5px 0;
+  }
+
+  ol {
+    list-style-position: inside;
+
+    li {
+      margin: 5px 0;
+    }
   }
 
   ul {

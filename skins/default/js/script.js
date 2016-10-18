@@ -136,21 +136,22 @@ $(document).ready(function () {
                     var res = JSON.parse(response);
 
                     if (res['error'] === undefined) {
-                       $('.documents').attr('href', res['doc']).text(name).removeClass('hiddenIM');
+                        $('.document-block-a').addClass('hiddenIM').removeClass('hiddenIM')
+                        $('.document-block-a a').attr('href', res['doc']).text('Download: ' + name + '.pdf');
                     } else {
-                        $('.documents').addClass('hiddenIM');
+                        $('.document-block-a').addClass('hiddenIM');
                         alert(res['error']);
                     }
 
                 }
             });
         } else {
-            $('.documents').addClass('hiddenIM');
+            $('.document-block-a').addClass('hiddenIM');
         }
     });
 
     // Download file
-    $('.documents').click(function(e){
+    $('.document-block-a a').click(function (e) {
         e.preventDefault();
 
         window.downloadFile.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
@@ -162,20 +163,51 @@ $(document).ready(function () {
     // Scroll menu
     $(window).scroll(function () {
         var scrolledY = window.pageYOffset || document.documentElement.scrollTop;
+        var scrolling = $('.scrolling');
 
         if (scrolledY >= 40) {
-            if (!$('.scrolling').is('.fixed')) {
-                $('.scrolling').addClass('fixed');
+            if (!scrolling.is('.fixed')) {
+                scrolling.addClass('fixed');
             }
         } else {
-            if ($('.scrolling').is('.fixed')) {
-                $('.scrolling').removeClass('fixed');
+            if (scrolling.is('.fixed')) {
+                scrolling.removeClass('fixed');
             }
         }
     });
 
+    $(window).resize(function () {
+        if ($(window).outerWidth(true) > 540) { // Костиль під одинакову висоту блоків
+            setEqualHeight($('.course-desc'));
+        } else {
+            $(".desc-text").removeAttr('style');
+        }
+    });
+
     $(window).scroll();
+    $(window).resize();
 });
+
+function setEqualHeight(resizeBlock) {
+    var columnHeight = 0;
+    var allHeightP;
+
+    resizeBlock.each(
+        function () {
+            if ($(this).height() > columnHeight) {
+                allHeightP = 0;
+
+                $(this).find('.desc-text p').each(function () {
+                    allHeightP = allHeightP + $(this).outerHeight(true);
+                });
+            }
+        }
+    );
+
+    if ($('.desc-text').css('min-height') != allHeightP) {
+        $('.desc-text').css('min-height', allHeightP);
+    }
+}
 
 function closeMobMenu() {
     $('#wsnavtoggle').trigger('click');
@@ -235,16 +267,15 @@ function downloadFile(sUrl) {
         var link = document.createElement('a');
         link.href = sUrl;
 
-        if (link.download !== undefined){
+        if (link.download !== undefined) {
             //Set HTML5 download attribute. This will prevent file from opening if supported.
-            var fileName = sUrl.substring(sUrl.lastIndexOf('/') + 1, sUrl.length);
-            link.download = fileName;
+            link.download = sUrl.substring(sUrl.lastIndexOf('/') + 1, sUrl.length);
         }
 
         //Dispatching click event.
         if (document.createEvent) {
             var e = document.createEvent('MouseEvents');
-            e.initEvent('click' ,true ,true);
+            e.initEvent('click', true, true);
             link.dispatchEvent(e);
             return true;
         }

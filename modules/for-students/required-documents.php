@@ -15,7 +15,7 @@ if(isset($_GET['ajax'], $_POST['code']) && !empty($_POST['code'])){
         echo json_encode(array('doc' => $document));
         exit();
     } else {
-        echo json_encode(array('error' => 'Країни з таким ісям неіснує!'));
+        echo json_encode(array('error' => 'Країни з таким кодовим словом не знайдено!'));
         exit();
     }
 }
