@@ -20,7 +20,7 @@
     </tr>
     <tr>
       <td>3</td>
-      <td>Course-by-course</td>
+      <td>Course-by-Course Report</td>
       <td>$135.00</td>
     </tr>
     <tr>
@@ -31,12 +31,12 @@
     </tr>
     <tr>
       <td>1</td>
-      <td>Ordered at Time of Application (limit 4)</td>
+      <td>Ordered at the Time of Application (limit 4)</td>
       <td>$0.00</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>Ordered After Completion of Evaluation(included PDF of Fax copy)</td>
+      <td>Ordered After the Completion of Evaluation (included PDF of Fax copy)</td>
       <td>$20.00</td>
     </tr>
     <tr>
@@ -57,7 +57,7 @@
       <td colspan="3" class="top-line">Delivery</td>
     </tr>
     <tr>
-      <td colspan="3"><b>U.S. Postal Service – U.S.Delivery(per address)</b></td>
+      <td colspan="3"><b>U.S. Postal Service – U.S.Delivery (per address)</b></td>
     </tr>
     <tr>
       <td>1</td>
@@ -93,7 +93,7 @@
       <td>$125.00</td>
     </tr>
     <tr>
-      <td colspan="3">* delivery times vary depending on destination</td>
+      <td colspan="3">* Delivery times vary depending on destination</td>
     </tr>
     <tr>
       <td colspan="3"><br></td>

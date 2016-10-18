@@ -18,10 +18,7 @@
     <div class="no-country">Помилка: Жодної країни не знайдено!</div>
   <?php } ?>
 
-  <div class="document-block-a hiddenIM">
-    Your file document:
-    <div class="download"><a href=""></a></div>
-  </div>
+  <div class="document-block-a hiddenIM"><a href=""></a></div>
 
   <h2 class="header-question">Additional Instructions:</h2>
   <ol>

@@ -49,7 +49,7 @@
         <a class="cab-link" href="/cab/?exit=ok" title="Exit profile" rel="nofollow">Sign out</a>
       <?php } ?>
       <a class="icon-user" href="/cab/" title="Profile" rel="nofollow"></a>
-      <a href="<?=(isMobile()? 'tel:' : 'callto:').calltoPhone('2102152724')?>" title="text"><i class="icon-phone"></i>+1-210-215-2724</a>
+      <a href="<?=(isMobile()? 'tel:' : 'callto:').calltoPhone('2102152724')?>" title="text"><i class="icon-phone"></i>+1 (210) 215-2724</a>
       <a href="mailto:info@wcesus.com" title="text"><i class="icon-mail"></i>info@wcesus.com</a>
     </address>
   </div>
@@ -101,9 +101,10 @@
     <div class="section-first-block">
       <div class="fs-big-link">Contact Us<span class="icon-mortar-board"></span></div>
       <address>
-        <a href="<?=(isMobile()? 'tel:' : 'callto:').calltoPhone('2102152724')?>" title="#"><span class="icon-phone"></span>+1(210)215-2724</a>
+        <a href="<?=(isMobile()? 'tel:' : 'callto:').calltoPhone('2102152724')?>" title="#"><span class="icon-phone"></span>+1 (210) 215-2724</a>
         <a href="mailto:info@wcesus.com" title="info@wcesus.com"><span class="icon-mail"></span>info@wcesus.com</a>
-        <p><span class="icon-home"></span>4535 Schertz Rd, Suite 406, San Antonio, TX, 78233, USA</p>
+        <p><span class="icon-home"></span>4535 Schertz Rd, Suite 406, 
+        <br>San Antonio, TX, 78233, USA</p>
       </address>
       <div class="bottom-info-link">
         <a href="/static/terms-conditions/" title="Terms & Conditions">Terms & Conditions</a>
@@ -126,7 +127,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="content">wcesus &copy;<?=Core::$DATA?>. All Rights Reserved</div>
+    <div class="content">WCES &copy;<?=Core::$DATA?>. All Rights Reserved</div>
   </div>
 </footer>
 
