@@ -50,7 +50,11 @@
         <li><span class="accent">*</span> WCES Country-Specific Requirements</li>
       </ul>
 
-      <div class="name-section">I have reviewed and understood the Document Requirements outlined above:</div>
+      <div class="name-section link-style-1">I have reviewed and understood the
+        <a href="/for-students/required-documents/" data-section="1">Document Requirements</a>
+        <a href="/job-seekers/required-documents/" data-section="2">Document Requirements</a>
+        <a href="/immigrants/required-documents/" data-section="3">Document Requirements</a>
+        <span data-section="4">Document Requirements</span> outlined above:</div>
       <select name="document_requirements" <?=(isset($check['document_requirements'])? $check['document_requirements'] : '')?>>
         <?php foreach($param['document_requirements'] as $k => $v){ ?>
           <option value="<?=$k?>" <?=((isset($_POST['document_requirements']) && $_POST['document_requirements'] == $k || $k === 0)? 'selected' : "")?>>

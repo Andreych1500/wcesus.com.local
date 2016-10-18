@@ -56,11 +56,11 @@
 </div>
 
 <div class="confirm_agreement">
-  <b class="iH3">Basic Services:</b>
+  <div class="header-section">Basic Services</div>
   <p>The standard processing time for the World Class Evaluation Services (WCES) evaluations is seven (5) business days from the day that WCES receives the complete application. The application is considered as complete if the fallowing procedures are met: all required documents are obtained in the manner of demand, the application is complete, and the full payment of fees is received.</p>
   <p>Documents requirements for evaluation report are specific for each country. WCES may terminate some countries from eligibility for evaluation reports. Follow the link for documents requirements for the specific country. ALL Documents received by WCES become the property of WCES and will be preserved for 25 (twenty-five) years. ALL documents submitted to WCES will not be released to the applicant or any other institution. WCES reserves the right to revoke any application among the submitted documents.</p>
 
-  <div class="header-section">WCES Procedures and Policies:</div>
+  <div class="header-section">WCES Procedures and Policies</div>
 
   <b class="iH3">DOCUMENT VERIFICATION</b>
   <p>WCES verifies documents for authenticity trough the desired Authorities, Institutions, Ministry of Education, and other recognized organizations.</p>

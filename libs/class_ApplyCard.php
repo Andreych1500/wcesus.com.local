@@ -90,7 +90,7 @@ class ApplyCard {
                 $param['main_purpose'] = array(
                     0 => 'Choose one...',
                     1 => 'Education',
-                    2 => 'Employment / Salary Adjustment',
+                    2 => 'Employment / Job Seekers',
                     3 => 'Immigration',
                     4 => 'Other'
                 );

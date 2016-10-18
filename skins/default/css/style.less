@@ -1334,8 +1334,17 @@ select[name="country_doc"] {
   font-size: 18px;
   color: #666666;
   border: 1px solid #666;
-  .box-shadow(0 0 10px rgba(0,0,0,.24));
+  .box-shadow(0 0 10px rgba(0, 0, 0, .24));
   .border-radius(4px);
+}
+
+.link-style-1 a{
+  color: #0e90d2;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .document-block-a {
@@ -1359,7 +1368,7 @@ select[name="country_doc"] {
 
     &:hover {
       text-decoration: underline;
-      .box-shadow(0 0 10px rgba(0,0,0,.54));
+      .box-shadow(0 0 10px rgba(0, 0, 0, .54));
       .transition(all 0.5s);
     }
   }
