@@ -4,7 +4,7 @@ if(Core::$CONT != 'modules/admin'){
 
     // Seo meta tags
     foreach(explode(',', $GM['list_length']) as $k => $v){
-        if($lang == $v){
+        if($lang == 'en'){
             Core::$META['title'] = hsc(explode('#|#', $GM['meta_title'])[$k]);
             Core::$META['keywords'] = hsc(explode('#|#', $GM['meta_keywords'])[$k]);
             Core::$META['description'] = hsc(explode('#|#', $GM['meta_description'])[$k]);
