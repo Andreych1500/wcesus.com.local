@@ -16,7 +16,7 @@
       <?php } ?>
 
     <?php } else { ?>
-      <div class="no-question">Жодного запитання не було знайдено.</div>
+      <div class="no-question">No questions were found!</div>
     <?php } ?>
   </div>
 </div>

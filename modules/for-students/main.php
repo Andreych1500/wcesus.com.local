@@ -20,6 +20,6 @@ $arBlock = array(
         'alt_img'     => 'Course-by-Course Report',
         'name'        => 'Course-by-Course Report',
         'price'       => '$135',
-        'description' => '<p>U.S. equivalence for each educational credential</p><p>Credit and grade equivalents</p><p>Grade average for each educational credential</p><p>Identifies upper level courses for undergraduate or professional studies</p><p>General evaluation of high school level credentials (without a grade average), if included for evaluatio</p>'
+        'description' => '<p>U.S. equivalence for each educational credential</p><p>Credit and grade equivalents</p><p>Grade average for each educational credential</p><p>Identifies upper level courses for undergraduate or professional studies</p><p>General evaluation of high school level credentials (without a grade average), if included for evaluation</p>'
     ),
 );

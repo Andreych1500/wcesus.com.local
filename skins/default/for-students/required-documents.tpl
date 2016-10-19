@@ -15,7 +15,7 @@
       <?php } ?>
     </select>
   <?php } else { ?>
-    <div class="no-country">Помилка: Жодної країни не знайдено!</div>
+    <div class="no-country">Error: Country was not found!</div>
   <?php } ?>
 
   <div class="document-block-a hiddenIM"><a href=""></a></div>

@@ -1338,12 +1338,38 @@ select[name="country_doc"] {
   .border-radius(4px);
 }
 
-.link-style-1 a{
+.link-style-1 a {
   color: #0e90d2;
   text-decoration: underline;
 
   &:hover {
     text-decoration: none;
+  }
+}
+
+.wces-padding {
+  padding: inherit;
+  list-style: inherit;
+
+  li {
+    margin-bottom: 5px;
+    list-style-position: inside;
+  }
+
+  &.apply-user {
+    padding-top: 0;
+  }
+
+  a {
+    text-decoration: underline;
+    color: @color3;
+    .transition(all 0.3s ease);
+
+    &:hover {
+      color: #0e90d2;
+      text-decoration: none;
+      .transition(all 0.3s ease);
+    }
   }
 }
 
