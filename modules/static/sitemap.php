@@ -1,4 +1,7 @@
 <?php
+Core::$META['title'] = 'World Class Evaluation Services - Site Map';
+unset($contentOG);
+
 $site_map = array(
     'Home'        => array(
         'this'        => '/',

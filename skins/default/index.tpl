@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title><?=Core::$META['title']?></title>
   <meta name="apple-mobile-web-app-title" content="<?=Core::$META['title']?>">
-  <meta name="description" content="<?=Core::$META['description']?>">
-  <meta name="keywords" content="<?=Core::$META['keywords']?>">
+  <?=(empty(Core::$META['description'])? '' : '<meta name="description" content="'.Core::$META['description'].'">')?>
+  <?=(empty(Core::$META['keywords'])? '' : '<meta name="keywords" content="'.Core::$META['keywords'].'">')?>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="author" content="Савіцький Андрій">
   <meta name="robots" content="index, nofollow">
