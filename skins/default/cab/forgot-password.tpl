@@ -1,4 +1,4 @@
-<form class="clear-fix bg-net" action="" method="post">
+<form class="clear-fix apply-user" action="" method="post">
   <div class="header-question">Restore your password</div>
 
   <p>Please enter the email address you used to access the WCES website. If entered an incorrect email address and you have not proceeded a payment, you will be sent a letter of authorization according to your personal account.</p>
