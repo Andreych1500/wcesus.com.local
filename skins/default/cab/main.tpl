@@ -9,7 +9,7 @@
     </div>
 
     <div data-view-section="1" <?=(isset($_COOKIE['open_tabs']) && $_COOKIE['open_tabs'] == 1? 'style="display:block"' : '')?>>
-      <form action="" method="post" class="line-input-free">
+      <form action="/cab/" method="post" class="line-input-free">
         <div class="input-value">
           <div class="name-section">Last password:<span class="accent">*</span></div>
           <input <?=(isset($check['your_password'])? $check['your_password'] : '')?> type="password" name="your_password" value="<?=(isset($_POST['your_password'])? hsc($_POST['your_password']) : "")?>">
@@ -237,7 +237,7 @@
   </div>
 <?php } else { ?>
   <div class="registration-block">
-    <form action="" method="post">
+    <form action="/cab/" method="post">
       <img src="/skins/default/img/logo.png" alt="alt" title="title">
       <div class="form-group">
         <input type="email" name="email" placeholder="Email" <?=(isset($check['email'])? $check['email'] : "")?> value="<?=(isset($_POST['email'])? hsc($_POST['email']) : "")?>">

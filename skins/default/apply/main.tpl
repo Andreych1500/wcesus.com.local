@@ -29,7 +29,7 @@
 
   <div class="go-toForm">
     <p class="header-goForm">Continue an Online Application</p>
-    <form action="" method="post" class="go-toForm">
+    <form action="/apply/" method="post" class="go-toForm">
       <p>Are you returning to continue the online application?<br><br>If you are returning to continue your application, please enter your WCES credentials:
       </p>
 

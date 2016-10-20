@@ -1,4 +1,4 @@
-<form class="clear-fix bg-net" data-clear="clear" action="" method="post">
+<form class="clear-fix bg-net" data-clear="clear" action="/apply/education-history/" method="post">
   <div class="steps">
     <?php for($i = 1; $i <= 7; ++$i){ ?>
       <div <?=(($i == 2)? 'class="active"' : '')?>>Step <?=$i?></div>
@@ -141,6 +141,6 @@
   </div>
 </form>
 
-<form action="" id="to_file" enctype="multipart/form-data">
+<form action="/apply/education-history/" id="to_file" enctype="multipart/form-data">
   <input id="control" type="file" name="file" onchange="addFile(this)" data-input="" data-name-submit="Select file">
 </form>

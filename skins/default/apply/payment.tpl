@@ -1,4 +1,4 @@
-<form class="clear-fix bg-net" action="" method="post">
+<form class="clear-fix bg-net" action="/apply/payment/" method="post">
   <div class="steps">
     <?php for($i = 1; $i <= 7; ++$i){ ?>
       <div <?=($i == 7? 'class="active"' : '')?>>Step <?=$i?></div>

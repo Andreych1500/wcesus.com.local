@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?=(($lang == Core::$SITE_LANG[0])? Core::$SITE_LANG[0] : $lang)?>" <?=(isset($contentOG)? 'prefix="og: http://ogp.me/ns#"' : "")?> xmlns="http://www.w3.org/1999/html">
+<html lang="<?=(($lang == Core::$SITE_LANG[0])? Core::$SITE_LANG[0] : $lang)?>" <?=(isset($contentOG)? 'prefix="og: http://ogp.me/ns#"' : "")?>>
 <head>
   <meta charset="UTF-8">
   <title><?=Core::$META['title']?></title>

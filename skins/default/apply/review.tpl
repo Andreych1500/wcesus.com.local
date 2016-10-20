@@ -1,4 +1,4 @@
-<form class="clear-fix bg-net fixed-mobile" data-clear="clear" action="" method="post">
+<form class="clear-fix bg-net fixed-mobile" data-clear="clear" action="/apply/purpose/" method="post">
   <div class="steps">
     <?php for($i = 1; $i <= 7; ++$i){ ?>
       <div <?=(($i == 6)? 'class="active"' : '')?>>Step <?=$i?></div>
