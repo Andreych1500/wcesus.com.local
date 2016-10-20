@@ -159,13 +159,10 @@ if(isset($_GET['edit'])){
             $country = ($_POST['applicant_copy'] == 1? 'USA' : $_POST['ap_country']);
             $ap_mailing = ($_POST['applicant_copy'] == 1? $_POST['ap_mailing_us'] : $_POST['ap_mailing_all']);
 
-            $price = ApplyCard::getAllPrice($_POST);
-
             q("
                UPDATE `admin_application_info` SET
                 `access`              = ".$_POST['access'].",
                 `payment_ok`          = ".$_POST['payment_ok'].",
-                `all_price`           = ".mres($price.'.00').",
                 `last_name`           = '".$_POST['last_name']."',
                 `first_name`          = '".$_POST['first_name']."',
                 `middle_name`         = '".$_POST['middle_name']."',
@@ -219,6 +216,8 @@ if(isset($_GET['edit'])){
                 `date_custom`         = NOW()
                 WHERE `id` = '".$_GET['edit']."'
             ");
+
+            ApplyCard::priceCard($_POST['idCard'], true); // Update price
 
             sessionInfo('/admin/apply/', $messG['Редагування пройшло успішно!'], 1);
         }

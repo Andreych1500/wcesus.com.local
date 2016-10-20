@@ -24,6 +24,14 @@ if(isset($_GET['edit'])){
                 WHERE `id`   = '".mres($_GET['edit'])."'
             ");
 
+            $idCard = q("
+                SELECT `idCard`
+                FROM `admin_official_agency_copy`
+                WHERE `id`   = '".mres($_GET['edit'])."'
+            ")->fetch_assoc();
+
+            ApplyCard::priceCard($idCard['idCard'], true); // Update peirce
+
             sessionInfo('/admin/apply/copy-agency/', $messG['Редагування пройшло успішно!'], 1);
         }
     }
