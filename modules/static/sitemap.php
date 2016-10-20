@@ -4,6 +4,7 @@ Core::$META['keywords'] = '';
 Core::$META['description'] = '';
 unset($contentOG);
 
+
 $site_map = array(
     'Home'        => array(
         'this'        => '/',

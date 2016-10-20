@@ -103,8 +103,7 @@
       <address>
         <a href="<?=(isMobile()? 'tel:' : 'callto:').calltoPhone('2102152724')?>" title="#"><span class="icon-phone"></span>+1 (210) 215-2724</a>
         <a href="mailto:info@wcesus.com" title="info@wcesus.com"><span class="icon-mail"></span>info@wcesus.com</a>
-        <p><span class="icon-home"></span>4535 Schertz Rd, Suite 406, 
-        <br>San Antonio, TX, 78233, USA</p>
+        <p><span class="icon-home"></span>4535 Schertz Rd, Suite 406, <br>San Antonio, TX, 78233, USA</p>
       </address>
       <div class="bottom-info-link">
         <a href="/static/terms-conditions/" title="Terms & Conditions">Terms & Conditions</a>

@@ -1,4 +1,8 @@
 <?php
+Core::$META['title'] = 'Student FAQs | World Class Evaluation Services';
+Core::$META['keywords'] = 'credential evaluation, credential evaluation FAQ, credential evaluation FAQs, transcript evaluation, international students';
+Core::$META['description'] = 'Frequently asked questions and answers for WCES applicants. How long does my evaluation take? How can I check status? How much does it cost? Which type of evaluation should I choose?';
+unset($contentOG);
 
 $arBlock = array(
     0 => array(

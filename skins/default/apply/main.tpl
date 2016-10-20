@@ -48,7 +48,7 @@
         <input <?=(isset($check['date'])? $check['date'] : '')?> type="text" name="date" value="<?=(isset($error)? hsc($_POST['date']) : '')?>" placeholder="example: mm-dd-yyyy" pattern="\d{2}-\d{2}-\d{4}">
       </div>
 
-      <div class="forgot-data">Forgotten?</div>
+      <div class="forgot-data">Forgot?</div>
 
       <input type="submit" name="ok" value="Return to Application">
     </form>

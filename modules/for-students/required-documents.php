@@ -1,4 +1,8 @@
 <?php
+Core::$META['title'] = 'Required Documents For Students | World Class Evaluation Services';
+Core::$META['keywords'] = '';
+Core::$META['description'] = 'Issued with the letterhead, has an original institutional seal';
+unset($contentOG);
 
 if(isset($_GET['ajax'], $_POST['code']) && !empty($_POST['code'])){
 
