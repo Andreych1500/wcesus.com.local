@@ -7,6 +7,10 @@ session_start();
 
 // Config
 include_once './config.php';
+if(Core::$HTTPS && (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on')) {
+    header("Location: https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],TRUE,301);
+    exit;
+}
 include_once './libs/default-variables.php';
 
 // Controller
