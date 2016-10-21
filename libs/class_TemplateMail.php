@@ -72,7 +72,7 @@ class TemplateMail {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?=$arSet['theme']?></title>
       </head>
-      <body style="background: url(<?=$arSet['background']?>) #fb7d66; line-height:1.5; color:#482200; padding:30px 20px; font-size:17px;">
+      <body style="background: url(<?=$arSet['background']?>) #ef4429; line-height:1.5; color:#482200; padding:30px 20px; font-size:17px;">
       <style>
         @media screen and (min-width: 480px) {
 
