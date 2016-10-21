@@ -12,6 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <meta name="format-detection" content="address=no">
+  <meta name="google-site-verification" content="mUq-c86Dabp6kKP8zw7EvNdyXep-l92qspHxEHfBH18">
 
   <?php foreach(Core::$META['dns-prefetch'] as $v){ ?>
     <link rel="dns-prefetch" href="<?=$v?>">
