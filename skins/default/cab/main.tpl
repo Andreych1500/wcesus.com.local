@@ -248,7 +248,7 @@
         <span class="icon-lock"></span>
       </div>
       <div class="forgot-pass">
-        <a href="/cab/forgot-password/" title="Forgot password?">Forgot password?</a>
+        <a href="/cab/forgot-password/" title="Forgot password?" rel="nofollow">Forgot password?</a>
         <label class="save-me"> Remember me: <input type="checkbox" name="save" value="save"></label>
       </div>
       <input type="submit" name="log_in" value="LOG IN" class="submit-style">
