@@ -14,6 +14,7 @@ if(Core::$CONT != 'modules/admin'){
     // Dns loading asynchronous
     Core::$META['dns-prefetch'] = array(
         0 => $arMainParam['url_http_site'].'/',
+        1 => 'https://www.google-analytics.com'
     );
 
     // Canonical

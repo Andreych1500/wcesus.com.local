@@ -33,11 +33,25 @@
   <style><?=$style?></style>
   <!--[if lt IE 9]>
   <script src="/skins/default/js/ielt9.min.js" defer></script><![endif]-->
-
   <script src="/vendor/public/jquery/dist/jquery.min.js" defer></script>
   <script src="/vendor/public/jquery.cookie/jquery.cookie.min.js" defer></script>
   <?=(count(Core::$JS)? implode("\n", Core::$JS) : '')?>
   <script src="/skins/default/js/script.min.js?v=<?=$vF?>" defer></script>
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url" : "<?=$arMainParam['url_http_site'].$link_lang?>",
+      "logo" : "<?=$arMainParam['url_http_site']?>/skins/default/img/logo.png",
+      "name": "World Class Evaluation Services",
+      "telephone": "+1 (210) 215-2724",
+      "email": "2002ilchenko@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "San Antonio, USA",
+      }
+    }
+  </script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -132,20 +146,14 @@
 </footer>
 
 <script>
-  (function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-      m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', '<?=$arMainParam['url_http_site']?>/skins/default/get-js/analytics.js', 'ga');
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','<?=$arMainParam['url_http_site']?>/skins/default/get-js/analytics.js','ga');
 
   ga('create', 'UA-86121149-1', 'auto');
   ga('send', 'pageview');
+
 </script>
 
 <?php if(isset($info)){ ?>
