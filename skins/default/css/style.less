@@ -1196,6 +1196,7 @@ footer {
 }
 
 .footer-bottom {
+  &:extend(.clearfix all);
   background-color: rgba(0, 0, 0, 0.23);
   color: #ffffff;
   margin-top: 30px;
@@ -1205,7 +1206,19 @@ footer {
   font-family: @font-Raleway;
 
   .content {
+    float: left;
     .clear-fix();
+    width: auto;
+  }
+}
+
+.statistic {
+  float: right;
+  height: 31px;
+  margin: 5px 2% 0;
+
+  a {
+    height: 31px;
   }
 }
 

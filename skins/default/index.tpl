@@ -51,6 +51,13 @@
         "addressLocality": "San Antonio, USA",
       }
     }
+
+
+
+
+
+
+
   </script>
 </head>
 
@@ -142,18 +149,36 @@
   </div>
   <div class="footer-bottom">
     <div class="content">WCES &copy;<?=Core::$DATA?>. All Rights Reserved</div>
+    <div class="statistic">
+      <!--LiveInternet counter-->
+      <script type="text/javascript"><!--
+        document.write("<a rel='nofollow' href='//www.liveinternet.ru/click' " +
+          "target=_blank><img src='//counter.yadro.ru/hit?t44.3;r" +
+          escape(document.referrer) + ((typeof(screen) == "undefined") ? "" :
+          ";s" + screen.width + "*" + screen.height + "*" + (screen.colorDepth ?
+            screen.colorDepth : screen.pixelDepth)) + ";u" + escape(document.URL) +
+          ";" + Math.random() +
+          "' alt='' title='LiveInternet' " +
+          "border='0' width='31' height='31'><\/a>")
+        //--></script><!--/LiveInternet-->
+    </div>
   </div>
 </footer>
 
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','<?=$arMainParam['url_http_site']?>/skins/default/get-js/analytics.js','ga');
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '<?=$arMainParam['url_http_site']?>/skins/default/get-js/analytics.js', 'ga');
 
   ga('create', 'UA-86121149-1', 'auto');
   ga('send', 'pageview');
-
 </script>
 
 <?php if(isset($info)){ ?>
