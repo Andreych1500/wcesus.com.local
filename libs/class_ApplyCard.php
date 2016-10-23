@@ -121,7 +121,7 @@ class ApplyCard {
                         'sample' => '#'
                     ),
                     3 => array(
-                        'name'   => 'Detailed Course-by-Course Report',
+                        'name'   => 'Course-by-Course Report',
                         'price'  => '135',
                         'sample' => '#'
                     )

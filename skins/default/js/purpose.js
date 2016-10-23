@@ -25,4 +25,6 @@ $(document).ready(function () {
             $('[data-hidden="main_purpose"]').show().removeClass('hidden');
         }
     });
+
+    $('select[name="main_purpose"]').change();
 });
