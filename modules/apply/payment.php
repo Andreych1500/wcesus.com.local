@@ -23,8 +23,8 @@ if(isset($_POST['ok'])){ // Процес оплати...
     require_once($_SERVER['DOCUMENT_ROOT'].'/libs/PayPal/class_PayPal.php'); // Підключаємо класс PayPal
 
     $p = new class_PayPal;                                                   // Створюєм екземпляр класа
-    $p->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';        // Тестовий url PayPal
-    //$p->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';              // Робочий url PayPal для оплат
+    //$p->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';        // Тестовий url PayPal
+    $p->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';              // Робочий url PayPal для оплат
 
     $this_script = $arMainParam['url_http_site'].'/apply/payment/';                 // Сторінка cancel, success, ipn!!!
 
@@ -41,7 +41,7 @@ if(isset($_POST['ok'])){ // Процес оплати...
         $p->add_field('currency_code', 'USD');             // Валюта
         $p->add_field('charset', 'utf-8');                 // Юнікод
 
-        $p->add_field('business', 'Savitskuy-facilitator@ukr.net'); // Email PayPal продавця
+        $p->add_field('business', 'ilchenko@student.uiwtx.edu'); // Email PayPal продавця
 
         $p->add_field('return', $this_script.'payment-success/');
         $p->add_field('cancel_return', $this_script.'payment-cancel/');
