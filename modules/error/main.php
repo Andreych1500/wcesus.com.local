@@ -29,7 +29,8 @@ $menu = array(
     'Home'        => array(
         'this'        => '/',
         'About Us'    => '/static/about-us/',
-        'Credentials' => '/static/credentials/'
+        'Credentials' => '/static/credentials/',
+        'Office Hours' => '/static/office-hours/'
     ),
     'Students'    => array(
         'this'               => '/for-students/',

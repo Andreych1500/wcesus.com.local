@@ -2363,8 +2363,57 @@ textarea[name="reason_text"] {
   margin-top: 20px;
 }
 
+.table-office-hours {
+  width: 100%;
+  font-family: @font-Raleway;
+  color: @color2;
+  border-collapse: collapse;
+
+  td {
+    text-align: center;
+    padding: 3px;
+    border: 1px solid #b1b1b1;
+  }
+
+  .silver-br {
+    background: #ccc;
+  }
+
+  .cBlueIce {
+    background: #bdd6ee;
+  }
+
+  .cGreenIce {
+    background: #c5e0b3;
+  }
+
+  .cRedIce {
+    background: rgb(247, 202, 172);
+  }
+
+  .cOrangeIce {
+    background: rgb(255, 229, 153);
+  }
+
+  .top-line {
+    background: #0f8644;
+    color: #ffffff;
+  }
+
+  @media screen and (max-width: 520px) {
+    display: block;
+    overflow-x: auto;
+
+    tbody {
+      display: table;
+      width: 100%;
+    }
+
+  }
+}
+
 .slide-list {
-  max-height: 346px;
+  max-height: 420px;
   overflow: hidden;
   position: relative;
   font-size: 0;
