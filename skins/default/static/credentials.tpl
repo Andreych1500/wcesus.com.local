@@ -12,4 +12,5 @@
     </tr>
   </table><!-- PayPal Logo -->
 
+  <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=gvZ4XKPxKmzc22GlyDzOhfalIcnCW4vrgPlqIoX71fALVK5CGw7kEVYxL7VV"></script></span>
 </div>
