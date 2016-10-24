@@ -335,9 +335,9 @@ if($accessCab){
         // IP PayPal '173.0.82.126 -> test' '173.0.81.1 and 173.0.81.33' -> machine){
 
         $ipPayPal = array(
-            '173.0.82.126'
-            //'173.0.81.33',
-            //'173.0.81.1'
+            //'173.0.82.126'
+            '173.0.81.33',
+            '173.0.81.1'
         );
 
         if(in_array($_SERVER['REMOTE_ADDR'], $ipPayPal)){

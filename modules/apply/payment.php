@@ -83,9 +83,9 @@ if(isset($_GET['key1']) == 'ipn-access'){
     //mail('Savitskuy@ukr.net', 'text', $_SERVER['REMOTE_ADDR']);
     //exit();
     $ipPayPal = array(
-        '173.0.82.126'
-        //'173.0.81.33',
-        //'173.0.81.1'
+        //'173.0.82.126'
+        '173.0.81.33',
+        '173.0.81.1'
     );
 
     if(in_array($_SERVER['REMOTE_ADDR'], $ipPayPal)){
