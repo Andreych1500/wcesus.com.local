@@ -6,8 +6,10 @@
   <a href="http://www.amideast.org/" target="_blank" class="l-style">AMIDEAST: America-Mideast Educational and Training Services, Inc.</a><br>
 
   <!-- PayPal Logo -->
-  <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=gvZ4XKPxKmzc22GlyDzOhfalIcnCW4vrgPlqIoX71fALVK5CGw7kEVYxL7VV"></script></span>
+  <a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/digitalassets/c/website/marketing/na/us/logo-center/15_nowaccepting_blue_badge.jpg" border="0" alt="Secured by PayPal"></a>
   <!-- PayPal Logo -->
+  
+  <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=gvZ4XKPxKmzc22GlyDzOhfalIcnCW4vrgPlqIoX71fALVK5CGw7kEVYxL7VV"></script></span>
 
   <div class="header-question">Methodology and Resources</div>
 
