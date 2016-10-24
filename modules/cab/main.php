@@ -332,20 +332,21 @@ if($accessCab){
     }
 
     if(isset($_GET['key1']) == 'ipn-access'){
-        // IP PayPal '173.0.82.126 -> test' '173.0.81.1 and 173.0.81.33' -> machine){
 
+        // IP sandbox PayPal '173.0.82.126 -> test
+        // IP PayPal '173.0.81.1 and 173.0.81.33' -> machine
         $ipPayPal = array(
-            '173.0.82.126'
-            //'173.0.81.33',
-            //'173.0.81.1'
+            //'173.0.82.126'
+            '173.0.81.33',
+            '173.0.81.1'
         );
 
         if(in_array($_SERVER['REMOTE_ADDR'], $ipPayPal)){
             require_once($_SERVER['DOCUMENT_ROOT'].'/libs/PayPal/class_PayPal.php'); // Підключаємо класс PayPal
 
             $p = new class_PayPal;                                                   // Створюєм екземпляр класа
-            $p->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';        // Тестовий url PayPal
-            //$p->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';              // Робочий url PayPal для оплат
+            //$p->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';      // Тестовий url PayPal
+            $p->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';                // Робочий url PayPal для оплат
 
             $p->ipn_log_file = $_SERVER['DOCUMENT_ROOT'].'/libs/PatPal/ipn_cab_result.log';
 
@@ -362,18 +363,22 @@ if($accessCab){
                 ");
 
                 if($getCardActive->num_rows > 0){
-                    $query = "`payment_status` = 1";
-                } else {
-                    $query = "`payment_status` = 0";
-                }
+                    $cab_anket = $getCardActive->fetch_assoc();
 
-                q("
-                    UPDATE `admin_cab_copy_info` SET
-                    ".$query."
-                    WHERE `id` = '".mres($inpResult[0])."'
-                    AND `idCard` = '".mres($inpResult[1])."'
-                    LIMIT 1
-               ");
+                    if($cab_anket['price'] == $p->ipn_data['payment_gross']){
+                        $query = "`payment_status` = 1";
+                    } else {
+                        $query = "`payment_status` = 0";
+                    }
+
+                    q("
+                        UPDATE `admin_cab_copy_info` SET
+                        ".$query."
+                        WHERE `id` = '".mres($inpResult[0])."'
+                        AND `idCard` = '".mres($inpResult[1])."'
+                        LIMIT 1
+                   ");
+                }
             }
         }
     }
