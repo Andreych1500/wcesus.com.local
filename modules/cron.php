@@ -1,8 +1,7 @@
 <?php
 // Очищення тимчасових файлів
-
 if($_SERVER['REMOTE_ADDR'] == '192.186.205.227'){
-    function removeDirectory($dir){
+    function removeDirectory($dir, $removeDir = false){
         if(!file_exists($dir)){
             return false;
         }
@@ -13,16 +12,16 @@ if($_SERVER['REMOTE_ADDR'] == '192.186.205.227'){
             }
         }
 
-        if(is_dir($dir)){
+        if(is_dir($dir) && $removeDir){
             rmdir($dir);
         }
     }
 
-    removeDirectory($_SERVER['DOCUMENT_ROOT'].'/uploaded/temporarily/');
-    removeDirectory($_SERVER['DOCUMENT_ROOT'].'/uploaded/db_tables/');
+    removeDirectory($_SERVER['DOCUMENT_ROOT'].'/uploaded/temporarily', true);
+    removeDirectory($_SERVER['DOCUMENT_ROOT'].'/uploaded/db_tables' , true);
+	removeDirectory($_SERVER['DOCUMENT_ROOT'].'/uploaded/backup');
 
     $google = file_get_contents('https://www.google-analytics.com/analytics.js', false, $context);
-    
 	
     if($google){
         $fp = fopen($_SERVER['DOCUMENT_ROOT']."/skins/default/get-js/analytics.js", "w");
