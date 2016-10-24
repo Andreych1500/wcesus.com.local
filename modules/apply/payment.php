@@ -22,11 +22,11 @@ if(isset($_POST['ok'])){ // Процес оплати...
 
     require_once($_SERVER['DOCUMENT_ROOT'].'/libs/PayPal/class_PayPal.php'); // Підключаємо класс PayPal
 
-    $p = new class_PayPal;                                                   // Створюєм екземпляр класа
-    //$p->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';        // Тестовий url PayPal
+    $p = new class_PayPal;                                                 // Створюєм екземпляр класа
+    //$p->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';    // Тестовий url PayPal
     $p->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';              // Робочий url PayPal для оплат
 
-    $this_script = $arMainParam['url_http_site'].'/apply/payment/';                 // Сторінка cancel, success, ipn!!!
+    $this_script = $arMainParam['url_http_site'].'/apply/payment/';        // Сторінка cancel, success, ipn!!!
 
     if(!isset($_POST['price']) || !preg_match('#^\d+\.00$#uis', $_POST['price'])){
         sessionInfo('/apply/payment/', '<p>Please do not change the amount of the code to pay!</p>');
@@ -60,7 +60,6 @@ if(isset($_GET['key1']) && $_GET['key1'] == 'payment-success'){
             UPDATE `admin_application_info` SET
             `payment_ok` = 1
             WHERE `idCardHash` = '".mres($_POST['item_number'])."'
-            AND `all_price` = '".mres($_POST['payment_gross'])."'
             AND `agent`   = '".mres($_SERVER['HTTP_USER_AGENT'])."'
             AND `user_ip` = '".mres($_SERVER['REMOTE_ADDR'])."'
             LIMIT 1 
@@ -79,9 +78,8 @@ if(isset($_GET['key1']) && $_GET['key1'] == 'payment-cancel'){
 
 if(isset($_GET['key1']) == 'ipn-access'){
 
-    // IP PayPal '173.0.82.126 -> test' '173.0.81.1 and 173.0.81.33' -> machine){
-    //mail('Savitskuy@ukr.net', 'text', $_SERVER['REMOTE_ADDR']);
-    //exit();
+    // IP sandbox PayPal '173.0.82.126 -> test
+    // IP PayPal '173.0.81.1 and 173.0.81.33' -> machine
     $ipPayPal = array(
         //'173.0.82.126'
         '173.0.81.33',
@@ -92,8 +90,8 @@ if(isset($_GET['key1']) == 'ipn-access'){
         require_once($_SERVER['DOCUMENT_ROOT'].'/libs/PayPal/class_PayPal.php'); // Підключаємо класс PayPal
 
         $p = new class_PayPal;                                                   // Створюєм екземпляр класа
-        $p->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';        // Тестовий url PayPal
-        //$p->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';              // Робочий url PayPal для оплат
+        //$p->paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';      // Тестовий url PayPal
+        $p->paypal_url = 'https://www.paypal.com/cgi-bin/webscr';                // Робочий url PayPal для оплат
 
         if($p->validate_ipn()){
             // Тут перевіряємо дані які зберігаються у ipn_data() array.
@@ -102,39 +100,44 @@ if(isset($_GET['key1']) == 'ipn-access'){
                 SELECT *
                 FROM `admin_application_info`
                 WHERE `idCardHash` = '".mres($p->ipn_data['item_number'])."'
-                AND `all_price` = '".mres($p->ipn_data['payment_gross'])."'
+                LIMIT 1
             ");
 
             if($getCardActive->num_rows > 0){
-                $password = generationPass();
-                $query = "`active` = 1, `access` = 1, `payment_ok` = 0, `password` = '".myHash($password)."'";
+                $anket = $getCardActive->fetch_assoc();
 
-                $set = array(
-                    'password' => $password
-                );
+                if($anket['all_price'] == $p->ipn_data['payment_gross']){
+                    $password = generationPass();
+                    $query = "`active` = 1, `access` = 1, `payment_ok` = 0, `password` = '".myHash($password)."'";
 
-                Mail::$text = TemplateMail::HtmlMail($set, 'payment_ok', $arMainParam);
+                    $set = array(
+                        'password' => $password
+                    );
 
-                if(Mail::$text){
-                    Mail::$to = mres($getCardActive->fetch_assoc()['email']);
-                    Mail::send();
+                    Mail::$text = TemplateMail::HtmlMail($set, 'payment_ok', $arMainParam);
+
+                    if(Mail::$text){
+                        Mail::$to = mres($anket['email']);
+                        Mail::send();
+                    }
+                } else {
+                    $query = "`payment_ok` = 0";
+
+                    Mail::$text = TemplateMail::HtmlMail('', 'payment_no', $arMainParam);
+
+                    if(Mail::$text){
+                        Mail::$to = mres($anket['email']);
+                        Mail::send();
+                    }
                 }
-            } else {
-                $query = "`payment_ok` = 0";
 
-                Mail::$text = TemplateMail::HtmlMail('', 'payment_no', $arMainParam);
-
-                if(Mail::$text){
-                    Mail::$to = mres($getCardActive->fetch_assoc()['email']);
-                    Mail::send();
-                }
+                q("
+                    UPDATE `admin_application_info` SET
+                    ".$query."
+                    WHERE `idCardHash` = '".mres($p->ipn_data['item_number'])."'
+                    LIMIT 1
+                ");
             }
-
-            q("
-                UPDATE `admin_application_info` SET
-                ".$query."
-                WHERE `idCardHash` = '".mres($p->ipn_data['item_number'])."'
-            ");
         }
     }
 }
