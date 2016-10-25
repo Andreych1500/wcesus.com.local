@@ -60,7 +60,7 @@ if(isset($_GET['cron']) && $_GET['cron'] == 'ok' && $_SERVER['REMOTE_ADDR'] == C
         }
 
         $idCard = implode($idCard, ',');
-
+        
         $history = q("
             SELECT `fileScan`
             FROM `admin_educational_history`
