@@ -1,7 +1,7 @@
 <div class="clear-fix">
   <div class="apply-user">
-    <div class="header-question">bla bla bla</div>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, ad dicta eius est magnam nesciunt qui quibusdam quisquam, repudiandae sapiente tempore unde! Cupiditate dolore non repudiandae! Adipisci in ipsum ut! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aspernatur dolorum expedita illo quidem ratione tempore vel. Cum deserunt excepturi, illum ipsam laboriosam magni minima modi nisi sed vero? Aperiam asperiores corporis cum dicta, ducimus ea eius error et facere harum illo impedit iure laborum magnam minima natus nemo obcaecati odit perferendis praesentium, quaerat quo repellat sequi similique soluta unde veniam voluptatum. Aliquid amet commodi consequatur corporis, dolorem error excepturi impedit minus molestias natus nulla qui quisquam saepe sit soluta tempore totam velit voluptas voluptate voluptatibus! Consequatur corporis
+    <div class="header-question">Credential Evaluation Report for students.</div>
+    Being highly educated and have degrees from your country does not guarantee the recognition of the international documents here in the United States institutions. Hence you cannot take full benefit of coming to the US and study or work here.
   </div>
 
   <div class="faq-items">
