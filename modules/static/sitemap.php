@@ -7,22 +7,29 @@ unset($contentOG);
 
 $site_map = array(
     'Home'        => array(
-        'this'        => '/',
-        'About Us'    => '/static/about-us/',
-        'Credentials' => '/static/credentials/'
+        'this'         => '/',
+        'About Us'     => '/static/about-us/',
+        'Credentials'  => '/static/credentials/',
+        'Office Hours' => '/static/office-hours/'
     ),
     'Students'    => array(
-        'this'               => '/for-students/',
-        'Required Documents' => '/for-students/required-documents/',
-        'FAQ'                => '/for-students/faq/'
+        'this'                => '/for-students/',
+        'Educational Guide'   => '/for-students/educational-guide/',
+        'Educational Systems' => '/for-students/educational-systems/',
+        'Required Documents'  => '/for-students/required-documents/',
+        'FAQ'                 => '/for-students/faq/'
     ),
     'Job Seekers' => array(
         'this'               => '/job-seekers/',
+        'Employment Guide'   => '/job-seekers/employment-guide/',
+        'Working in the USA' => '/job-seekers/working-usa/',
         'Required Documents' => '/job-seekers/required-documents/',
         'FAQ'                => '/job-seekers/faq/'
     ),
     'Immigrants'  => array(
         'this'               => '/immigrants/',
+        'Immigration Guide'  => '/immigrants/immigration-guide/',
+        'Coming to the USA'  => '/immigrants/coming-usa/',
         'Required Documents' => '/immigrants/required-documents/',
         'FAQ'                => '/immigrants/faq/'
     ),
