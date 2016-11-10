@@ -41,7 +41,7 @@ if(isset($_POST['ok'])){ // Процес оплати...
         $p->add_field('currency_code', 'USD');             // Валюта
         $p->add_field('charset', 'utf-8');                 // Юнікод
 
-        $p->add_field('business', 'ilchenko@student.uiwtx.edu'); // Email PayPal продавця
+        $p->add_field('business', 'info@wcesus.com'); // Email PayPal продавця
 
         $p->add_field('return', $this_script.'payment-success/');
         $p->add_field('cancel_return', $this_script.'payment-cancel/');
