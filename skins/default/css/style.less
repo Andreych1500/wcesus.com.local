@@ -2149,7 +2149,11 @@ div.error {
     color: #ffffff;
   }
 
-  @media screen and (max-width: 520px) {
+  .tx-center td {
+    text-align: center;
+  }
+
+  @media screen and (max-width: 560px) {
     display: block;
     overflow-x: auto;
 
@@ -2161,7 +2165,7 @@ div.error {
 }
 
 .fixed-mobile {
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: 560px) {
     overflow: hidden;
   }
 }
@@ -2533,6 +2537,18 @@ span[data-click] {
 .confirm_agreement {
   display: none !important;
   visibility: hidden;
+}
+
+.free-table {
+
+  td {
+    text-align: center;
+  }
+
+  @media screen and (min-width: 481px) {
+    width: 480px;
+    margin-top: 5px;
+  }
 }
 
 .bottom-info-link {

@@ -19,8 +19,6 @@
   <?php } ?>
   <link rel="canonical" href="<?=Core::$META['canonical']?>">
 
-  <link rel="alternate" href="<?=Core::$META['alternate']?>" hreflang="x-default">
-
   <?=(isset($contentOG)? $contentOG : "")?>
 
   <link rel="icon" href="/favicon.ico" type="image/x-icon">

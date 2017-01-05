@@ -20,10 +20,6 @@ if(Core::$CONT != 'modules/admin'){
     // Canonical
     Core::$META['canonical'] = $arMainParam['url_http_site'].$link_lang.(($GM['module'] == 'static')? '' : $GM['module'].'/').(isset($_GET['page'])? ($_GET['page'] == 'main'? '' : $_GET['page'].'/') : '');
 
-    // Alternate lang
-    $module_url = (($GM['module'] == 'static')? (isset($_GET['page']) && $_GET['page'] != 'main'? $_GET['page'].'/' : '') : $GM['module'].'/'.($_GET['page'] != 'main'? $_GET['page'].'/' : ''));
-    Core::$META['alternate'] = $arMainParam['url_http_site'].$link_lang.$module_url;
-
     // RDFa open graph
     if($GM['open_graph_page']){
         $contentOG = '';
