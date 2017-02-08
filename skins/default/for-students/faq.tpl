@@ -1,6 +1,6 @@
 <div class="clear-fix">
   <div class="apply-user">
-    <div class="header-question">Credential Evaluation Report for students.</div>
+    <div class="header-question">Credential Evaluation Report for Students</div>
     Being highly educated and have degrees from your country does not guarantee the recognition of the international documents here in the United States institutions. Hence you cannot take full benefit of coming to the US and study or work here.
   </div>
 

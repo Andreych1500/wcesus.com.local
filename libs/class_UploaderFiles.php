@@ -138,10 +138,10 @@ class UploaderFiles {
 
         switch($temp[2]){
             case 1:
-                imagegif($thumb, $name, 100);
+                imagegif($thumb, $name, 85);
                 break;
             case 2:
-                imagejpeg($thumb, $name, 100);
+                imagejpeg($thumb, $name, 85);
                 break;
             case 3:
                 imagepng($thumb, $name, 0);

@@ -140,7 +140,7 @@
   </div>
   <div class="footer-bottom">
     <div class="content">
-      WCES &copy;<?=Core::$DATA?>. All Rights Reserved
+      WCES &copy;<?=data(Core::$DATA)?>. All Rights Reserved
       <div class="statistic"></div>
     </div>
   </div>
